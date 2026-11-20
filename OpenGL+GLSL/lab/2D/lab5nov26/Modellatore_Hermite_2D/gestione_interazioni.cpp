@@ -42,12 +42,14 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
         glfwSetWindowShouldClose(window, GLFW_TRUE);
         return;
     }
-    if (key == GLFW_KEY_F1 && action == GLFW_PRESS) {
+    // Se ImGui sta catturando la tastiera (es. scrivendo in un campo di testo), non interpretare scorciatoie
+    if (ImGui::GetCurrentContext() && ImGui::GetIO().WantCaptureKeyboard) return;
+
+    if ((key == GLFW_KEY_F1 || key == GLFW_KEY_M || key == GLFW_KEY_TAB) && action == GLFW_PRESS) {
         showMenu = !showMenu;
         if (!showMenu) CancellaAreePannelli();
         return;
     }
-    // ImGui sta modificando una casella di testo: non interpretare T/C/B
     // come scorciatoie per le tangenti.
     if (ImGui::GetCurrentContext() && ImGui::GetIO().WantCaptureKeyboard) return;
     if (action != GLFW_PRESS && action != GLFW_REPEAT) return;

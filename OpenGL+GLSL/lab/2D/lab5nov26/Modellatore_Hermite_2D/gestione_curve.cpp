@@ -108,32 +108,20 @@ float dy(int i, float* t,  Curva* curva)
 
 float DX(int i, float* t, Curva* curva)
 {
-	//Nei vertici di controllo per i quali non sono stati modificati i parametri Tens, Bias, Cont il valore della derivata della componente x della curva è quello originale, altrimenti è quello che è stato modificato nella funzione 
-	//keyboardfunc  in seguito alla modifica dei valori Tens, Bias e Cont.
-	 
 	if (curva->chiusaC1 && (i == 0 || i == static_cast<int>(curva->CP.size()) - 1)) return curva->Derivata[0].x;
 	if (curva->Derivata.at(i).x == 0)
 	   return dx(i, t, curva);
 	
-	if (curva->Derivata.at(i).x != 0)
-		return curva->Derivata.at(i).x;
-	
-	 
-	
+	return curva->Derivata.at(i).x;
 }
 
 float DY(int i, float* t, Curva* curva)
 {
-	// Nei vertici di controllo per i quali non sono stati modificati i parametri Tens, Bias, Cont il valore della derivata della componente y della curva è quello originale, altrimenti è quello che è stato modificato nella funzione
-		//keyboardfunc  in seguito alla modifica dei valori Tens, Bias e Cont.
-	 
 	if (curva->chiusaC1 && (i == 0 || i == static_cast<int>(curva->CP.size()) - 1)) return curva->Derivata[0].y;
 	if (curva->Derivata.at(i).y == 0)
 		return dy(i, t, curva);
 	 
-	if (curva->Derivata.at(i).y != 0)
-		return curva->Derivata.at(i).y;
-
+	return curva->Derivata.at(i).y;
 }
 
 void InterpolazioneHermite(float* t, Curva* curva, vec4 color_top, vec4 color_bot)

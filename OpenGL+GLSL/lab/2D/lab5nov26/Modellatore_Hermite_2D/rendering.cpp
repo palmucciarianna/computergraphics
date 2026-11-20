@@ -17,7 +17,7 @@
 extern int  width, height;
  
 extern ImVec4 clear_color;
-bool showMenu = false, visualizza_PC = true;;
+bool showMenu = true, visualizza_PC = true;
 double mousex, mousey; //Coordinate del mouse
 bool flag_wireframe;
 
