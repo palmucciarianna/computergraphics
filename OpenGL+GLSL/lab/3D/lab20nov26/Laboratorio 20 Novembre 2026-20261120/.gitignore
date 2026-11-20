@@ -1,0 +1,23 @@
+# Cartelle di compilazione e artefatti CMake
+build/
+**/build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+
+# Binari ed eseguibili compilati
+Progetto3D_Interattivo
+*.o
+*.a
+*.dylib
+*.out
+
+# File di runtime ImGui e temporanei
+*.ini
+imgui.ini
+
+# File di sistema macOS
+.DS_Store
+**/.DS_Store
+._*

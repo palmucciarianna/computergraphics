@@ -1,0 +1,3 @@
+[submodule "old-github/others-repo-computer-graphics"]
+	path = old-github/others-repo-computer-graphics
+	url = https://github.com/palmucciarianna/others-repo-computer-graphics.git

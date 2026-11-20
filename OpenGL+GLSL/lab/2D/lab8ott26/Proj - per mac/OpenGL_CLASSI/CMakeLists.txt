@@ -1,0 +1,43 @@
+cmake_minimum_required(VERSION 3.16)
+project(OpenGL_CLASSI LANGUAGES C CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type" FORCE)
+endif()
+list(APPEND CMAKE_PREFIX_PATH /opt/homebrew /usr/local)
+find_package(OpenGL REQUIRED)
+find_package(glfw3 3.3 REQUIRED)
+# Directory containing glm/glm.hpp, including headers extracted from NuGet.
+set(GLM_INCLUDE_DIR "" CACHE PATH "Directory containing glm/glm.hpp")
+if(GLM_INCLUDE_DIR)
+  if(NOT EXISTS "${GLM_INCLUDE_DIR}/glm/glm.hpp")
+    message(FATAL_ERROR "GLM_INCLUDE_DIR must contain glm/glm.hpp")
+  endif()
+  add_library(project_glm INTERFACE)
+  target_include_directories(project_glm INTERFACE "${GLM_INCLUDE_DIR}")
+  set(GLM_TARGET project_glm)
+else()
+  find_package(glm CONFIG REQUIRED)
+  set(GLM_TARGET glm::glm)
+endif()
+set(DEPS "${CMAKE_CURRENT_SOURCE_DIR}/dependencies_GL_GLFW")
+set(IMGUI "${DEPS}/ImGui")
+add_library(glad STATIC "${DEPS}/glad.c")
+target_include_directories(glad PUBLIC "${DEPS}/include")
+target_link_libraries(glad PUBLIC ${CMAKE_DL_LIBS})
+add_library(imgui STATIC
+  "${IMGUI}/imgui.cpp" "${IMGUI}/imgui_draw.cpp"
+  "${IMGUI}/imgui_tables.cpp" "${IMGUI}/imgui_widgets.cpp"
+  "${IMGUI}/imgui_impl_glfw.cpp" "${IMGUI}/imgui_impl_opengl3.cpp")
+target_include_directories(imgui PUBLIC "${IMGUI}")
+target_compile_definitions(imgui PUBLIC GLFW_INCLUDE_NONE)
+target_link_libraries(imgui PUBLIC glfw OpenGL::GL)
+add_executable(OpenGL_CLASSI main.cpp Geometry.cpp Scene.cpp Renderer.cpp
+  Shader.cpp ShaderMaker.cpp ShapeGenerator.cpp Gui.cpp Input.cpp)
+target_link_libraries(OpenGL_CLASSI PRIVATE glad imgui ${GLM_TARGET})
+add_custom_command(TARGET OpenGL_CLASSI POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_directory
+    "${CMAKE_CURRENT_SOURCE_DIR}/shader" "$<TARGET_FILE_DIR:OpenGL_CLASSI>/shader")

@@ -1,0 +1,14 @@
+.DS_Store
+.git_bak/
+*/.git_bak/
+*/*/.git_bak/
+*/*/*/.git_bak/
+*/*/*/*/.git_bak/
+*/*/*/*/*/.git_bak/
+*/*/*/*/*/*/.git_bak/
+**/build/
+**/bin/
+**/*.o
+**/*.a
+**/*.dylib
+Progetto3D_Interattivo

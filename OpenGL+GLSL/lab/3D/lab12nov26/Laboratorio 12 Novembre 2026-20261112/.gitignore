@@ -1,0 +1,26 @@
+# Cartelle di compilazione e artefatti CMake
+build/
+**/build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# Binari ed eseguibili generati da compilazione
+EsempiodiAnimazionesuCerchio/EsempiodiAnimazionesuCerchio
+ProgettoOpengl_3d_Starter/ProgettoOpengl_3d_Starter
+ProgettoOpengl_3d_DueCubi/ProgettoOpengl_3d_DueCubi
+*.o
+*.a
+*.dylib
+*.out
+
+# File di runtime ImGui e temporanei
+*.ini
+imgui.ini
+
+# File di sistema macOS
+.DS_Store
+**/.DS_Store
+._*
