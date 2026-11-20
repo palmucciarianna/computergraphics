@@ -1,0 +1,5 @@
+/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab5nov26/Parte_II_Cannone_Hermite/build/CMakeFiles/glad.dir
+/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab5nov26/Parte_II_Cannone_Hermite/build/CMakeFiles/imgui.dir
+/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab5nov26/Parte_II_Cannone_Hermite/build/CMakeFiles/Cannone_Hermite_2D.dir
+/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab5nov26/Parte_II_Cannone_Hermite/build/CMakeFiles/edit_cache.dir
+/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab5nov26/Parte_II_Cannone_Hermite/build/CMakeFiles/rebuild_cache.dir
