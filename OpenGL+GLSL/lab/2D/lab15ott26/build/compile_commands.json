@@ -1,0 +1,98 @@
+[
+{
+  "directory": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build",
+  "command": "/usr/bin/cc  -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/include\" -g -arch arm64 -o CMakeFiles/glad.dir/glad.c.o -c \"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/glad.c\"",
+  "file": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/glad.c",
+  "output": "CMakeFiles/glad.dir/glad.c.o"
+},
+{
+  "directory": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build",
+  "command": "/usr/bin/c++ -DGLFW_INCLUDE_NONE -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/include\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW\" -isystem /opt/homebrew/include -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=c++17 -arch arm64 -o CMakeFiles/imgui.dir/dependencies_GL_GLFW/ImGui/imgui.cpp.o -c \"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui/imgui.cpp\"",
+  "file": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui/imgui.cpp",
+  "output": "CMakeFiles/imgui.dir/dependencies_GL_GLFW/ImGui/imgui.cpp.o"
+},
+{
+  "directory": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build",
+  "command": "/usr/bin/c++ -DGLFW_INCLUDE_NONE -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/include\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW\" -isystem /opt/homebrew/include -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=c++17 -arch arm64 -o CMakeFiles/imgui.dir/dependencies_GL_GLFW/ImGui/imgui_draw.cpp.o -c \"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui/imgui_draw.cpp\"",
+  "file": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui/imgui_draw.cpp",
+  "output": "CMakeFiles/imgui.dir/dependencies_GL_GLFW/ImGui/imgui_draw.cpp.o"
+},
+{
+  "directory": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build",
+  "command": "/usr/bin/c++ -DGLFW_INCLUDE_NONE -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/include\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW\" -isystem /opt/homebrew/include -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=c++17 -arch arm64 -o CMakeFiles/imgui.dir/dependencies_GL_GLFW/ImGui/imgui_tables.cpp.o -c \"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui/imgui_tables.cpp\"",
+  "file": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui/imgui_tables.cpp",
+  "output": "CMakeFiles/imgui.dir/dependencies_GL_GLFW/ImGui/imgui_tables.cpp.o"
+},
+{
+  "directory": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build",
+  "command": "/usr/bin/c++ -DGLFW_INCLUDE_NONE -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/include\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW\" -isystem /opt/homebrew/include -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=c++17 -arch arm64 -o CMakeFiles/imgui.dir/dependencies_GL_GLFW/ImGui/imgui_widgets.cpp.o -c \"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui/imgui_widgets.cpp\"",
+  "file": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui/imgui_widgets.cpp",
+  "output": "CMakeFiles/imgui.dir/dependencies_GL_GLFW/ImGui/imgui_widgets.cpp.o"
+},
+{
+  "directory": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build",
+  "command": "/usr/bin/c++ -DGLFW_INCLUDE_NONE -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/include\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW\" -isystem /opt/homebrew/include -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=c++17 -arch arm64 -o CMakeFiles/imgui.dir/dependencies_GL_GLFW/ImGui/imgui_impl_glfw.cpp.o -c \"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui/imgui_impl_glfw.cpp\"",
+  "file": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui/imgui_impl_glfw.cpp",
+  "output": "CMakeFiles/imgui.dir/dependencies_GL_GLFW/ImGui/imgui_impl_glfw.cpp.o"
+},
+{
+  "directory": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build",
+  "command": "/usr/bin/c++ -DGLFW_INCLUDE_NONE -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/include\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW\" -isystem /opt/homebrew/include -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=c++17 -arch arm64 -o CMakeFiles/imgui.dir/dependencies_GL_GLFW/ImGui/imgui_impl_opengl3.cpp.o -c \"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui/imgui_impl_opengl3.cpp\"",
+  "file": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui/imgui_impl_opengl3.cpp",
+  "output": "CMakeFiles/imgui.dir/dependencies_GL_GLFW/ImGui/imgui_impl_opengl3.cpp.o"
+},
+{
+  "directory": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build",
+  "command": "/usr/bin/c++ -DGLFW_INCLUDE_NONE -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/include\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui\" -isystem /opt/homebrew/include -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=c++17 -arch arm64 -o CMakeFiles/GrigliaAnimata2D.dir/Geometry.cpp.o -c \"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/Geometry.cpp\"",
+  "file": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/Geometry.cpp",
+  "output": "CMakeFiles/GrigliaAnimata2D.dir/Geometry.cpp.o"
+},
+{
+  "directory": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build",
+  "command": "/usr/bin/c++ -DGLFW_INCLUDE_NONE -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/include\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui\" -isystem /opt/homebrew/include -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=c++17 -arch arm64 -o CMakeFiles/GrigliaAnimata2D.dir/Gui.cpp.o -c \"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/Gui.cpp\"",
+  "file": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/Gui.cpp",
+  "output": "CMakeFiles/GrigliaAnimata2D.dir/Gui.cpp.o"
+},
+{
+  "directory": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build",
+  "command": "/usr/bin/c++ -DGLFW_INCLUDE_NONE -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/include\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui\" -isystem /opt/homebrew/include -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=c++17 -arch arm64 -o CMakeFiles/GrigliaAnimata2D.dir/Input.cpp.o -c \"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/Input.cpp\"",
+  "file": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/Input.cpp",
+  "output": "CMakeFiles/GrigliaAnimata2D.dir/Input.cpp.o"
+},
+{
+  "directory": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build",
+  "command": "/usr/bin/c++ -DGLFW_INCLUDE_NONE -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/include\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui\" -isystem /opt/homebrew/include -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=c++17 -arch arm64 -o CMakeFiles/GrigliaAnimata2D.dir/Renderer.cpp.o -c \"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/Renderer.cpp\"",
+  "file": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/Renderer.cpp",
+  "output": "CMakeFiles/GrigliaAnimata2D.dir/Renderer.cpp.o"
+},
+{
+  "directory": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build",
+  "command": "/usr/bin/c++ -DGLFW_INCLUDE_NONE -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/include\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui\" -isystem /opt/homebrew/include -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=c++17 -arch arm64 -o CMakeFiles/GrigliaAnimata2D.dir/Scene.cpp.o -c \"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/Scene.cpp\"",
+  "file": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/Scene.cpp",
+  "output": "CMakeFiles/GrigliaAnimata2D.dir/Scene.cpp.o"
+},
+{
+  "directory": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build",
+  "command": "/usr/bin/c++ -DGLFW_INCLUDE_NONE -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/include\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui\" -isystem /opt/homebrew/include -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=c++17 -arch arm64 -o CMakeFiles/GrigliaAnimata2D.dir/Shader.cpp.o -c \"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/Shader.cpp\"",
+  "file": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/Shader.cpp",
+  "output": "CMakeFiles/GrigliaAnimata2D.dir/Shader.cpp.o"
+},
+{
+  "directory": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build",
+  "command": "/usr/bin/c++ -DGLFW_INCLUDE_NONE -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/include\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui\" -isystem /opt/homebrew/include -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=c++17 -arch arm64 -o CMakeFiles/GrigliaAnimata2D.dir/ShaderMaker.cpp.o -c \"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/ShaderMaker.cpp\"",
+  "file": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/ShaderMaker.cpp",
+  "output": "CMakeFiles/GrigliaAnimata2D.dir/ShaderMaker.cpp.o"
+},
+{
+  "directory": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build",
+  "command": "/usr/bin/c++ -DGLFW_INCLUDE_NONE -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/include\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui\" -isystem /opt/homebrew/include -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=c++17 -arch arm64 -o CMakeFiles/GrigliaAnimata2D.dir/ShapeGenerator.cpp.o -c \"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/ShapeGenerator.cpp\"",
+  "file": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/ShapeGenerator.cpp",
+  "output": "CMakeFiles/GrigliaAnimata2D.dir/ShapeGenerator.cpp.o"
+},
+{
+  "directory": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build",
+  "command": "/usr/bin/c++ -DGLFW_INCLUDE_NONE -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/include\" -I\"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/dependencies_GL_GLFW/ImGui\" -isystem /opt/homebrew/include -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=c++17 -arch arm64 -o CMakeFiles/GrigliaAnimata2D.dir/main.cpp.o -c \"/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/main.cpp\"",
+  "file": "/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/main.cpp",
+  "output": "CMakeFiles/GrigliaAnimata2D.dir/main.cpp.o"
+}
+]

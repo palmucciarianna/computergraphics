@@ -1,0 +1,5 @@
+/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build/CMakeFiles/glad.dir
+/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build/CMakeFiles/imgui.dir
+/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build/CMakeFiles/GrigliaAnimata2D.dir
+/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build/CMakeFiles/edit_cache.dir
+/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26/build/CMakeFiles/rebuild_cache.dir
