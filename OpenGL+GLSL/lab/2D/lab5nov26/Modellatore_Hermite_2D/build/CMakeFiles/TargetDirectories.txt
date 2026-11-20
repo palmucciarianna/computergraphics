@@ -1,0 +1,5 @@
+/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab5nov26/Modellatore_Hermite_2D/build/CMakeFiles/glad.dir
+/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab5nov26/Modellatore_Hermite_2D/build/CMakeFiles/imgui.dir
+/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab5nov26/Modellatore_Hermite_2D/build/CMakeFiles/Modellatore_Hermite_2D.dir
+/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab5nov26/Modellatore_Hermite_2D/build/CMakeFiles/edit_cache.dir
+/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab5nov26/Modellatore_Hermite_2D/build/CMakeFiles/rebuild_cache.dir
