@@ -1,0 +1,207 @@
+{
+  "main": {
+    "id": "a120730282867c5e",
+    "type": "split",
+    "children": [
+      {
+        "id": "46b3fa33307de986",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3b1016c0bb9db0cc",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "bdd0b59e47043805",
+    "type": "split",
+    "children": [
+      {
+        "id": "9ac21f6971c04dec",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "41da8e61647e3eeb",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "bf3a7038bbbd23be",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "\"disparity map\"",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "ed90fb8e69b5158d",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          },
+          {
+            "id": "33352616138dff79",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 269.5110321044922
+  },
+  "right": {
+    "id": "36bb32513fa1ecb8",
+    "type": "split",
+    "children": [
+      {
+        "id": "6abd6bcf8d5b730c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2a6eef9f5da5173c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "4c85a5c6086b3eb4",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "964c1cb9788a1801",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "4d027fdfecd6c3e9",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          },
+          {
+            "id": "3351067355c515b5",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 311.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "3b1016c0bb9db0cc",
+  "lastOpenFiles": [
+    "2023-05-08 - Homographies, Intro to image classification.md",
+    "2023-05-29 - Batch-Norm, AlexNet, ZFNET.md",
+    "2023-03-02 - Lenses 2, Camera Sensors 1.md",
+    "2023-04-03 - DoG, SIFT.md",
+    "2023-02-23 - Introduction to images and stereo vision 1.md",
+    "2023-05-18 - BoW, Activation Function, CNN.md",
+    "2023-05-22 - CNNs in depth, receptive field, stride & padding, pooling layers.md",
+    "2023-02-27 - Solving correspondences, Lenses 1.md",
+    "2023-05-15 - Cross-entropy, GD, Intro to BOW.md",
+    "2023-03-06 - Convolutions and Correlations 1.md",
+    "Images/Screenshot_20240205_022550.png",
+    "2023-05-04 - Camera Calibration pt2 and Lens distortion.md",
+    "2023-04-17 - Instance Detection - ZCC, Shape Matching, Hugh Transform 1.md",
+    "2023-06-05 - Bottleneck ResBlock, ResNext, SE.md",
+    "2023-06-01 - VGG, Inception, ResNet.md",
+    "Exams/mock.pdf",
+    "Exams/settembre.jpeg",
+    "2023-04-27 - PPM, handling lenses, intro to camera calibration 1.md",
+    "2023-04-20 - 3D to 2D recap, Intrinsic and Extrinsic parameters, projection space 1.md",
+    "Exams/giugno.jpg",
+    "2023-03-27 - Invariances, Scale-space, Intro to DoG 1.md",
+    "Exams/luglio.jpg",
+    "Digests/P1L1 - IMAGES.md",
+    "Digests/P1L3 - EDGE DETECTORS.md",
+    "Digests/P1L2 - SPATIAL FILTERING.md",
+    "Digests/P1L4.md",
+    "Digests/P1L5 - INSTANCE DETECTION.md",
+    "Digests/P2L3.md",
+    "Digests/P2L4 - CNN.md",
+    "Digests/P2L5.md",
+    "Digests/P2L2.md",
+    "Exams",
+    "Notes",
+    "MockQuestions/Untitled",
+    "Images/correlation.png",
+    "Images/senet.png",
+    "Images/depth-wise.png",
+    "Images/inverted_res.png",
+    "Images/p3.png",
+    "Images/p2.png",
+    "MockQuestions",
+    "Images/edge_detection_by_gradient_thresh.png.nWeXBd",
+    "Digests",
+    "equations.png~",
+    "Lab/LabSession2.ipynb",
+    "log_examples.png~"
+  ]
+}

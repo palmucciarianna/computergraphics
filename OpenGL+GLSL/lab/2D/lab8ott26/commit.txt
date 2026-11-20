@@ -1,0 +1,5 @@
+modif ShapeGenerator.cpp ShapeGenerator.h main.cpp for point 2
+
+cmake --build build -j 4
+cd build
+./OpenGL_CLASSI

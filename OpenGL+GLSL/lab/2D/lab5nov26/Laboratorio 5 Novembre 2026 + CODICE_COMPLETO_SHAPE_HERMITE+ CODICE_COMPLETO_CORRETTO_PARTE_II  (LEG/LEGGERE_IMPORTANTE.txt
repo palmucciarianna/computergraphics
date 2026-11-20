@@ -1,0 +1,4 @@
+IMPORTANTE
+
+Il codice non visualizzava correttamente la scena a causa del mancato aggiornamento del vertex shader. Quello fornito dal template, infatti, opera già in coordinate NDC e, per questo motivo, non applica ai vertici le matrici di modellazione e proiezione.
+Nel file zip del  CodiceCompleto (Parte II) è disponibile la versione aggiornata. Le geometrie del player e del target sono modellate con le curve di Hermite, memorizzate nella cartella assets."

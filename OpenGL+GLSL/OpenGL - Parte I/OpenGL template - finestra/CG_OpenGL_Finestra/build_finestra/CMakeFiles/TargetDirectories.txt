@@ -1,0 +1,3 @@
+/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/OpenGL/OpenGL - Parte I/OpenGL template copia/CG_OpenGL_Triangle_ImGui_Background_Template_V8/build_finestra/CMakeFiles/OpenGLCorso.dir
+/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/OpenGL/OpenGL - Parte I/OpenGL template copia/CG_OpenGL_Triangle_ImGui_Background_Template_V8/build_finestra/CMakeFiles/edit_cache.dir
+/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/OpenGL/OpenGL - Parte I/OpenGL template copia/CG_OpenGL_Triangle_ImGui_Background_Template_V8/build_finestra/CMakeFiles/rebuild_cache.dir

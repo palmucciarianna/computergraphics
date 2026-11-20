@@ -1,0 +1,100 @@
+cmake_minimum_required(VERSION 3.16)
+project(MountainQuest LANGUAGES C CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type" FORCE)
+endif()
+
+list(APPEND CMAKE_PREFIX_PATH /opt/homebrew /usr/local)
+
+find_package(OpenGL REQUIRED)
+find_package(glfw3 3.3 REQUIRED)
+
+find_package(glm CONFIG QUIET)
+if(NOT glm_FOUND)
+  find_path(GLM_INCLUDE_DIR glm/glm.hpp HINTS /opt/homebrew/include /usr/local/include)
+  if(NOT GLM_INCLUDE_DIR)
+    message(FATAL_ERROR "GLM non trovato. Installalo con: brew install glm")
+  endif()
+  add_library(glm INTERFACE)
+  target_include_directories(glm INTERFACE "${GLM_INCLUDE_DIR}")
+  set(GLM_TARGET glm)
+else()
+  set(GLM_TARGET glm::glm)
+endif()
+
+set(DEPS "${CMAKE_CURRENT_SOURCE_DIR}/dependencies_GL_GLFW")
+set(IMGUI "${DEPS}/ImGui")
+
+# Libreria GLAD
+add_library(glad STATIC "${DEPS}/glad.c")
+target_include_directories(glad PUBLIC "${DEPS}/include")
+target_link_libraries(glad PUBLIC ${CMAKE_DL_LIBS})
+
+# Libreria ImGui (usata da Gui.cpp)
+add_library(imgui STATIC
+  "${IMGUI}/imgui.cpp"
+  "${IMGUI}/imgui_draw.cpp"
+  "${IMGUI}/imgui_tables.cpp"
+  "${IMGUI}/imgui_widgets.cpp"
+  "${IMGUI}/imgui_impl_glfw.cpp"
+  "${IMGUI}/imgui_impl_opengl3.cpp"
+)
+target_include_directories(imgui SYSTEM PUBLIC "${IMGUI}")
+target_include_directories(imgui PUBLIC "${DEPS}/include")
+target_compile_definitions(imgui PRIVATE GLFW_INCLUDE_NONE)
+target_link_libraries(imgui PUBLIC glfw OpenGL::GL)
+
+# File sorgenti del progetto
+# Nota: DecorativeShapes_.cpp e' una variante alternativa di DecorativeShapes.cpp
+# con gli stessi simboli; va compilato uno solo dei due file.
+set(SOURCES
+  BackgroundRenderer.cpp
+  CoinRenderer.cpp
+  DecorativeShapes.cpp
+  Game.cpp
+  Geometry.cpp
+  Gui.cpp
+  Input.cpp
+  Landscape.cpp
+  Renderer.cpp
+  Scene.cpp
+  Shader.cpp
+  ShaderMaker.cpp
+  ShapeGenerator.cpp
+  main.cpp
+)
+
+add_executable(MountainQuest ${SOURCES})
+
+target_include_directories(MountainQuest PRIVATE
+  ${CMAKE_CURRENT_SOURCE_DIR}
+  ${DEPS}/include
+)
+
+target_link_libraries(MountainQuest PRIVATE
+  glad
+  imgui
+  glfw
+  OpenGL::GL
+  ${GLM_TARGET}
+)
+
+if(APPLE)
+  target_link_libraries(MountainQuest PRIVATE
+    "-framework Cocoa"
+    "-framework IOKit"
+    "-framework CoreVideo"
+  )
+endif()
+
+# Copia gli shader nella cartella dell'eseguibile dopo la build
+add_custom_command(TARGET MountainQuest POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_directory
+    "${CMAKE_CURRENT_SOURCE_DIR}/shaders" "$<TARGET_FILE_DIR:MountainQuest>/shaders"
+)

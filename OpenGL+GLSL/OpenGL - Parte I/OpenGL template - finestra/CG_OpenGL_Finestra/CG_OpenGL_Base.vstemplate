@@ -1,0 +1,61 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Computer Graphics - OpenGL Triangle + ImGui Background</Name>
+    <Description>Template C++ OpenGL x64 portabile con triangolo e interfaccia ImGui minima per modificare solo il colore dello sfondo.</Description>
+    <ProjectType>VC</ProjectType>
+    <LanguageTag>C++</LanguageTag>
+    <PlatformTag>Windows</PlatformTag>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>ProgettoOpenGL</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="CG_OpenGL_Base.vcxproj" TargetFileName="$projectname$.vcxproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$.vcxproj.filters">CG_OpenGL_Base.vcxproj.filters</ProjectItem>
+      <ProjectItem ReplaceParameters="false">main.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="false">Gui.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="false">Gui.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false">ShaderMaker.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="false">ShaderMaker.h</ProjectItem>
+      <ProjectItem ReplaceParameters="false">glad.c</ProjectItem>
+      <ProjectItem ReplaceParameters="false">vertex_shader_PT.glsl</ProjectItem>
+      <ProjectItem ReplaceParameters="false">fragment_shader_PT.glsl</ProjectItem>
+      <Folder Name="dependencies" TargetFolderName="dependencies">
+        <Folder Name="include" TargetFolderName="include">
+          <Folder Name="glad" TargetFolderName="glad">
+            <ProjectItem ReplaceParameters="false">glad.h</ProjectItem>
+          </Folder>
+          <Folder Name="GLFW" TargetFolderName="GLFW">
+            <ProjectItem ReplaceParameters="false">glfw3.h</ProjectItem>
+            <ProjectItem ReplaceParameters="false">glfw3native.h</ProjectItem>
+          </Folder>
+          <Folder Name="KHR" TargetFolderName="KHR">
+            <ProjectItem ReplaceParameters="false">khrplatform.h</ProjectItem>
+          </Folder>
+        </Folder>
+        <Folder Name="ImGui" TargetFolderName="ImGui">
+          <ProjectItem ReplaceParameters="false">imconfig.h</ProjectItem>
+          <ProjectItem ReplaceParameters="false">imgui.cpp</ProjectItem>
+          <ProjectItem ReplaceParameters="false">imgui.h</ProjectItem>
+          <ProjectItem ReplaceParameters="false">imgui_demo.cpp</ProjectItem>
+          <ProjectItem ReplaceParameters="false">imgui_draw.cpp</ProjectItem>
+          <ProjectItem ReplaceParameters="false">imgui_impl_glfw.cpp</ProjectItem>
+          <ProjectItem ReplaceParameters="false">imgui_impl_glfw.h</ProjectItem>
+          <ProjectItem ReplaceParameters="false">imgui_impl_opengl3.cpp</ProjectItem>
+          <ProjectItem ReplaceParameters="false">imgui_impl_opengl3.h</ProjectItem>
+          <ProjectItem ReplaceParameters="false">imgui_impl_opengl3_loader.h</ProjectItem>
+          <ProjectItem ReplaceParameters="false">imgui_internal.h</ProjectItem>
+          <ProjectItem ReplaceParameters="false">imgui_tables.cpp</ProjectItem>
+          <ProjectItem ReplaceParameters="false">imgui_widgets.cpp</ProjectItem>
+          <ProjectItem ReplaceParameters="false">imstb_rectpack.h</ProjectItem>
+          <ProjectItem ReplaceParameters="false">imstb_textedit.h</ProjectItem>
+          <ProjectItem ReplaceParameters="false">imstb_truetype.h</ProjectItem>
+        </Folder>
+        <Folder Name="lib" TargetFolderName="lib">
+          <ProjectItem ReplaceParameters="false">glfw3.lib</ProjectItem>
+        </Folder>
+      </Folder>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
