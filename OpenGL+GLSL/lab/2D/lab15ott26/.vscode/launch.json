@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Esegui Griglia Animata 2D",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/GrigliaAnimata2D",
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Compila CMake"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Esegui Avventura In Montagna (Mountain Quest)",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/AvventuraInMontagna",
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Compila CMake"
+    }
+  ]
+}

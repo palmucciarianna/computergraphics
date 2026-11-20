@@ -74,17 +74,22 @@
   </style>
 </head>
 <body>
-  <div style="background: var(--bg-sidebar); border-bottom: 1px solid var(--border-color); padding: 14px 28px; display: flex; align-items: center; justify-content: space-between;">
+  <div style="background: var(--bg-sidebar); border-bottom: 1px solid var(--border-color); padding: 12px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
     <div style="display:flex; align-items:center; gap:16px;">
-      <a href="../../index.html#web-labs" class="action-btn download" style="padding: 6px 12px;">
+      <a href="../../index.html#desktop-labs" class="action-btn download" style="padding: 6px 12px;">
         ← Torna all'Hub
       </a>
       <div>
-        <h2 style="font-size: 1.1rem; font-weight:700;">Web Lab 07 — Scena 3D & Shading di Phong</h2>
-        <span style="font-size: 0.75rem; color: var(--text-muted);">Corrispondente a: Laboratorio 20 Novembre 2026 (Dear ImGui, Illuminazione)</span>
+        <h2 style="font-size: 1.1rem; font-weight:700;">Web Lab 07 — Scena 3D Interattiva & Illuminazione Phong</h2>
+        <span style="font-size: 0.75rem; color: var(--text-muted);">Corrispondente a: Laboratorio 20 Novembre 2026 (Dear ImGui, Modello di Phong, Shading)</span>
       </div>
     </div>
-    <div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span style="font-size: 0.82rem; color: var(--text-secondary); font-weight: 600;">Modalità:</span>
+      <div style="display:flex; background:var(--bg-input); border:1px solid var(--border-color); border-radius:8px; padding:3px; gap:4px;">
+        <button id="btnModeStarter" class="topbar-btn" style="border:none; padding:5px 12px; border-radius:6px; font-size:0.8rem; font-weight:600; cursor:pointer;">🚀 Partenza (Starter - Unlit Flat)</button>
+        <button id="btnModeSolved" class="topbar-btn active" style="border:none; padding:5px 12px; border-radius:6px; font-size:0.8rem; font-weight:600; cursor:pointer; background:var(--accent-cyan); color:#020617;">🌟 Svolta (Completa - Phong)</button>
+      </div>
       <button id="resetLightBtn" class="topbar-btn">Ripristina Luce</button>
     </div>
   </div>
@@ -491,10 +496,15 @@
       gl.uniform3f(lightPosLoc, lx, ly, lz);
       gl.uniform3f(viewPosLoc, eye[0], eye[1], eye[2]);
 
-      const ka = parseFloat(kaSlider.value);
-      const kd = parseFloat(kdSlider.value);
-      const ks = parseFloat(ksSlider.value);
-      const alpha = parseFloat(shininessSlider.value);
+      let ka = parseFloat(kaSlider.value);
+      let kd = parseFloat(kdSlider.value);
+      let ks = parseFloat(ksSlider.value);
+      let alpha = parseFloat(shininessSlider.value);
+
+      if (!isSolvedMode) {
+        // Starter mode: Flat unlit mesh without Phong diffuse/specular components!
+        ka = 0.9; kd = 0.0; ks = 0.0;
+      }
 
       kaVal.textContent = ka.toFixed(2);
       kdVal.textContent = kd.toFixed(2);
@@ -510,6 +520,26 @@
 
       requestAnimationFrame(render);
     }
+
+    let isSolvedMode = true;
+    const btnStarter = document.getElementById('btnModeStarter');
+    const btnSolved = document.getElementById('btnModeSolved');
+
+    btnStarter.addEventListener('click', () => {
+      isSolvedMode = false;
+      btnStarter.style.background = 'var(--accent-cyan)';
+      btnStarter.style.color = '#020617';
+      btnSolved.style.background = 'transparent';
+      btnSolved.style.color = 'var(--text-muted)';
+    });
+
+    btnSolved.addEventListener('click', () => {
+      isSolvedMode = true;
+      btnSolved.style.background = 'var(--accent-cyan)';
+      btnSolved.style.color = '#020617';
+      btnStarter.style.background = 'transparent';
+      btnStarter.style.color = 'var(--text-muted)';
+    });
 
     // Drag rotation
     canvas.addEventListener('mousedown', (e) => {

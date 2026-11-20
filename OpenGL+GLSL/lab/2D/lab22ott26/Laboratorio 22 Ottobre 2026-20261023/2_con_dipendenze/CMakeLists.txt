@@ -65,3 +65,34 @@ add_custom_command(TARGET cannone POST_BUILD
         "${CMAKE_CURRENT_SOURCE_DIR}/shader"
         "$<TARGET_FILE_DIR:cannone>/shader"
 )
+
+# Versione Completamente Svolta (Tutti i TODO 1-5B implementati)
+add_executable(cannone_svolto
+    main_COMPLETO_SVOLTO.cpp
+    Geometry.cpp
+    Gui.cpp
+    Input.cpp
+    Renderer.cpp
+    Scene.cpp
+    Shader.cpp
+    ShaderMaker.cpp
+    ShapeGenerator.cpp
+)
+
+target_include_directories(cannone_svolto PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/deps/_inc_shim"
+)
+
+target_link_libraries(cannone_svolto PRIVATE
+    glad
+    imgui
+    glfw
+    glm::glm-header-only
+    OpenGL::GL
+)
+
+add_custom_command(TARGET cannone_svolto POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${CMAKE_CURRENT_SOURCE_DIR}/shader"
+        "$<TARGET_FILE_DIR:cannone_svolto>/shader"
+)

@@ -102,17 +102,22 @@
   </style>
 </head>
 <body>
-  <div style="background: var(--bg-sidebar); border-bottom: 1px solid var(--border-color); padding: 14px 28px; display: flex; align-items: center; justify-content: space-between;">
+  <div style="background: var(--bg-sidebar); border-bottom: 1px solid var(--border-color); padding: 12px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
     <div style="display:flex; align-items:center; gap:16px;">
-      <a href="../../index.html#web-labs" class="action-btn download" style="padding: 6px 12px;">
+      <a href="../../index.html#desktop-labs" class="action-btn download" style="padding: 6px 12px;">
         ← Torna all'Hub
       </a>
       <div>
-        <h2 style="font-size: 1.1rem; font-weight:700;">Web Lab 04 — Mountain Quest Game Engine</h2>
-        <span style="font-size: 0.75rem; color: var(--text-muted);">Corrispondente a: Laboratorio 29 Ottobre 2026 (Fisica, Salto, AABB)</span>
+        <h2 style="font-size: 1.1rem; font-weight:700;">Web Lab 04 — Mountain Quest (Fisica 2D & AABB)</h2>
+        <span style="font-size: 0.75rem; color: var(--text-muted);">Corrispondente a: Laboratorio 29 Ottobre 2026 (Cinematica, Salto, AABB Intersect)</span>
       </div>
     </div>
-    <div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span style="font-size: 0.82rem; color: var(--text-secondary); font-weight: 600;">Modalità:</span>
+      <div style="display:flex; background:var(--bg-input); border:1px solid var(--border-color); border-radius:8px; padding:3px; gap:4px;">
+        <button id="btnModeStarter" class="topbar-btn" style="border:none; padding:5px 12px; border-radius:6px; font-size:0.8rem; font-weight:600; cursor:pointer;">🚀 Partenza (Starter)</button>
+        <button id="btnModeSolved" class="topbar-btn active" style="border:none; padding:5px 12px; border-radius:6px; font-size:0.8rem; font-weight:600; cursor:pointer; background:var(--accent-cyan); color:#020617;">🌟 Svolta (Completa)</button>
+      </div>
       <button id="respawnBtn" class="topbar-btn primary">Reset Giocatore</button>
     </div>
   </div>
@@ -260,8 +265,34 @@
     }
     respawnBtn.addEventListener('click', resetPlayer);
 
+    let isSolvedMode = true;
+    const btnStarter = document.getElementById('btnModeStarter');
+    const btnSolved = document.getElementById('btnModeSolved');
+
+    btnStarter.addEventListener('click', () => {
+      isSolvedMode = false;
+      btnStarter.style.background = 'var(--accent-cyan)';
+      btnStarter.style.color = '#020617';
+      btnSolved.style.background = 'transparent';
+      btnSolved.style.color = 'var(--text-muted)';
+      resetPlayer();
+    });
+
+    btnSolved.addEventListener('click', () => {
+      isSolvedMode = true;
+      btnSolved.style.background = 'var(--accent-cyan)';
+      btnSolved.style.color = '#020617';
+      btnStarter.style.background = 'transparent';
+      btnStarter.style.color = 'var(--text-muted)';
+      resetPlayer();
+    });
+
     // Collision Check (AABB)
     function checkAABB(a, b) {
+      if (!isSolvedMode && b.type === 'platform') {
+        // In Starter mode (CodiceStudenti TODO 3), platform collision returns false!
+        return false;
+      }
       return (
         a.x < b.x + b.w &&
         a.x + a.w > b.x &&
@@ -285,10 +316,12 @@
       if (keys.left) player.vx = -moveSpeed;
       if (keys.right) player.vx = moveSpeed;
 
-      // Jump
+      // Jump (TODO 2)
       if (keys.jump && player.onGround) {
-        player.vy = -jumpImpulse;
-        player.onGround = false;
+        if (isSolvedMode) {
+          player.vy = -jumpImpulse;
+          player.onGround = false;
+        }
       }
 
       // Gravity

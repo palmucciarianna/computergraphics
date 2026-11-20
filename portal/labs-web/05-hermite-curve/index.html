@@ -90,9 +90,9 @@
   </style>
 </head>
 <body>
-  <div style="background: var(--bg-sidebar); border-bottom: 1px solid var(--border-color); padding: 14px 28px; display: flex; align-items: center; justify-content: space-between;">
+  <div style="background: var(--bg-sidebar); border-bottom: 1px solid var(--border-color); padding: 12px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
     <div style="display:flex; align-items:center; gap:16px;">
-      <a href="../../index.html#web-labs" class="action-btn download" style="padding: 6px 12px;">
+      <a href="../../index.html#desktop-labs" class="action-btn download" style="padding: 6px 12px;">
         ← Torna all'Hub
       </a>
       <div>
@@ -100,9 +100,14 @@
         <span style="font-size: 0.75rem; color: var(--text-muted);">Corrispondente a: Laboratorio 5 Novembre 2026 (Spline Cubiche & Poligoni)</span>
       </div>
     </div>
-    <div style="display:flex; gap:10px;">
-      <button id="resetBtn" class="topbar-btn">Ripristina Punti</button>
-      <button id="copyCodeBtn" class="topbar-btn primary">Copia C++ Array</button>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span style="font-size: 0.82rem; color: var(--text-secondary); font-weight: 600;">Modalità:</span>
+      <div style="display:flex; background:var(--bg-input); border:1px solid var(--border-color); border-radius:8px; padding:3px; gap:4px;">
+        <button id="btnModeStarter" class="topbar-btn" style="border:none; padding:5px 12px; border-radius:6px; font-size:0.8rem; font-weight:600; cursor:pointer;">🚀 Partenza (Retta R0=R1=0)</button>
+        <button id="btnModeSolved" class="topbar-btn active" style="border:none; padding:5px 12px; border-radius:6px; font-size:0.8rem; font-weight:600; cursor:pointer; background:var(--accent-cyan); color:#020617;">🌟 Svolta (Spline Completa)</button>
+      </div>
+      <button id="resetBtn" class="topbar-btn">Ripristina</button>
+      <button id="copyCodeBtn" class="topbar-btn primary">Copia C++</button>
     </div>
   </div>
 
@@ -228,14 +233,38 @@
     function dH2(t) { return 3*t*t - 4*t + 1; }
     function dH3(t) { return 3*t*t - 2*t; }
 
+    let isSolvedMode = true;
+    const btnStarter = document.getElementById('btnModeStarter');
+    const btnSolved = document.getElementById('btnModeSolved');
+
+    btnStarter.addEventListener('click', () => {
+      isSolvedMode = false;
+      btnStarter.style.background = 'var(--accent-cyan)';
+      btnStarter.style.color = '#020617';
+      btnSolved.style.background = 'transparent';
+      btnSolved.style.color = 'var(--text-muted)';
+      showTangentsCheck.checked = false;
+    });
+
+    btnSolved.addEventListener('click', () => {
+      isSolvedMode = true;
+      btnSolved.style.background = 'var(--accent-cyan)';
+      btnSolved.style.color = '#020617';
+      btnStarter.style.background = 'transparent';
+      btnStarter.style.color = 'var(--text-muted)';
+      showTangentsCheck.checked = true;
+    });
+
     function evalHermite(t) {
       const h0 = H0(t);
       const h1 = H1(t);
       const h2 = H2(t);
       const h3 = H3(t);
+      const curR0 = isSolvedMode ? R0 : { x: 0, y: 0 };
+      const curR1 = isSolvedMode ? R1 : { x: 0, y: 0 };
       return {
-        x: h0 * P0.x + h1 * P1.x + h2 * R0.x + h3 * R1.x,
-        y: h0 * P0.y + h1 * P1.y + h2 * R0.y + h3 * R1.y
+        x: h0 * P0.x + h1 * P1.x + h2 * curR0.x + h3 * curR1.x,
+        y: h0 * P0.y + h1 * P1.y + h2 * curR0.y + h3 * curR1.y
       };
     }
 

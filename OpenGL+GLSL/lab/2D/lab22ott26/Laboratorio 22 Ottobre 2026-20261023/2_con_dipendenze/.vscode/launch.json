@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Esegui Cannone (Versione Svolta - Completa)",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/cannone_svolto",
+      "cwd": "${workspaceFolder}/build",
+      "preLaunchTask": "Compila CMake"
+    },
+    {
+      "name": "Esegui Cannone (Versione Starter - Codice Base)",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/cannone",
+      "cwd": "${workspaceFolder}/build",
+      "preLaunchTask": "Compila CMake"
+    }
+  ]
+}

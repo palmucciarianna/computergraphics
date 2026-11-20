@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Esegui Scena 3D Interattiva (Phong)",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Progetto3D_Interattivo",
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Compila CMake"
+    }
+  ]
+}

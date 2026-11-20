@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Lab 03 — Geometrie, Istanze & Cannone 2D | Computer Graphics Hub</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <style>
+    .lab-layout {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 20px;
+      min-height: calc(100vh - 120px);
+    }
+    .canvas-wrapper {
+      background: #060911;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: crosshair;
+    }
+    .hud-overlay {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .mode-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .mode-starter {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    .mode-solved {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .mode-toggle-group {
+      display: flex;
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 3px;
+      gap: 4px;
+    }
+    .mode-btn {
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .mode-btn.active {
+      background: var(--accent-cyan);
+      color: #020617;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    .control-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .panel-section-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+    }
+    .todo-list-box {
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      font-size: 0.82rem;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .todo-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .todo-item.done {
+      color: var(--accent-emerald);
+    }
+    .control-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .control-label {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+    }
+    .control-val {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-primary);
+      width: 48px;
+      text-align: right;
+    }
+    @media (max-width: 900px) {
+      .lab-layout { grid-template-columns: 1fr; }
+      .canvas-wrapper { height: 440px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Bar -->
+  <div style="background: var(--bg-sidebar); border-bottom: 1px solid var(--border-color); padding: 12px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
+    <div style="display:flex; align-items:center; gap:16px;">
+      <a href="../../index.html#desktop-labs" class="action-btn download" style="padding: 6px 12px;">
+        ← Torna all'Hub
+      </a>
+      <div>
+        <h2 style="font-size: 1.1rem; font-weight:700;">Web Lab 03 — Geometrie ed Istanze: Cannone & Bersagli 2D</h2>
+        <span style="font-size: 0.75rem; color: var(--text-muted);">Corrispondente a: Lab 22 Ottobre 2026 (Rotazione con atan2, Sparo, Collisioni $d^2 \le (r_p + r_t)^2$)</span>
+      </div>
+    </div>
+    
+    <!-- Mode Switcher -->
+    <div style="display:flex; align-items:center; gap:14px;">
+      <span style="font-size: 0.82rem; color: var(--text-secondary); font-weight: 600;">Modalità Didattica:</span>
+      <div class="mode-toggle-group">
+        <button id="btnModeStarter" class="mode-btn">🚀 Partenza (Starter)</button>
+        <button id="btnModeSolved" class="mode-btn active">🌟 Svolta (Completa)</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-wrapper" style="padding: 20px;">
+    <div class="lab-layout">
+      <!-- Canvas Area -->
+      <div class="canvas-wrapper">
+        <canvas id="glCanvas"></canvas>
+        <div class="hud-overlay">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+            <span>Stato:</span>
+            <span id="hudModeBadge" class="mode-badge mode-solved">Modalità Svolta</span>
+          </div>
+          <div>Punteggio: <strong id="hudScore" style="color:var(--accent-cyan); font-size:1.1rem;">0</strong></div>
+          <div>Bersagli rimasti: <span id="hudTargets">10</span></div>
+          <div>Angolo Cannone: <span id="hudAngle">90.0°</span></div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">[Click Sinistro / Spazio per Sparare]</div>
+        </div>
+      </div>
+
+      <!-- Controls & Theory Panel -->
+      <div class="control-panel">
+        <div>
+          <div class="panel-section-title">Controlli Simulazione</div>
+          
+          <div class="control-row">
+            <span class="control-label">Farfalle Attive</span>
+            <input type="range" id="sliderButterflies" min="1" max="15" value="6" style="flex:1; margin:0 12px;">
+            <span id="valButterflies" class="control-val">6</span>
+          </div>
+
+          <div class="control-row">
+            <span class="control-label">Cuori Attivi</span>
+            <input type="range" id="sliderHearts" min="1" max="15" value="6" style="flex:1; margin:0 12px;">
+            <span id="valHearts" class="control-val">6</span>
+          </div>
+
+          <div class="control-row">
+            <span class="control-label">Velocità Bersagli</span>
+            <input type="range" id="sliderTargetSpeed" min="10" max="150" value="50" style="flex:1; margin:0 12px;">
+            <span id="valTargetSpeed" class="control-val">50 px/s</span>
+          </div>
+
+          <div class="control-row">
+            <span class="control-label">Velocità Proiettile</span>
+            <input type="range" id="sliderBulletSpeed" min="100" max="800" value="450" style="flex:1; margin:0 12px;">
+            <span id="valBulletSpeed" class="control-val">450 px/s</span>
+          </div>
+
+          <button id="btnResetGame" class="action-btn run" style="width:100%; margin-top:8px;">
+            🔄 Reimposta Bersagli & Punteggio
+          </button>
+        </div>
+
+        <div>
+          <div class="panel-section-title">Stato Implementazione TODO</div>
+          <div class="todo-list-box">
+            <div class="todo-item done" id="todo1">
+              <span>✅</span>
+              <div><strong>TODO 1: Puntamento Cannone</strong> — Calcolo direzione con <code>std::atan2(y, x)</code> e matrice <code>T(Base)*R(angle)</code>.</div>
+            </div>
+            <div class="todo-item done" id="todo2">
+              <span>✅</span>
+              <div><strong>TODO 2: Sparo Proiettili</strong> — Attivazione slot inattivo da <code>muzzle</code> con velocità scalata.</div>
+            </div>
+            <div class="todo-item done" id="todo3">
+              <span>✅</span>
+              <div><strong>TODO 3: Moto Proiettili</strong> — Integrazione <code>pos += vel * dt</code> e deallocazione fuori schermo.</div>
+            </div>
+            <div class="todo-item done" id="todo4">
+              <span>✅</span>
+              <div><strong>TODO 4: Moto Bersagli</strong> — Rimbalzo sui bordi finestra e matrice <code>T(pos)*S(scale)</code>.</div>
+            </div>
+            <div class="todo-item done" id="todo5a">
+              <span>✅</span>
+              <div><strong>TODO 5A: Collisione Proiettile/Bersaglio</strong> — Test circolare <code>d² ≤ (r_p + r_t)²</code> e score++.</div>
+            </div>
+            <div class="todo-item done" id="todo5b">
+              <span>✅</span>
+              <div><strong>TODO 5B: Collisione Bersaglio/Bersaglio</strong> — Separazione elastica della compenetrazione.</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="panel-section-title">Teoria Matematica (GLM 2D)</div>
+          <p style="font-size:0.82rem; color:var(--text-secondary); line-height:1.5; margin-bottom:10px;">
+            In questo laboratorio desktop ogni istanza riutilizza la stessa geometria base in memoria VBO, trasformandola tramite una matrice Model 4x4 indipendente:
+          </p>
+          <div style="background:var(--bg-input); border:1px solid var(--border-color); border-radius:6px; padding:10px; font-family:var(--font-mono); font-size:0.78rem; color:var(--accent-cyan); text-align:center;">
+            M = T(position) · R_z(atan2(dir.y, dir.x)) · S(sx, sy)
+          </div>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-top:8px;">
+            Nel codice C++, il cannone è orientato calcolando l'arcotangente tra il cursore del mouse (riportato in World Coordinates) e la base fissa: <code>glm::degrees(atan2(aim.y, aim.x))</code>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // State management
+    const canvas = document.getElementById('glCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let isSolvedMode = true; // true = Svolto, false = Starter
+    let score = 0;
+    let cannonAngle = Math.PI / 2; // radians
+    let mousePos = { x: 0, y: 0 };
+
+    // Parameters
+    let numButterflies = 6;
+    let numHearts = 6;
+    let targetSpeed = 50;
+    let bulletSpeed = 450;
+
+    const BASE_Y_OFFSET = 40; // from bottom
+    const BARREL_LENGTH = 70;
+    const BARREL_THICKNESS = 14;
+    const PROJECTILE_RADIUS = 6;
+    const BUTTERFLY_RADIUS = 20;
+    const HEART_RADIUS = 16;
+
+    let targets = [];
+    let projectiles = [];
+
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    }
+    window.addEventListener('resize', resize);
+
+    function initTargets() {
+      targets = [];
+      const w = canvas.width / window.devicePixelRatio || 800;
+      const h = canvas.height / window.devicePixelRatio || 600;
+
+      // Butterflies
+      for (let i = 0; i < numButterflies; i++) {
+        const ang = Math.random() * Math.PI * 2;
+        targets.push({
+          type: 'butterfly',
+          x: 60 + Math.random() * (w - 120),
+          y: 60 + Math.random() * (h * 0.55),
+          vx: Math.cos(ang),
+          vy: Math.sin(ang),
+          radius: BUTTERFLY_RADIUS,
+          color: '#38bdf8',
+          alive: true,
+          timer: 1.0 + Math.random() * 2.0
+        });
+      }
+
+      // Hearts
+      for (let i = 0; i < numHearts; i++) {
+        const ang = Math.random() * Math.PI * 2;
+        targets.push({
+          type: 'heart',
+          x: 60 + Math.random() * (w - 120),
+          y: 60 + Math.random() * (h * 0.55),
+          vx: Math.cos(ang),
+          vy: Math.sin(ang),
+          radius: HEART_RADIUS,
+          color: '#f43f5e',
+          alive: true,
+          timer: 1.0 + Math.random() * 2.0
+        });
+      }
+      updateHud();
+    }
+
+    function fire() {
+      if (!isSolvedMode) return; // In starter mode, shooting is not implemented yet!
+
+      const w = canvas.width / window.devicePixelRatio;
+      const h = canvas.height / window.devicePixelRatio;
+      const baseX = w / 2;
+      const baseY = h - BASE_Y_OFFSET;
+
+      const muzzleX = baseX + Math.cos(cannonAngle) * BARREL_LENGTH;
+      const muzzleY = baseY - Math.sin(cannonAngle) * BARREL_LENGTH;
+
+      projectiles.push({
+        x: muzzleX,
+        y: muzzleY,
+        vx: Math.cos(cannonAngle) * bulletSpeed,
+        vy: -Math.sin(cannonAngle) * bulletSpeed,
+        radius: PROJECTILE_RADIUS,
+        active: true
+      });
+    }
+
+    // Controls listeners
+    document.getElementById('btnModeStarter').addEventListener('click', () => {
+      isSolvedMode = false;
+      document.getElementById('btnModeStarter').classList.add('active');
+      document.getElementById('btnModeSolved').classList.remove('active');
+      const badge = document.getElementById('hudModeBadge');
+      badge.textContent = 'Modalità Starter (Codice Base)';
+      badge.className = 'mode-badge mode-starter';
+      updateTodoChecklist();
+    });
+
+    document.getElementById('btnModeSolved').addEventListener('click', () => {
+      isSolvedMode = true;
+      document.getElementById('btnModeSolved').classList.add('active');
+      document.getElementById('btnModeStarter').classList.remove('active');
+      const badge = document.getElementById('hudModeBadge');
+      badge.textContent = 'Modalità Svolta';
+      badge.className = 'mode-badge mode-solved';
+      updateTodoChecklist();
+    });
+
+    function updateTodoChecklist() {
+      const todos = ['todo1', 'todo2', 'todo3', 'todo4', 'todo5a', 'todo5b'];
+      todos.forEach(id => {
+        const el = document.getElementById(id);
+        if (isSolvedMode) {
+          el.className = 'todo-item done';
+          el.firstElementChild.textContent = '✅';
+        } else {
+          el.className = 'todo-item';
+          el.firstElementChild.textContent = '⏳';
+        }
+      });
+    }
+
+    document.getElementById('sliderButterflies').addEventListener('input', (e) => {
+      numButterflies = parseInt(e.target.value);
+      document.getElementById('valButterflies').textContent = numButterflies;
+      initTargets();
+    });
+    document.getElementById('sliderHearts').addEventListener('input', (e) => {
+      numHearts = parseInt(e.target.value);
+      document.getElementById('valHearts').textContent = numHearts;
+      initTargets();
+    });
+    document.getElementById('sliderTargetSpeed').addEventListener('input', (e) => {
+      targetSpeed = parseInt(e.target.value);
+      document.getElementById('valTargetSpeed').textContent = targetSpeed + ' px/s';
+    });
+    document.getElementById('sliderBulletSpeed').addEventListener('input', (e) => {
+      bulletSpeed = parseInt(e.target.value);
+      document.getElementById('valBulletSpeed').textContent = bulletSpeed + ' px/s';
+    });
+    document.getElementById('btnResetGame').addEventListener('click', () => {
+      score = 0;
+      projectiles = [];
+      initTargets();
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mousePos.x = e.clientX - rect.left;
+      mousePos.y = e.clientY - rect.top;
+    });
+    canvas.addEventListener('mousedown', fire);
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        fire();
+      }
+    });
+
+    function updateHud() {
+      document.getElementById('hudScore').textContent = score;
+      document.getElementById('hudTargets').textContent = targets.filter(t => t.alive).length;
+      document.getElementById('hudAngle').textContent = (cannonAngle * 180 / Math.PI).toFixed(1) + '°';
+    }
+
+    // Geometry Draw Helpers
+    function drawButterfly(x, y, scale) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(scale / 20, scale / 20);
+      ctx.fillStyle = '#38bdf8';
+      // Left Wing
+      ctx.beginPath();
+      ctx.ellipse(-12, -8, 12, 18, -Math.PI / 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.ellipse(-10, 10, 8, 12, Math.PI / 6, 0, Math.PI * 2);
+      ctx.fill();
+      // Right Wing
+      ctx.beginPath();
+      ctx.ellipse(12, -8, 12, 18, Math.PI / 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.ellipse(10, 10, 8, 12, -Math.PI / 6, 0, Math.PI * 2);
+      ctx.fill();
+      // Body
+      ctx.fillStyle = '#0284c7';
+      ctx.beginPath();
+      ctx.ellipse(0, 0, 4, 16, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawHeart(x, y, scale) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(scale / 16, scale / 16);
+      ctx.fillStyle = '#f43f5e';
+      ctx.beginPath();
+      ctx.moveTo(0, 6);
+      ctx.bezierCurveTo(-14, -10, -22, 6, 0, 20);
+      ctx.bezierCurveTo(22, 6, 14, -10, 0, 6);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // Animation Loop
+    let lastTime = performance.now();
+    function loop(now) {
+      const dt = Math.min((now - lastTime) / 1000, 0.1);
+      lastTime = now;
+
+      const w = canvas.width / window.devicePixelRatio;
+      const h = canvas.height / window.devicePixelRatio;
+      const baseX = w / 2;
+      const baseY = h - BASE_Y_OFFSET;
+
+      // 1. Cannon aiming
+      if (isSolvedMode) {
+        // TODO 1: atan2(direction.y, direction.x)
+        const dx = mousePos.x - baseX;
+        const dy = baseY - mousePos.y; // invert Y for Cartesian
+        cannonAngle = Math.atan2(dy, dx);
+        // Clamp to positive upper half
+        cannonAngle = Math.max(0.1, Math.min(Math.PI - 0.1, cannonAngle));
+      } else {
+        // Starter mode: Cannon is fixed at 90 degrees
+        cannonAngle = Math.PI / 2;
+      }
+
+      // 2. Update targets
+      if (isSolvedMode) {
+        // TODO 4: Motion & boundary bounce
+        targets.forEach(t => {
+          if (!t.alive) return;
+          t.timer -= dt;
+          if (t.timer <= 0) {
+            const ang = Math.random() * Math.PI * 2;
+            t.vx = Math.cos(ang);
+            t.vy = Math.sin(ang);
+            t.timer = 1.0 + Math.random() * 2.0;
+          }
+
+          t.x += t.vx * targetSpeed * dt;
+          t.y += t.vy * targetSpeed * dt;
+
+          // Screen bounds
+          if (t.x - t.radius < 20) { t.x = 20 + t.radius; t.vx = Math.abs(t.vx); }
+          if (t.x + t.radius > w - 20) { t.x = w - 20 - t.radius; t.vx = -Math.abs(t.vx); }
+          if (t.y - t.radius < 20) { t.y = 20 + t.radius; t.vy = Math.abs(t.vy); }
+          if (t.y + t.radius > h * 0.65) { t.y = h * 0.65 - t.radius; t.vy = -Math.abs(t.vy); }
+        });
+
+        // TODO 5B: Target-Target Elastic Collisions
+        for (let i = 0; i < targets.length; i++) {
+          for (let j = i + 1; j < targets.length; j++) {
+            const a = targets[i];
+            const b = targets[j];
+            if (!a.alive || !b.alive) continue;
+            const dx = b.x - a.x;
+            const dy = b.y - a.y;
+            const distSq = dx * dx + dy * dy;
+            const rSum = a.radius + b.radius;
+            if (distSq < rSum * rSum && distSq > 0.001) {
+              const dist = Math.sqrt(distSq);
+              const nx = dx / dist;
+              const ny = dy / dist;
+              const overlap = rSum - dist;
+              a.x -= nx * overlap * 0.5;
+              a.y -= ny * overlap * 0.5;
+              b.x += nx * overlap * 0.5;
+              b.y += ny * overlap * 0.5;
+              // Elastic impulse
+              const kx = a.vx - b.vx;
+              const ky = a.vy - b.vy;
+              const p = 2 * (nx * kx + ny * ky) / 2;
+              a.vx -= p * nx;
+              a.vy -= p * ny;
+              b.vx += p * nx;
+              b.vy += p * ny;
+            }
+          }
+        }
+      }
+
+      // 3. Update projectiles & collisions
+      if (isSolvedMode) {
+        projectiles.forEach(p => {
+          if (!p.active) return;
+          p.x += p.vx * dt;
+          p.y += p.vy * dt;
+
+          if (p.x < -10 || p.x > w + 10 || p.y < -10 || p.y > h + 10) {
+            p.active = false;
+            return;
+          }
+
+          // TODO 5A: Collision circle-circle
+          targets.forEach(t => {
+            if (!t.alive || !p.active) return;
+            const dx = p.x - t.x;
+            const dy = p.y - t.y;
+            const distSq = dx * dx + dy * dy;
+            const rSum = p.radius + t.radius;
+            if (distSq <= rSum * rSum) {
+              p.active = false;
+              t.alive = false;
+              score += 10;
+              updateHud();
+            }
+          });
+        });
+      }
+
+      // 4. RENDER FRAME
+      ctx.clearRect(0, 0, w, h);
+
+      // Coordinate Grid Lines (Background)
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < w; x += 50) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+      }
+      for (let y = 0; y < h; y += 50) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+
+      // Target Movement Boundary Line
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.2)';
+      ctx.setLineDash([6, 6]);
+      ctx.beginPath();
+      ctx.moveTo(20, h * 0.65);
+      ctx.lineTo(w - 20, h * 0.65);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.4)';
+      ctx.font = '10px var(--font-mono)';
+      ctx.fillText('LIMITE AREA BERSAGLI (WORLD Y)', 28, h * 0.65 - 6);
+
+      // Draw Targets
+      targets.forEach(t => {
+        if (!t.alive) return;
+        if (t.type === 'butterfly') {
+          drawButterfly(t.x, t.y, t.radius);
+        } else {
+          drawHeart(t.x, t.y, t.radius);
+        }
+      });
+
+      // Draw Projectiles
+      ctx.fillStyle = '#f59e0b';
+      projectiles.forEach(p => {
+        if (!p.active) return;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+        // Glow
+        ctx.fillStyle = 'rgba(245, 158, 11, 0.3)';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius * 2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#f59e0b';
+      });
+
+      // Draw Cannon Barrel
+      ctx.save();
+      ctx.translate(baseX, baseY);
+      ctx.rotate(-cannonAngle);
+      ctx.fillStyle = '#0284c7';
+      ctx.fillRect(0, -BARREL_THICKNESS / 2, BARREL_LENGTH, BARREL_THICKNESS);
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(0, -BARREL_THICKNESS / 2, BARREL_LENGTH, BARREL_THICKNESS);
+      ctx.restore();
+
+      // Draw Cannon Base (circle)
+      ctx.fillStyle = '#1e293b';
+      ctx.beginPath();
+      ctx.arc(baseX, baseY, 22, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      ctx.fillStyle = '#38bdf8';
+      ctx.beginPath();
+      ctx.arc(baseX, baseY, 6, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Mouse Aiming Line (in Solved Mode)
+      if (isSolvedMode) {
+        ctx.strokeStyle = 'rgba(245, 158, 11, 0.4)';
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(baseX + Math.cos(cannonAngle) * BARREL_LENGTH, baseY - Math.sin(cannonAngle) * BARREL_LENGTH);
+        ctx.lineTo(mousePos.x, mousePos.y);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+
+      updateHud();
+      requestAnimationFrame(loop);
+    }
+
+    // Startup
+    resize();
+    initTargets();
+    requestAnimationFrame(loop);
+  </script>
+</body>
+</html>

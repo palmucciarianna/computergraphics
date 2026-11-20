@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Esegui OpenGL 3D Due Cubi",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/ProgettoOpengl_3d_DueCubi",
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Compila CMake"
+    }
+  ]
+}

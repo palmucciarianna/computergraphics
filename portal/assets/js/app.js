@@ -223,7 +223,7 @@
               </div>
             </div>
 
-            <div style="margin-bottom: 16px;">
+            <div style="margin-bottom: 14px;">
               <span style="font-size:0.75rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Obiettivi Didattici:</span>
               <ul style="list-style:none; margin-top:6px;">
                 ${lab.objectives.map(obj => `
@@ -234,12 +234,30 @@
               </ul>
             </div>
 
+            <!-- Modalita Didattiche (Starter vs Svolta) -->
+            <div style="background:var(--bg-input); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:10px 14px; margin-bottom:14px; font-size:0.8rem; display:flex; flex-direction:column; gap:6px;">
+              <div><span style="color:#fbbf24; font-weight:700;">🚀 Modalità di Partenza:</span> <span style="color:var(--text-secondary);">${escapeHtml(lab.starterMode || 'Codice base')}</span></div>
+              <div><span style="color:#34d399; font-weight:700;">🌟 Modalità Svolta:</span> <span style="color:var(--text-secondary);">${escapeHtml(lab.solvedMode || 'Completata')}</span></div>
+            </div>
+
             <div class="card-tags" style="margin-bottom: 16px;">
               ${lab.techStack.map(t => `<span class="tag-badge" style="color:var(--accent-blue);">${escapeHtml(t)}</span>`).join('')}
             </div>
           </div>
 
-          <div class="lab-card-actions">
+          <div class="lab-card-actions" style="display:flex; flex-wrap:wrap; gap:8px;">
+            ${lab.vscodeUri ? `
+              <a href="${escapeAttr(lab.vscodeUri)}" class="topbar-btn" style="color:var(--accent-cyan); border-color:rgba(56,189,248,0.4);" title="Apre il laboratorio direttamente in VS Code su macOS">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+                VS Code
+              </a>
+            ` : ''}
+            ${lab.runCommand ? `
+              <button class="topbar-btn" onclick="window.CGHub.copyRunCommand('${escapeAttr(lab.runCommand)}', this)" title="Copia il comando per eseguire il lab da terminale">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                Copia Run
+              </button>
+            ` : ''}
             ${docLink ? `
               <button class="topbar-btn" onclick="window.CGHub.openPdfViewer('${escapeAttr(lab.title)}', '${escapeAttr(docLink)}')">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -477,11 +495,30 @@
     return String(str).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
 
+  function copyRunCommand(cmd, btn) {
+    if (!cmd) return;
+    navigator.clipboard.writeText(cmd).then(() => {
+      const origHtml = btn.innerHTML;
+      btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copiato!`;
+      btn.style.borderColor = 'var(--accent-emerald)';
+      btn.style.color = 'var(--accent-emerald)';
+      setTimeout(() => {
+        btn.innerHTML = origHtml;
+        btn.style.borderColor = '';
+        btn.style.color = '';
+      }, 2000);
+    }).catch(err => {
+      console.error('Copy failed', err);
+      prompt('Copia questo comando:', cmd);
+    });
+  }
+
   // Global API
   window.CGHub = {
     openPdfViewer,
     closePdfViewer,
-    switchTab
+    switchTab,
+    copyRunCommand
   };
 
   // Run on DOM ready

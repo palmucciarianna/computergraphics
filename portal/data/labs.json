@@ -2,25 +2,33 @@
   {
     "id": "lab00-setup",
     "number": "00",
-    "title": "OpenGL Template & Mac Setup",
+    "title": "Laboratorio 0 — Template OpenGL & Mac Setup",
     "subtitle": "Inizializzazione finestra GLFW, caricatore GLAD e CMake",
     "date": "Ottobre 2026",
     "type": "Setup & Architettura",
     "folder": "OpenGL+GLSL/OpenGL - Parte I",
     "docPdf": "OpenGL+GLSL/OpenGL - Parte I/OpenGL_parteI.pdf",
-    "description": "Fondamenta di ogni applicazione OpenGL desktop: creazione di un contesto grafico moderno con GLFW, caricamento dinamico dei puntatori alle estensioni tramite GLAD, gestione del loop degli eventi e rendering di un primo frame.",
+    "description": "Fondamenta delle applicazioni OpenGL del corso: creazione di una finestra con GLFW, caricamento dei puntatori delle funzioni OpenGL tramite GLAD, gestione del loop degli eventi e rendering del primo frame con CMake su macOS.",
     "objectives": [
-      "Inizializzare GLFW e configurare i Core Profile Hints (OpenGL 3.3/4.1)",
-      "Creare la finestra e gestire il resize (callback di framebuffer)",
-      "Caricare i puntatori alle funzioni OpenGL tramite gladLoadGLLoader",
-      "Compilare con CMake sia su macOS (Apple Silicon/Clang) sia su Windows"
+      "Inizializzare GLFW e impostare i Core Profile Hints (OpenGL 3.3/4.1)",
+      "Creare la finestra con context forward-compatible per macOS",
+      "Caricare le estensioni OpenGL via gladLoadGLLoader",
+      "Compilare da riga di comando con CMake e lanciare da VS Code con lldb"
     ],
     "techStack": [
       "C++",
-      "OpenGL Core Profile",
+      "OpenGL 3.3+",
       "GLFW",
       "GLAD",
       "CMake"
+    ],
+    "vscodeUri": "vscode://file//Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/OpenGL%20-%20Parte%20I/OpenGL%20template%20-%20finestra/CG_OpenGL_Finestra",
+    "runCommand": "cd \"OpenGL+GLSL/OpenGL - Parte I/OpenGL template - finestra/CG_OpenGL_Finestra\" && cmake -B build && cmake --build build && ./build/OpenGLCorso",
+    "starterMode": "Finestra vuota nera con loop eventi di base",
+    "solvedMode": "Color cycle dinamico del framebuffer (glClearColor) e gestione resize",
+    "tasksSolved": [
+      "Inizializzazione e distruzione corretta del contesto GLFW",
+      "Configurazione glad e gestione del double buffering con glfwSwapBuffers"
     ],
     "sources": [
       {
@@ -34,17 +42,8 @@
       {
         "name": "ShaderMaker.cpp",
         "relPath": "OpenGL+GLSL/OpenGL - Parte I/OpenGL template - finestra/CG_OpenGL_Finestra/ShaderMaker.cpp"
-      },
-      {
-        "name": "ShaderMaker.h",
-        "relPath": "OpenGL+GLSL/OpenGL - Parte I/OpenGL template - finestra/CG_OpenGL_Finestra/ShaderMaker.h"
-      },
-      {
-        "name": "README_OpenGL_Mac.txt",
-        "relPath": "OpenGL+GLSL/OpenGL - Parte I/OpenGL template - finestra/CG_OpenGL_Finestra/README_OpenGL_Mac.txt"
       }
     ],
-    "desktopInstructions": "mkdir build && cd build\ncmake ..\nmake -j\n./OpenGLCorso",
     "webStatus": "Disponibile",
     "webStatusBadge": "available",
     "webUrl": "labs-web/00-setup/index.html"
@@ -52,40 +51,53 @@
   {
     "id": "lab01-triangle",
     "number": "01",
-    "title": "Laboratorio 1 — Classi, VAO/VBO e Shader",
-    "subtitle": "La prima geometria: Hello Triangle e interpolazione cromatica",
+    "title": "Laboratorio 1 — Classi, VAO/VBO e Hello Triangle",
+    "subtitle": "La prima geometria: Hello Triangle, Shader e interpolazione cromatica",
     "date": "8 Ottobre 2026",
     "type": "2D Fundamentals",
-    "folder": "OpenGL+GLSL/lab/2D/lab8ott26",
+    "folder": "OpenGL+GLSL/lab/2D/lab8ott26/Proj - per mac/OpenGL_CLASSI",
     "docPdf": "OpenGL+GLSL/lab/2D/lab8ott26/Esercitazione_8Ottobre2026.pdf",
-    "description": "Introduzione all architettura moderna con separazione dei dati vertice e pipeline programmabile. Creazione di un Vertex Array Object (VAO) per legare gli attributi e Vertex Buffer Object (VBO) in memoria GPU.",
+    "description": "Architettura modulare a oggetti OpenGL (Renderer, Scene, Shader, Geometry, Input, MeshData). Allocazione di un Vertex Array Object (VAO) e Vertex Buffer Object (VBO) con compilazione runtime di Vertex e Fragment Shader GLSL.",
     "objectives": [
       "Allocazione e bind di VBO con glBufferData(GL_ARRAY_BUFFER, ...)",
-      "Configurazione del layout dei vertici con glVertexAttribPointer",
-      "Compilazione a runtime di Vertex e Fragment Shader con GLSL",
+      "Configurazione del layout attributi vertice con glVertexAttribPointer (coordinate e colori)",
+      "Compilazione e linking a runtime di Vertex e Fragment Shader con GLSL",
       "Interpolazione automatica dei colori sui frammenti (varying)"
     ],
     "techStack": [
       "C++",
-      "OpenGL 3.3+",
-      "GLSL #version 330 core",
-      "ShaderMaker"
+      "OpenGL 3.3 Core",
+      "GLSL 330",
+      "ShaderMaker",
+      "VAO / VBO"
+    ],
+    "vscodeUri": "vscode://file//Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab8ott26/Proj%20-%20per%20mac/OpenGL_CLASSI",
+    "runCommand": "cd \"OpenGL+GLSL/lab/2D/lab8ott26/Proj - per mac/OpenGL_CLASSI\" && cmake -B build && cmake --build build && ./build/OpenGL_CLASSI",
+    "starterMode": "Triangolo bianco statico senza interpolazione cromatica",
+    "solvedMode": "Interpolazione RGB su vertici, wireframe toggle e rotazione dinamica",
+    "tasksSolved": [
+      "Creazione classi modulari C++ (Renderer, Scene, Shader, Geometry)",
+      "Caricamento layout attributi (location 0 = position, location 1 = color)",
+      "Linking del program shader e disegno con glDrawArrays(GL_TRIANGLES, 0, 3)"
     ],
     "sources": [
       {
-        "name": "Lezione_Opengl_Classi.pdf",
-        "relPath": "OpenGL+GLSL/lab/2D/lab8ott26/Lezione_Opengl_Classi.pdf"
+        "name": "main.cpp",
+        "relPath": "OpenGL+GLSL/lab/2D/lab8ott26/Proj - per mac/OpenGL_CLASSI/main.cpp"
       },
       {
-        "name": "OpenGL_part2_.pdf",
-        "relPath": "OpenGL+GLSL/lab/2D/lab8ott26/OpenGL_part2_.pdf"
+        "name": "Renderer.cpp",
+        "relPath": "OpenGL+GLSL/lab/2D/lab8ott26/Proj - per mac/OpenGL_CLASSI/Renderer.cpp"
       },
       {
-        "name": "OpenGL_CLASSI.zip",
-        "relPath": "OpenGL+GLSL/lab/2D/lab8ott26/OpenGL_CLASSI.zip"
+        "name": "Scene.cpp",
+        "relPath": "OpenGL+GLSL/lab/2D/lab8ott26/Proj - per mac/OpenGL_CLASSI/Scene.cpp"
+      },
+      {
+        "name": "CMakeLists.txt",
+        "relPath": "OpenGL+GLSL/lab/2D/lab8ott26/Proj - per mac/OpenGL_CLASSI/CMakeLists.txt"
       }
     ],
-    "desktopInstructions": "cd \"OpenGL+GLSL/lab/2D/lab8ott26/Proj - per mac\"\nmkdir -p build && cd build\ncmake .. && make\n./ProgTest",
     "webStatus": "Disponibile",
     "webStatusBadge": "available",
     "webUrl": "labs-web/01-triangle/index.html"
@@ -93,25 +105,34 @@
   {
     "id": "lab02-transforms",
     "number": "02",
-    "title": "Laboratorio 2 — Spazi di Coordinate & Griglia Animata",
-    "subtitle": "World Space, NDC, Matrici GLM e Uniforms",
+    "title": "Laboratorio 2 — Spazi di Coordinate & Griglia Animata 2D",
+    "subtitle": "World Space, NDC, Matrici GLM e Uniforms (GrigliaAnimata2D)",
     "date": "15 Ottobre 2026",
     "type": "2D Transformations",
     "folder": "OpenGL+GLSL/lab/2D/lab15ott26",
     "docPdf": "OpenGL+GLSL/lab/2D/lab15ott26/Laboratorio 15 Ottobre 2026-20261023/Coordinate_World_NDC_Schermo.pdf",
-    "description": "Studio approfondito delle trasformazioni geometriche e del passaggio di coordinate: da coordinate locali/mondo alle coordinate normalizzate di dispositivo (NDC) fino allo schermo. Uso di GLM per comporre matrici e disegno di griglie 2D animate con cuori e farfalle.",
+    "description": "Studio del passaggio di coordinate: da coordinate locali/mondo alle coordinate normalizzate di dispositivo (NDC) fino allo schermo. Uso di GLM per comporre matrici Model/View/Projection e disegno di griglie 2D animate con farfalle, cuori e stelle.",
     "objectives": [
-      "Comprendere la catena: Coordinate Locali -> World -> NDC [-1, 1] -> Viewport",
+      "Comprendere la pipeline: Coordinate Locali -> World -> NDC [-1, 1] -> Viewport",
       "Passare matrici di trasformazione agli shader tramite glUniformMatrix4fv",
-      "Comporre traslazione, rotazione e scalatura con GLM",
-      "Animare molteplici figure geometriche su una griglia regolare"
+      "Comporre traslazione, rotazione e scalatura con GLM: M = T · R · S",
+      "Animare molteplici figure geometriche su una griglia regolare parametrica"
     ],
     "techStack": [
       "C++",
       "GLM",
       "GLSL Uniforms",
-      "ImGui",
+      "Dear ImGui",
       "CMake"
+    ],
+    "vscodeUri": "vscode://file//Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab15ott26",
+    "runCommand": "cd \"OpenGL+GLSL/lab/2D/lab15ott26\" && ./run.sh",
+    "starterMode": "Singola geometria al centro con matrice identità e parametri fissi",
+    "solvedMode": "Griglia NxM completa di farfalle e cuori animati con controlli ImGui",
+    "tasksSolved": [
+      "Costruzione matrice ortografica glm::ortho(left, right, bottom, top)",
+      "Animazione basata sul tempo con uniform u_time",
+      "Ispezione coordinate World vs NDC nel rendering loop"
     ],
     "sources": [
       {
@@ -119,101 +140,131 @@
         "relPath": "OpenGL+GLSL/lab/2D/lab15ott26/main.cpp"
       },
       {
-        "name": "Renderer.cpp",
-        "relPath": "OpenGL+GLSL/lab/2D/lab15ott26/Renderer.cpp"
-      },
-      {
-        "name": "Scene.cpp",
-        "relPath": "OpenGL+GLSL/lab/2D/lab15ott26/Scene.cpp"
-      },
-      {
         "name": "ShapeGenerator.cpp",
         "relPath": "OpenGL+GLSL/lab/2D/lab15ott26/ShapeGenerator.cpp"
       },
       {
-        "name": "CMakeLists.txt",
-        "relPath": "OpenGL+GLSL/lab/2D/lab15ott26/CMakeLists.txt"
+        "name": "Renderer.cpp",
+        "relPath": "OpenGL+GLSL/lab/2D/lab15ott26/Renderer.cpp"
+      },
+      {
+        "name": "run.sh",
+        "relPath": "OpenGL+GLSL/lab/2D/lab15ott26/run.sh"
       }
     ],
-    "desktopInstructions": "cd \"OpenGL+GLSL/lab/2D/lab15ott26\"\n./run.sh",
     "webStatus": "Disponibile",
     "webStatusBadge": "available",
     "webUrl": "labs-web/02-transforms-2d/index.html"
   },
   {
-    "id": "lab03-instances",
+    "id": "lab03-cannone-istanze",
     "number": "03",
-    "title": "Laboratorio 3 — Geometrie ed Istanze",
-    "subtitle": "Rendering efficiente di forme multiple e note audio",
+    "title": "Laboratorio 3 — Geometrie, Istanze & Cannone con Bersagli",
+    "subtitle": "Puntamento con atan2, sparo proiettili, collisioni circolari e rimbalzi",
     "date": "22 Ottobre 2026",
-    "type": "2D Batching",
-    "folder": "OpenGL+GLSL/lab/2D/lab22ott26",
+    "type": "2D Instancing & Physics",
+    "folder": "OpenGL+GLSL/lab/2D/lab22ott26/Laboratorio 22 Ottobre 2026-20261023/2_con_dipendenze",
     "docPdf": "OpenGL+GLSL/lab/2D/lab22ott26/Laboratorio 22 Ottobre 2026-20261023/Geometrie_ed_Istanze.pdf",
-    "description": "Esplorazione dell instancing per replicare forme geometriche con trasformazioni differenti minimizzando i cambi di stato e il carico sulla CPU. Include note vocali della lezione.",
+    "description": "Progetto completo di puntamento e sparo 2D: cannone con canna orientabile verso il mouse tramite arcotangente (atan2), generazione proiettili, bersagli mobili (farfalle e cuori) con rimbalzo elastico e rilevamento collisioni circolari d² ≤ (r_p + r_t)².",
     "objectives": [
-      "Ottimizzazione delle draw calls",
-      "Gestione di matrici Model per istanze multiple",
-      "Separazione della logica di mesh dalla logica di istanza"
+      "TODO 1: Puntamento del cannone con atan2(dir.y, dir.x) e matrice T(Base)*Rz(angle)",
+      "TODO 2: Sparo da coordinate muzzle con vettore velocità scalato",
+      "TODO 3: Moto e deallocazione proiettili fuori finestra",
+      "TODO 4: Moto bersagli con rimbalzo elastico sui bordi",
+      "TODO 5A: Collisione proiettile/bersaglio e distruzione con punteggio",
+      "TODO 5B: Collisioni e rimbalzi elastici tra bersagli mobili"
     ],
     "techStack": [
       "C++",
-      "OpenGL 3.3",
-      "GLM",
-      "Audio Notes M4A"
+      "OpenGL 3.3 Core",
+      "GLM (atan2, normalize)",
+      "Dear ImGui",
+      "Collision Detection"
+    ],
+    "vscodeUri": "vscode://file//Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab22ott26/Laboratorio%2022%20Ottobre%202026-20261023/2_con_dipendenze",
+    "runCommand": "cd \"OpenGL+GLSL/lab/2D/lab22ott26/Laboratorio 22 Ottobre 2026-20261023/2_con_dipendenze\" && ./run.sh",
+    "starterMode": "Canna fissa a 90°, sparo disabilitato, bersagli statici (TODO 1-5 da svolgere)",
+    "solvedMode": "Tutti i 6 TODO svolti: rotazione mouse, sparo a raffica, collisioni circolari e rimbalzi",
+    "tasksSolved": [
+      "TODO 1: Calcolo angolo orientamento canna con glm::atan2(aim.y, aim.x)",
+      "TODO 2: Attivazione proiettile inattivo da muzzle con velocity = direction * speed",
+      "TODO 3: Aggiornamento p.position += p.velocity * dt con rimozione fuori schermo",
+      "TODO 4: Aggiornamento posizione bersagli e rimbalzo pareti finestra",
+      "TODO 5A: Test collisione circolare dot(p-b, p-b) <= (rp+rt)²",
+      "TODO 5B: Risoluzione compenetrazioni e scambio impulsi normale tra bersagli"
     ],
     "sources": [
       {
-        "name": "main_studenti.cpp",
-        "relPath": "OpenGL+GLSL/lab/2D/lab22ott26/ale-made/main_studenti.cpp"
+        "name": "main_COMPLETO_SVOLTO.cpp",
+        "relPath": "OpenGL+GLSL/lab/2D/lab22ott26/Laboratorio 22 Ottobre 2026-20261023/2_con_dipendenze/main_COMPLETO_SVOLTO.cpp"
       },
       {
-        "name": "Esercitazione_CG_22Ottobre_2026.pdf",
-        "relPath": "OpenGL+GLSL/lab/2D/lab22ott26/Laboratorio 22 Ottobre 2026-20261023/Esercitazione_CG_22Ottobre_2026.pdf"
+        "name": "main_studenti.cpp (Starter)",
+        "relPath": "OpenGL+GLSL/lab/2D/lab22ott26/Laboratorio 22 Ottobre 2026-20261023/2_con_dipendenze/main_studenti.cpp"
+      },
+      {
+        "name": "CMakeLists.txt",
+        "relPath": "OpenGL+GLSL/lab/2D/lab22ott26/Laboratorio 22 Ottobre 2026-20261023/2_con_dipendenze/CMakeLists.txt"
+      },
+      {
+        "name": "run.sh",
+        "relPath": "OpenGL+GLSL/lab/2D/lab22ott26/Laboratorio 22 Ottobre 2026-20261023/2_con_dipendenze/run.sh"
       }
     ],
-    "desktopInstructions": "Compilazione dei file sorgenti nella cartella ale-made con g++ o clang++ linkando GLFW e OpenGL.",
     "webStatus": "Disponibile",
     "webStatusBadge": "available",
-    "webUrl": "labs-web/02-transforms-2d/index.html#instances"
+    "webUrl": "labs-web/03-cannone-istanze/index.html"
   },
   {
     "id": "lab04-mountain",
     "number": "04",
-    "title": "Laboratorio 4 — Mountain Quest (Game Engine 2D)",
-    "subtitle": "Fisica del salto, gravità, collisioni AABB e input",
+    "title": "Laboratorio 4 — Mountain Quest: Fisica 2D & Salto",
+    "subtitle": "Integrazione Eulero semi-implicito, AABB, piattaforme e monete animate",
     "date": "29 Ottobre 2026",
-    "type": "2D Game Physics",
-    "folder": "OpenGL+GLSL/lab/2D/lab29ott26",
-    "docPdf": "OpenGL+GLSL/lab/2D/lab29ott26/Lab 29ott + codice montagna/Introduzione_Mountain_Quest.pdf",
-    "description": "Realizzazione completa di un mini-gioco platformer 2D in OpenGL: simulazione cinematica con equazioni del moto, gravita, salto parabolico del giocatore, rilevamento collisioni rettangolari AABB tra giocatore e ostacoli montuosi.",
+    "type": "2D Game Engine",
+    "folder": "OpenGL+GLSL/lab/2D/lab29ott26/Lab 29ott + codice montagna/Codice_Progetto_Avventura_in_montagna_COMPLETO",
+    "docPdf": "OpenGL+GLSL/lab/2D/lab29ott26/Lab 29ott + codice montagna/Esercitazione_Mountain_Quest.pdf",
+    "description": "Mini-motore di gioco platform 2D completo: controllo cinematico del personaggio, integrazione numerica semi-implicita di Eulero per la gravità, collision detection e response tramite Axis-Aligned Bounding Box (AABB) su terreno e piattaforme, paesaggio montano e monete rotanti.",
     "objectives": [
-      "Integrazione delle equazioni di Eulero per posizione e velocita",
-      "Gestione input non bloccante e salti con costanti fisiche",
-      "Rilevamento e risoluzione collisioni Axis-Aligned Bounding Box (AABB)",
-      "Disegno di scenari montuosi con shader a strati"
+      "TODO 2: Movimento orizzontale continuo, clamp ai bordi e impulso di salto",
+      "TODO 3: Implementazione test di intersezione AABB tra rettangoli orientati",
+      "Fase 3: Integrazione gravitazionale vy += g*dt e y += vy*dt",
+      "Fase 4: Risoluzione collisioni verticali (atterraggio su piattaforma vs urto da sotto)"
     ],
     "techStack": [
       "C++",
-      "OpenGL",
-      "Kinematic Physics",
-      "AABB Collisions",
-      "GLFW Input"
+      "OpenGL 3.3 Core",
+      "AABB Collision",
+      "Semi-implicit Euler",
+      "GLSL Shaders"
+    ],
+    "vscodeUri": "vscode://file//Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab29ott26/Lab%2029ott%20+%20codice%20montagna/Codice_Progetto_Avventura_in_montagna_COMPLETO",
+    "runCommand": "cd \"OpenGL+GLSL/lab/2D/lab29ott26/Lab 29ott + codice montagna/Codice_Progetto_Avventura_in_montagna_COMPLETO\" && ./run.sh",
+    "starterMode": "Robot fermo sul pavimento senza salto, intersects(AABB) restituisce sempre false",
+    "solvedMode": "Fisica completa: salto con gravità, collisioni laterali e verticali su piattaforme, raccolta monete",
+    "tasksSolved": [
+      "Test AABB: std::abs(a.center.x - b.center.x) < a.halfSize.x + b.halfSize.x && Y",
+      "Integrazione semi-implicita di Eulero per velocità e posizione",
+      "Risoluzione atterraggio: correzione quota Y, azzeramento vy, onGround = true"
     ],
     "sources": [
       {
-        "name": "01_Fisica_Teoria.pdf",
-        "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Lab 29ott + codice montagna/01_Fisica_Teoria.pdf"
+        "name": "Game.cpp (COMPLETO)",
+        "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Lab 29ott + codice montagna/Codice_Progetto_Avventura_in_montagna_COMPLETO/Game.cpp"
       },
       {
-        "name": "02_Game_Input_Salto_Implementazione.pdf",
-        "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Lab 29ott + codice montagna/02_Game_Input_Salto_Implementazione.pdf"
+        "name": "Game.cpp (Starter CodiceStudenti)",
+        "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Laboratorio 29 Ottobre 2026-20261104/CodiceStudenti/Game.cpp"
       },
       {
-        "name": "03_Mountain_Quest_Collisioni_AABB.pdf",
-        "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Lab 29ott + codice montagna/03_Mountain_Quest_Collisioni_AABB.pdf"
+        "name": "Landscape.cpp",
+        "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Lab 29ott + codice montagna/Codice_Progetto_Avventura_in_montagna_COMPLETO/Landscape.cpp"
+      },
+      {
+        "name": "run.sh",
+        "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Lab 29ott + codice montagna/Codice_Progetto_Avventura_in_montagna_COMPLETO/run.sh"
       }
     ],
-    "desktopInstructions": "cd \"OpenGL+GLSL/lab/2D/lab29ott26/Lab 29ott + codice montagna/Codice_Progetto_Avventura_in_montagna_COMPLETO\"\nmkdir build && cd build\ncmake .. && make\n./MountainQuest",
     "webStatus": "Disponibile",
     "webStatusBadge": "available",
     "webUrl": "labs-web/04-mountain-quest/index.html"
@@ -221,129 +272,165 @@
   {
     "id": "lab05-hermite",
     "number": "05",
-    "title": "Laboratorio 5 — Modellatore di Curve di Hermite",
-    "subtitle": "Curve cubiche interpolanti con controllo tangenti e geometrie",
+    "title": "Laboratorio 5 — Modellatore di Curve di Hermite 2D",
+    "subtitle": "Spline cubiche interpolanti con vettori tangenti, manipolazione mouse e export C++",
     "date": "5 Novembre 2026",
-    "type": "2D Splines & Modeling",
-    "folder": "OpenGL+GLSL/lab/2D/lab5nov26",
+    "type": "Geometric Modeling",
+    "folder": "OpenGL+GLSL/lab/2D/lab5nov26/Modellatore_Hermite_2D",
     "docPdf": "OpenGL+GLSL/lab/2D/lab5nov26/Laboratorio 5 Novembre 2026 + CODICE_COMPLETO_SHAPE_HERMITE+ CODICE_COMPLETO_CORRETTO_PARTE_II  (LEG/Guida_Utilizzo_Modellatore_Hermite_2D.pdf",
-    "description": "Sviluppo di un tool CAD/Modellatore 2D per generare curve parametriche di Hermite. Permette di definire punti iniziale e finale e i rispettivi vettori di derivata (tangenti), calcolando i punti campionati della curva.",
+    "description": "Modellatore CAD 2D interattivo: tracciamento di curve cubiche di Hermite con punti di controllo P0, P1 e vettori tangenti R0, R1. Trascina i nodi, visualizza la matrice base cubica ed esporta le coordinate come array C++ per il cannone.",
     "objectives": [
-      "Implementare le quattro funzioni base cubiche di Hermite",
-      "Moltiplicazione del vettore geometrico per la matrice caratteristica M_H",
-      "Manipolazione interattiva dei vettori tangenti e dei nodi",
-      "Importazione ed esportazione di sagome e profili"
+      "Calcolare i polinomi di Hermite: H0(t)=2t³-3t²+1, H1(t)=-2t³+3t², H2(t)=t³-2t²+t, H3(t)=t³-t²",
+      "Valutare la curva parametrica P(t) = H0(t)P0 + H1(t)P1 + H2(t)R0 + H3(t)R1",
+      "Modifica interattiva dei vettori tangenti con il mouse (direzione e magnitudo)",
+      "Esportazione del poligono campionato in file di testo e codice C++ per il gioco del cannone"
     ],
     "techStack": [
       "C++",
-      "OpenGL",
-      "Matematica delle Spline",
-      "Hermite Basis Functions",
-      "ImGui"
+      "Hermite Spline",
+      "Polinomi di base",
+      "Dear ImGui",
+      "CAD Tools"
+    ],
+    "vscodeUri": "vscode://file//Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab5nov26/Modellatore_Hermite_2D",
+    "runCommand": "cd \"OpenGL+GLSL/lab/2D/lab5nov26/Modellatore_Hermite_2D\" && ./run.sh",
+    "starterMode": "Segmento lineare semplice tra due punti senza tangenti (R0=R1=0)",
+    "solvedMode": "Spline cubica di Hermite completa, tangenti trascinabili, campionamento variabile ed export C++",
+    "tasksSolved": [
+      "Implementazione polinomi base di Hermite e derivate prime per tangenti",
+      "Picking del mouse su vertici di controllo e frecce vettoriali",
+      "Generazione mesh poligonale chiusa per il rendering della sagoma"
     ],
     "sources": [
       {
-        "name": "Guida_Utilizzo_Modellatore_Hermite_2D.pdf",
-        "relPath": "OpenGL+GLSL/lab/2D/lab5nov26/Laboratorio 5 Novembre 2026 + CODICE_COMPLETO_SHAPE_HERMITE+ CODICE_COMPLETO_CORRETTO_PARTE_II  (LEG/Guida_Utilizzo_Modellatore_Hermite_2D.pdf"
+        "name": "gestione_curve.cpp",
+        "relPath": "OpenGL+GLSL/lab/2D/lab5nov26/Modellatore_Hermite_2D/gestione_curve.cpp"
       },
       {
-        "name": "Player_Geometrie_Importate.pdf",
-        "relPath": "OpenGL+GLSL/lab/2D/lab5nov26/Laboratorio 5 Novembre 2026 + CODICE_COMPLETO_SHAPE_HERMITE+ CODICE_COMPLETO_CORRETTO_PARTE_II  (LEG/Player_Geometrie_Importate.pdf"
+        "name": "init_geometrie.cpp",
+        "relPath": "OpenGL+GLSL/lab/2D/lab5nov26/Modellatore_Hermite_2D/init_geometrie.cpp"
+      },
+      {
+        "name": "CMakeLists.txt",
+        "relPath": "OpenGL+GLSL/lab/2D/lab5nov26/Modellatore_Hermite_2D/CMakeLists.txt"
+      },
+      {
+        "name": "run.sh",
+        "relPath": "OpenGL+GLSL/lab/2D/lab5nov26/Modellatore_Hermite_2D/run.sh"
       }
     ],
-    "desktopInstructions": "Eseguire lo script o il progetto CMake nella cartella del laboratorio per aprire l interfaccia di modellazione delle curve.",
     "webStatus": "Disponibile",
     "webStatusBadge": "available",
     "webUrl": "labs-web/05-hermite-curve/index.html"
   },
   {
-    "id": "lab06-cubes3d",
+    "id": "lab06-cubes",
     "number": "06",
-    "title": "Laboratorio 6 — Introduzione a OpenGL 3D",
-    "subtitle": "Due Cubi, Animazione Orbitale e Telecamera 3D",
+    "title": "Laboratorio 6 — Due Cubi 3D, Z-Buffer & Telecamera Orbit",
+    "subtitle": "Depth Testing, Coordinate Sferiche, LookAt e Prospettiva",
     "date": "12 Novembre 2026",
-    "type": "3D World & Camera",
-    "folder": "OpenGL+GLSL/lab/3D/lab12nov26",
-    "docPdf": "OpenGL+GLSL/lab/3D/lab12nov26/Laboratorio 12 Novembre 2026-20261112/Opengl_3D.pdf",
-    "description": "Entrata ufficiale nel rendering 3D: gestione del Depth Buffer (Z-Buffer), matrice View con glm::lookAt, matrice di Proiezione con glm::perspective. Animazione di un cubo attorno a un altro su un orbita circolare.",
+    "type": "3D Fundamentals",
+    "folder": "OpenGL+GLSL/lab/3D/lab12nov26/Laboratorio 12 Novembre 2026-20261112/ProgettoOpengl_3d_DueCubi",
+    "docPdf": "OpenGL+GLSL/lab/3D/lab12nov26/Laboratorio 12 Novembre 2026-20261112/Esercitazione_CG_3D.pdf",
+    "description": "Ingresso nel rendering tridimensionale moderno: render di due cubi nello spazio con matrici Model distinte, telecamera orbitale a coordinate sferiche (Yaw, Pitch, Raggio), commutazione tra Prospettiva e Assonometria Ortografica e test del Depth Buffer (Z-Buffer).",
     "objectives": [
-      "Abilitazione di glEnable(GL_DEPTH_TEST) e pulizia con GL_DEPTH_BUFFER_BIT",
-      "Costruzione della camera virtuale (posizione, target, vettore UP)",
-      "Composizione della matrice Model-View-Projection nello shader 3D",
-      "Definizione di vertici e facce con coordinate a 3 dimensioni"
+      "Comprendere la funzione e il funzionamento del Depth Buffer (glEnable(GL_DEPTH_TEST))",
+      "Gestire la matrice View con glm::lookAt(eye, center, up)",
+      "Costruire la telecamera sferica Orbit controllata dal mouse",
+      "Confrontare visivamente l'effetto del Depth Test attivato vs disattivato"
     ],
     "techStack": [
       "C++",
       "OpenGL 3D",
-      "GLM LookAt",
-      "Perspective Frustum",
-      "CMake"
+      "Z-Buffer (Depth Test)",
+      "GLM (LookAt, Perspective)",
+      "Camera Orbitale"
+    ],
+    "vscodeUri": "vscode://file//Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/3D/lab12nov26/Laboratorio%2012%20Novembre%202026-20261112/ProgettoOpengl_3d_DueCubi",
+    "runCommand": "cd \"OpenGL+GLSL/lab/3D/lab12nov26/Laboratorio 12 Novembre 2026-20261112/ProgettoOpengl_3d_DueCubi\" && ./run.sh",
+    "starterMode": "Singolo cubo statico in proiezione ortografica senza gestione corretta della profondità (Starter)",
+    "solvedMode": "Due cubi (centrale + orbitante), Z-Buffer ON/OFF interattivo, telecamera sferica orbitale (DueCubi)",
+    "tasksSolved": [
+      "Configurazione glEnable(GL_DEPTH_TEST) e glDepthFunc(GL_LESS)",
+      "Calcolo posizione camera in coordinate sferiche con yaw e pitch",
+      "Matrice Model indipendente per cubo orbitante con traslazione e rotazione continua"
     ],
     "sources": [
       {
-        "name": "CMakeLists.txt",
-        "relPath": "OpenGL+GLSL/lab/3D/lab12nov26/Laboratorio 12 Novembre 2026-20261112/CMakeLists.txt"
+        "name": "main.cpp (DueCubi)",
+        "relPath": "OpenGL+GLSL/lab/3D/lab12nov26/Laboratorio 12 Novembre 2026-20261112/ProgettoOpengl_3d_DueCubi/main.cpp"
       },
       {
-        "name": "Opengl_3D.pdf",
-        "relPath": "OpenGL+GLSL/lab/3D/lab12nov26/Laboratorio 12 Novembre 2026-20261112/Opengl_3D.pdf"
+        "name": "main.cpp (Starter)",
+        "relPath": "OpenGL+GLSL/lab/3D/lab12nov26/Laboratorio 12 Novembre 2026-20261112/ProgettoOpengl_3d_Starter/main.cpp"
       },
       {
-        "name": "Esercitazione_CG_3D.pdf",
-        "relPath": "OpenGL+GLSL/lab/3D/lab12nov26/Laboratorio 12 Novembre 2026-20261112/Esercitazione_CG_3D.pdf"
+        "name": "Camera.cpp",
+        "relPath": "OpenGL+GLSL/lab/3D/lab12nov26/Laboratorio 12 Novembre 2026-20261112/ProgettoOpengl_3d_DueCubi/Camera.cpp"
+      },
+      {
+        "name": "run.sh",
+        "relPath": "OpenGL+GLSL/lab/3D/lab12nov26/Laboratorio 12 Novembre 2026-20261112/ProgettoOpengl_3d_DueCubi/run.sh"
       }
     ],
-    "desktopInstructions": "cd \"OpenGL+GLSL/lab/3D/lab12nov26/Laboratorio 12 Novembre 2026-20261112\"\nmkdir build && cd build\ncmake .. && make\n./DueCubi3D",
     "webStatus": "Disponibile",
     "webStatusBadge": "available",
     "webUrl": "labs-web/06-cubes-3d/index.html"
   },
   {
-    "id": "lab07-interactive3d",
+    "id": "lab07-interactive",
     "number": "07",
-    "title": "Laboratorio 7 — Scena 3D Interattiva con GUI",
-    "subtitle": "Dear ImGui, Modelli di Illuminazione e Mesh 3D",
+    "title": "Laboratorio 7 — Scena 3D & Shading di Phong",
+    "subtitle": "Illuminazione Ambientale, Diffusa e Speculare con Dear ImGui",
     "date": "20 Novembre 2026",
-    "type": "3D Shading & UI",
-    "folder": "OpenGL+GLSL/lab/3D/lab20nov26",
+    "type": "Lighting & Shading",
+    "folder": "OpenGL+GLSL/lab/3D/lab20nov26/Laboratorio 20 Novembre 2026-20261120",
     "docPdf": "OpenGL+GLSL/lab/3D/lab20nov26/Laboratorio 20 Novembre 2026-20261120/Scena3D_GUI_Interattiva.pdf",
-    "description": "Scena 3D completa e configurabile: controllo interattivo tramite Dear ImGui dei parametri di rendering, posizionamento luci, materiali (ka, kd, ks, shininess) e confronto tra modelli di shading Phong e Gouraud.",
+    "description": "Scena 3D interattiva avanzata: implementazione del modello di riflessione di Phong su shader GLSL con sorgente luminosa mobile e pannello GUI. Studio delle tre componenti: luce ambientale (ka), diffusa lambertiana (kd * N·L) e speculare Blinn-Phong (ks * (N·H)^α).",
     "objectives": [
-      "Integrazione avanzata di Dear ImGui con binding GLFW/OpenGL",
-      "Modello di illuminazione locale di Phong nel fragment shader",
-      "Manipolazione in tempo reale della telecamera e dei parametri di luce",
-      "Struttura del motore grafico modulare (Renderer, Scene, Input, GuiLayer)"
+      "Implementare nel Fragment Shader la formula di Phong I = Ia*ka + Id*kd*(N·L) + Is*ks*(R·V)^α",
+      "Trasformare le normali dei vertici nello spazio vista tramite la Normal Matrix mat3(transpose(inverse(Model)))",
+      "Regolare posizione luce, colore materiale e lucentezza tramite interfaccia Dear ImGui",
+      "Supportare forme 3D complesse (cubo, sfera UV, cilindro, cono, toro)"
     ],
     "techStack": [
       "C++",
-      "OpenGL Core 3.3",
-      "Dear ImGui",
       "Phong Shading",
-      "GLM"
+      "GLSL Vertex/Fragment",
+      "Normal Matrix",
+      "Dear ImGui Studio"
+    ],
+    "vscodeUri": "vscode://file//Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/3D/lab20nov26/Laboratorio%2020%20Novembre%202026-20261120",
+    "runCommand": "cd \"OpenGL+GLSL/lab/3D/lab20nov26/Laboratorio 20 Novembre 2026-20261120\" && ./run.sh",
+    "starterMode": "Mesh 3D renderizzata come silhouette piatta unlit senza calcolo di normali o illuminazione",
+    "solvedMode": "Modello di Phong completo per-frammento: riflessione speculare, diffusa e ambiente con controlli GUI",
+    "tasksSolved": [
+      "Formula Phong completa con calcolo del vettore riflesso e vettore di vista",
+      "Movimento dinamico sorgente luce in coordinate 3D",
+      "Commutazione mesh geometriche e toggle Wireframe vs Shaded"
     ],
     "sources": [
       {
-        "name": "CMakeLists.txt",
-        "relPath": "OpenGL+GLSL/lab/3D/lab20nov26/Laboratorio 20 Novembre 2026-20261120/CMakeLists.txt"
+        "name": "main.cpp",
+        "relPath": "OpenGL+GLSL/lab/3D/lab20nov26/Laboratorio 20 Novembre 2026-20261120/main.cpp"
       },
       {
         "name": "GuiLayer.cpp",
         "relPath": "OpenGL+GLSL/lab/3D/lab20nov26/Laboratorio 20 Novembre 2026-20261120/GuiLayer.cpp"
       },
       {
-        "name": "Scene.cpp",
-        "relPath": "OpenGL+GLSL/lab/3D/lab20nov26/Laboratorio 20 Novembre 2026-20261120/Scene.cpp"
+        "name": "objects.frag (Phong Shader)",
+        "relPath": "OpenGL+GLSL/lab/3D/lab20nov26/Laboratorio 20 Novembre 2026-20261120/shaders/objects.frag"
       },
       {
-        "name": "Camera.cpp",
-        "relPath": "OpenGL+GLSL/lab/3D/lab20nov26/Laboratorio 20 Novembre 2026-20261120/Camera.cpp"
+        "name": "objects.vert",
+        "relPath": "OpenGL+GLSL/lab/3D/lab20nov26/Laboratorio 20 Novembre 2026-20261120/shaders/objects.vert"
       },
       {
-        "name": "Shader.cpp",
-        "relPath": "OpenGL+GLSL/lab/3D/lab20nov26/Laboratorio 20 Novembre 2026-20261120/Shader.cpp"
+        "name": "run.sh",
+        "relPath": "OpenGL+GLSL/lab/3D/lab20nov26/Laboratorio 20 Novembre 2026-20261120/run.sh"
       }
     ],
-    "desktopInstructions": "cd \"OpenGL+GLSL/lab/3D/lab20nov26/Laboratorio 20 Novembre 2026-20261120\"\nmkdir -p build && cd build\ncmake .. && make\n./Progetto3D_Interattivo",
     "webStatus": "Disponibile",
     "webStatusBadge": "available",
     "webUrl": "labs-web/07-interactive-3d/index.html"

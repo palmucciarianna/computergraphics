@@ -85,17 +85,22 @@
   </style>
 </head>
 <body>
-  <div style="background: var(--bg-sidebar); border-bottom: 1px solid var(--border-color); padding: 14px 28px; display: flex; align-items: center; justify-content: space-between;">
+  <div style="background: var(--bg-sidebar); border-bottom: 1px solid var(--border-color); padding: 12px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
     <div style="display:flex; align-items:center; gap:16px;">
-      <a href="../../index.html#web-labs" class="action-btn download" style="padding: 6px 12px;">
+      <a href="../../index.html#desktop-labs" class="action-btn download" style="padding: 6px 12px;">
         ← Torna all'Hub
       </a>
       <div>
         <h2 style="font-size: 1.1rem; font-weight:700;">Web Lab 06 — Due Cubi 3D & Telecamera Orbitale</h2>
-        <span style="font-size: 0.75rem; color: var(--text-muted);">Corrispondente a: Laboratorio 12 Novembre 2026 (Z-Buffer, LookAt, Perspective)</span>
+        <span style="font-size: 0.75rem; color: var(--text-muted);">Corrispondente a: Laboratorio 12 Novembre 2026 (Z-Buffer, LookAt, Prospettiva vs Ortografica)</span>
       </div>
     </div>
-    <div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span style="font-size: 0.82rem; color: var(--text-secondary); font-weight: 600;">Modalità:</span>
+      <div style="display:flex; background:var(--bg-input); border:1px solid var(--border-color); border-radius:8px; padding:3px; gap:4px;">
+        <button id="btnModeStarter" class="topbar-btn" style="border:none; padding:5px 12px; border-radius:6px; font-size:0.8rem; font-weight:600; cursor:pointer;">🚀 Partenza (Starter - Singolo Cubo)</button>
+        <button id="btnModeSolved" class="topbar-btn active" style="border:none; padding:5px 12px; border-radius:6px; font-size:0.8rem; font-weight:600; cursor:pointer; background:var(--accent-cyan); color:#020617;">🌟 Svolta (Completa - Due Cubi)</button>
+      </div>
       <button id="resetCamBtn" class="topbar-btn">Reset Camera</button>
     </div>
   </div>
@@ -462,20 +467,45 @@
       gl.drawArrays(drawMode, 0, 36);
 
       // 2. Draw Orbiting Cube
-      const ox = R * Math.cos(orbitAngle);
-      const oz = R * Math.sin(orbitAngle);
-      const model2 = mat4Create();
-      mat4Translate(model2, model2, [ox, 0, oz]);
-      mat4RotateY(model2, model2, -orbitAngle * 2);
-      mat4Scale(model2, model2, [0.35, 0.35, 0.35]);
+      // Render Cube 2 (Orbiting) - Only in Solved / Due Cubi mode!
+      if (isSolvedMode) {
+        const ox = R * Math.cos(orbitAngle);
+        const oz = R * Math.sin(orbitAngle);
+        const model2 = mat4Create();
+        mat4Translate(model2, model2, [ox, 0, oz]);
+        mat4RotateY(model2, model2, -orbitAngle * 2);
+        mat4Scale(model2, model2, [0.35, 0.35, 0.35]);
 
-      const mvp2 = mat4Create();
-      mat4Multiply(mvp2, vpMat, model2);
-      gl.uniformMatrix4fv(mvpLoc, false, mvp2);
-      gl.drawArrays(drawMode, 0, 36);
+        const mvp2 = mat4Create();
+        mat4Multiply(mvp2, vpMat, model2);
+        gl.uniformMatrix4fv(mvpLoc, false, mvp2);
+        gl.drawArrays(drawMode, 0, 36);
+      }
 
       requestAnimationFrame(render);
     }
+
+    let isSolvedMode = true;
+    const btnStarter = document.getElementById('btnModeStarter');
+    const btnSolved = document.getElementById('btnModeSolved');
+
+    btnStarter.addEventListener('click', () => {
+      isSolvedMode = false;
+      btnStarter.style.background = 'var(--accent-cyan)';
+      btnStarter.style.color = '#020617';
+      btnSolved.style.background = 'transparent';
+      btnSolved.style.color = 'var(--text-muted)';
+      depthTestCheck.checked = false; // demonstrate depth glitches in Starter!
+    });
+
+    btnSolved.addEventListener('click', () => {
+      isSolvedMode = true;
+      btnSolved.style.background = 'var(--accent-cyan)';
+      btnSolved.style.color = '#020617';
+      btnStarter.style.background = 'transparent';
+      btnStarter.style.color = 'var(--text-muted)';
+      depthTestCheck.checked = true;
+    });
 
     // Mouse Interaction for Camera Orbit
     canvas.addEventListener('mousedown', (e) => {

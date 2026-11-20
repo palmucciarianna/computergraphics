@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compila CMake",
+      "type": "shell",
+      "command": "cmake -B build && cmake --build build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Avvia Due Cubi (run.sh)",
+      "type": "shell",
+      "command": "./run.sh",
+      "group": "test",
+      "problemMatcher": []
+    }
+  ]
+}

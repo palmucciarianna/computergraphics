@@ -101,9 +101,9 @@
   </style>
 </head>
 <body>
-  <div style="background: var(--bg-sidebar); border-bottom: 1px solid var(--border-color); padding: 14px 28px; display: flex; align-items: center; justify-content: space-between;">
+  <div style="background: var(--bg-sidebar); border-bottom: 1px solid var(--border-color); padding: 12px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
     <div style="display:flex; align-items:center; gap:16px;">
-      <a href="../../index.html#web-labs" class="action-btn download" style="padding: 6px 12px;">
+      <a href="../../index.html#desktop-labs" class="action-btn download" style="padding: 6px 12px;">
         ← Torna all'Hub
       </a>
       <div>
@@ -111,9 +111,14 @@
         <span style="font-size: 0.75rem; color: var(--text-muted);">Corrispondente a: Laboratorio 8 Ottobre 2026 (VAO, VBO, ShaderMaker)</span>
       </div>
     </div>
-    <div style="display:flex; gap:10px;">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span style="font-size: 0.82rem; color: var(--text-secondary); font-weight: 600;">Modalità:</span>
+      <div style="display:flex; background:var(--bg-input); border:1px solid var(--border-color); border-radius:8px; padding:3px; gap:4px;">
+        <button id="btnModeStarter" class="topbar-btn" style="border:none; padding:5px 12px; border-radius:6px; font-size:0.8rem; font-weight:600; cursor:pointer;">🚀 Partenza (Monocromatico)</button>
+        <button id="btnModeSolved" class="topbar-btn active" style="border:none; padding:5px 12px; border-radius:6px; font-size:0.8rem; font-weight:600; cursor:pointer; background:var(--accent-cyan); color:#020617;">🌟 Svolta (Interpolazione RGB)</button>
+      </div>
       <button id="resetBtn" class="topbar-btn">Ripristina</button>
-      <button id="compileBtn" class="topbar-btn primary">Compila Shader</button>
+      <button id="compileBtn" class="topbar-btn primary">Compila</button>
     </div>
   </div>
 
@@ -209,6 +214,46 @@ void main() {
     const autoRotateCheck = document.getElementById('autoRotateCheck');
     const rotSpeedSlider = document.getElementById('rotSpeedSlider');
     const scaleSlider = document.getElementById('scaleSlider');
+
+    const btnStarter = document.getElementById('btnModeStarter');
+    const btnSolved = document.getElementById('btnModeSolved');
+
+    btnStarter.addEventListener('click', () => {
+      btnStarter.style.background = 'var(--accent-cyan)';
+      btnStarter.style.color = '#020617';
+      btnSolved.style.background = 'transparent';
+      btnSolved.style.color = 'var(--text-muted)';
+      fsEditor.value = `#version 300 es
+precision highp float;
+out vec4 fragColor;
+
+void main() {
+    // Modalita Starter: colore bianco monocromatico senza varying RGB
+    fragColor = vec4(1.0, 1.0, 1.0, 1.0);
+}`;
+      initShaders();
+      initGeometry();
+    });
+
+    btnSolved.addEventListener('click', () => {
+      btnSolved.style.background = 'var(--accent-cyan)';
+      btnSolved.style.color = '#020617';
+      btnStarter.style.background = 'transparent';
+      btnStarter.style.color = 'var(--text-muted)';
+      fsEditor.value = `#version 300 es
+precision highp float;
+in vec3 v_color;
+uniform float u_time;
+out vec4 fragColor;
+
+void main() {
+    // Modalita Svolta: Interpolazione cromatica RGB sui vertici
+    float wave = 0.5 + 0.5 * sin(u_time * 2.0);
+    fragColor = vec4(v_color * (0.8 + 0.2 * wave), 1.0);
+}`;
+      initShaders();
+      initGeometry();
+    });
 
     let renderMode = 'FILL';
     let program = null;
