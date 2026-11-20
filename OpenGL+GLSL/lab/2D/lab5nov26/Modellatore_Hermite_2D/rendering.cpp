@@ -20,6 +20,7 @@ extern ImVec4 clear_color;
 bool showMenu = true, visualizza_PC = true;
 double mousex, mousey; //Coordinate del mouse
 bool flag_wireframe;
+float angoloRotazione = 0.0f;
 
 // Identificatori delle variabili uniformi:  Model  e Projection
 extern GLuint IdProj, IdModel, IdCurve, IdColorA,IdColorB, IdProj_TG, IdModel_TG, IdProj_CP, IdModel_CP;
@@ -88,7 +89,27 @@ void renderizza(float currentTime){
 
      glLineWidth(4.0);
      glPointSize(10.0);
- 
+
+     // Calcola il baricentro globale di tutte le curve per ruotare la forma sul posto
+     vec2 centroTotale(0.0f);
+     int nPuntiTotali = 0;
+     for (const auto& elem : curve) {
+         if (!elem) continue;
+         for (const auto& cp : elem->CP) {
+             centroTotale.x += cp.x;
+             centroTotale.y += cp.y;
+             nPuntiTotali++;
+         }
+     }
+     if (nPuntiTotali > 0) centroTotale /= float(nPuntiTotali);
+
+     mat4 modelRotazione = mat4(1.0f);
+     if (std::abs(angoloRotazione) > 1e-4f) {
+         modelRotazione = translate(modelRotazione, vec3(centroTotale.x, centroTotale.y, 0.0f));
+         modelRotazione = rotate(modelRotazione, radians(angoloRotazione), vec3(0.0f, 0.0f, 1.0f));
+         modelRotazione = translate(modelRotazione, vec3(-centroTotale.x, -centroTotale.y, 0.0f));
+     }
+
      //Disegno gli assi
      glUseProgram(programId);
      glUniformMatrix4fv(IdProj, 1, GL_FALSE, value_ptr(Projection));
@@ -99,13 +120,14 @@ void renderizza(float currentTime){
       
       for (const auto& elemento : curve) {
       Curva* curva = elemento.get();
+      curva->Model = modelRotazione;
       //Visualizza vertici di controllo e poligono di controllo
       if (curva == ::curva) {
         glUseProgram(programId_CP);
         //Attiva il VBO_vertices dela curva
         UPDATE_VAO_DYNAMIC(curva, true);
         glUniformMatrix4fv(IdProj_CP, 1, GL_FALSE, value_ptr(Projection));
-        glUniformMatrix4fv(IdModel_CP, 1, GL_FALSE, value_ptr(assi.Model));
+        glUniformMatrix4fv(IdModel_CP, 1, GL_FALSE, value_ptr(curva->Model));
         glBindVertexArray(curva->VAO);
         glDrawArrays(GL_LINE_STRIP, 0, curva->CP.size());  //Disegna i vertici di controllo della curva come punti isolati
         glDrawArrays(GL_POINTS, 0, curva->CP.size());
@@ -125,13 +147,12 @@ void renderizza(float currentTime){
               t_corde(curva);
 
           glUseProgram(programId);
-          curva->Model = mat4(1.0);
           //Calcola la curva di Hermite
           CostruisciHermite(curva);
           //Aggiorna il VAO della curva
           UPDATE_VAO_DYNAMIC(curva, true);
           //Visualizza la curva
-          //Non aggiorno le variabili uniform per programID perchè non variano e sono state già passate quando è stato usato per il siegno degli assi.
+          glUniformMatrix4fv(IdModel, 1, GL_FALSE, value_ptr(curva->Model));
           glBindVertexArray(curva->VAO);
           glDrawArrays(GL_LINE_STRIP, 0, curva->vertices.size());  //Modalità di rendering GL_LINE_STRIP: tutti i vertici vengono uniti da una spezzata
           glBindVertexArray(0);
@@ -142,7 +163,7 @@ void renderizza(float currentTime){
               UPDATE_VAO_DYNAMIC(curva, true);
               glUseProgram(programId_TG);
               glUniformMatrix4fv(IdProj_TG, 1, GL_FALSE, value_ptr(Projection));
-              glUniformMatrix4fv(IdModel_TG, 1, GL_FALSE, value_ptr(assi.Model));
+              glUniformMatrix4fv(IdModel_TG, 1, GL_FALSE, value_ptr(curva->Model));
               glBindVertexArray(curva->VAO);
               glDrawArrays(GL_LINES, 0, curva->tg.size());  //Modalità di rendering GL_LINES: i vertici nel VAO a due a due vengono collegati con un segmento
               glBindVertexArray(0);
