@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Lab 02 — Spazi di Coordinate & Griglia 2D | Computer Graphics Hub</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <style>
+    .lab-container {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 20px;
+      min-height: calc(100vh - 120px);
+    }
+    .canvas-panel {
+      background: #060911;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .control-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .panel-section-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+    }
+    .matrix-box {
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--accent-cyan);
+      text-align: center;
+      line-height: 1.6;
+    }
+    .control-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .control-label {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+    }
+    .control-val {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-primary);
+      width: 48px;
+      text-align: right;
+    }
+    @media (max-width: 900px) {
+      .lab-container {
+        grid-template-columns: 1fr;
+      }
+      .canvas-panel {
+        height: 420px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div style="background: var(--bg-sidebar); border-bottom: 1px solid var(--border-color); padding: 14px 28px; display: flex; align-items: center; justify-content: space-between;">
+    <div style="display:flex; align-items:center; gap:16px;">
+      <a href="../../index.html#web-labs" class="action-btn download" style="padding: 6px 12px;">
+        ← Torna all'Hub
+      </a>
+      <div>
+        <h2 style="font-size: 1.1rem; font-weight:700;">Web Lab 02 — Spazi di Coordinate & Trasformazioni 2D</h2>
+        <span style="font-size: 0.75rem; color: var(--text-muted);">Corrispondente a: Lab 15 & 22 Ottobre 2026 (GLM, Uniform, Griglia Animata)</span>
+      </div>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <button id="resetBtn" class="topbar-btn">Ripristina Parametri</button>
+    </div>
+  </div>
+
+  <div style="padding: 24px; max-width: 1500px; margin: 0 auto;">
+    <div class="lab-container">
+      <!-- Canvas Panel -->
+      <div class="canvas-panel">
+        <canvas id="c"></canvas>
+      </div>
+
+      <!-- Control Panel -->
+      <div class="control-panel">
+        <div>
+          <div class="panel-section-title">Geometria Attiva</div>
+          <div style="display:flex; gap:8px;">
+            <button class="filter-pill active" id="shapeHeart">Cuore Parametrico</button>
+            <button class="filter-pill" id="shapeButterfly">Farfalla</button>
+            <button class="filter-pill" id="shapeStar">Stella</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="panel-section-title">Modalità di Visualizzazione</div>
+          <div class="control-row">
+            <span class="control-label">Griglia Istanze (Cuori & Farfalle):</span>
+            <input type="checkbox" id="gridModeCheck">
+          </div>
+          <div class="control-row">
+            <span class="control-label">Mostra Assi e Coordinate NDC:</span>
+            <input type="checkbox" id="showAxesCheck" checked>
+          </div>
+          <div class="control-row">
+            <span class="control-label">Animazione Polsazione:</span>
+            <input type="checkbox" id="pulseCheck" checked>
+          </div>
+        </div>
+
+        <div>
+          <div class="panel-section-title">Trasformazioni Affini (Model Matrix)</div>
+
+          <div class="control-row">
+            <span class="control-label">Traslazione X (Tx):</span>
+            <input type="range" id="txSlider" min="-1" max="1" step="0.01" value="0">
+            <span class="control-val" id="txVal">0.00</span>
+          </div>
+
+          <div class="control-row">
+            <span class="control-label">Traslazione Y (Ty):</span>
+            <input type="range" id="tySlider" min="-1" max="1" step="0.01" value="0">
+            <span class="control-val" id="tyVal">0.00</span>
+          </div>
+
+          <div class="control-row">
+            <span class="control-label">Rotazione θ:</span>
+            <input type="range" id="rotSlider" min="-180" max="180" step="1" value="0">
+            <span class="control-val" id="rotVal">0°</span>
+          </div>
+
+          <div class="control-row">
+            <span class="control-label">Scala X (Sx):</span>
+            <input type="range" id="sxSlider" min="0.1" max="2.0" step="0.05" value="1.0">
+            <span class="control-val" id="sxVal">1.00</span>
+          </div>
+
+          <div class="control-row">
+            <span class="control-label">Scala Y (Sy):</span>
+            <input type="range" id="sySlider" min="0.1" max="2.0" step="0.05" value="1.0">
+            <span class="control-val" id="syVal">1.00</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="panel-section-title">Matrice Risultante M = T · R · S</div>
+          <div class="matrix-box" id="matrixDisplay">
+            [ 1.00   0.00   0.00 ]<br>
+            [ 0.00   1.00   0.00 ]<br>
+            [ 0.00   0.00   1.00 ]
+          </div>
+          <p style="font-size:0.75rem; color:var(--text-muted); margin-top:8px; line-height:1.4;">
+            La matrice 3x3 affine in coordinate omogenee inviata tramite uniform variabile al vertex shader GLSL: <code>glUniformMatrix3fv(u_Model, ...)</code>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+
+    const txSlider = document.getElementById('txSlider');
+    const tySlider = document.getElementById('tySlider');
+    const rotSlider = document.getElementById('rotSlider');
+    const sxSlider = document.getElementById('sxSlider');
+    const sySlider = document.getElementById('sySlider');
+
+    const txVal = document.getElementById('txVal');
+    const tyVal = document.getElementById('tyVal');
+    const rotVal = document.getElementById('rotVal');
+    const sxVal = document.getElementById('sxVal');
+    const syVal = document.getElementById('syVal');
+    const matrixDisplay = document.getElementById('matrixDisplay');
+
+    const gridModeCheck = document.getElementById('gridModeCheck');
+    const showAxesCheck = document.getElementById('showAxesCheck');
+    const pulseCheck = document.getElementById('pulseCheck');
+    const resetBtn = document.getElementById('resetBtn');
+
+    let currentShape = 'HEART';
+    let pulseTime = 0;
+
+    function resize() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+    }
+    window.addEventListener('resize', resize);
+
+    // Parametric Points Generators
+    function getHeartPoints(samples = 120) {
+      const pts = [];
+      for (let i = 0; i <= samples; i++) {
+        const t = (i / samples) * Math.PI * 2;
+        const x = 16 * Math.pow(Math.sin(t), 3);
+        const y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
+        pts.push({ x: x / 18, y: y / 18 });
+      }
+      return pts;
+    }
+
+    function getButterflyPoints(samples = 160) {
+      const pts = [];
+      for (let i = 0; i <= samples; i++) {
+        const t = (i / samples) * Math.PI * 4;
+        const r = Math.exp(Math.cos(t)) - 2 * Math.cos(4*t) - Math.pow(Math.sin(t/12), 5);
+        const x = Math.sin(t) * r * 0.28;
+        const y = Math.cos(t) * r * 0.28;
+        pts.push({ x, y });
+      }
+      return pts;
+    }
+
+    function getStarPoints(points = 5, outerR = 0.8, innerR = 0.35) {
+      const pts = [];
+      const step = Math.PI / points;
+      for (let i = 0; i < 2 * points; i++) {
+        const r = (i % 2 === 0) ? outerR : innerR;
+        const angle = i * step - Math.PI / 2;
+        pts.push({ x: r * Math.cos(angle), y: r * Math.sin(angle) });
+      }
+      return pts;
+    }
+
+    function updateMatrixText(m00, m01, m02, m10, m11, m12) {
+      const f = n => (n >= 0 ? ' ' : '') + n.toFixed(2);
+      matrixDisplay.innerHTML = `
+        [ ${f(m00)}  ${f(m01)}  ${f(m02)} ]<br>
+        [ ${f(m10)}  ${f(m11)}  ${f(m12)} ]<br>
+        [  0.00   0.00   1.00 ]
+      `;
+    }
+
+    function drawAxes(w, h) {
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 1;
+
+      // Grid lines
+      const step = w / 10;
+      for (let x = 0; x <= w; x += step) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+      for (let y = 0; y <= h; y += step) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+
+      // Main Axes
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, h / 2);
+      ctx.lineTo(w, h / 2);
+      ctx.moveTo(w / 2, 0);
+      ctx.lineTo(w / 2, h);
+      ctx.stroke();
+
+      // NDC Labels
+      ctx.fillStyle = '#64748b';
+      ctx.font = '12px var(--font-mono)';
+      ctx.fillText('NDC (-1.0, 0)', 16, h / 2 - 8);
+      ctx.fillText('NDC (+1.0, 0)', w - 110, h / 2 - 8);
+      ctx.fillText('NDC (0, +1.0)', w / 2 + 10, 24);
+      ctx.fillText('NDC (0, -1.0)', w / 2 + 10, h - 16);
+    }
+
+    function drawShape(pts, color, fill = true) {
+      if (pts.length === 0) return;
+      ctx.beginPath();
+      ctx.moveTo(pts[0].x, pts[0].y);
+      for (let i = 1; i < pts.length; i++) {
+        ctx.lineTo(pts[i].x, pts[i].y);
+      }
+      ctx.closePath();
+
+      if (fill) {
+        ctx.fillStyle = color;
+        ctx.fill();
+      }
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    function renderLoop(timestamp) {
+      pulseTime = timestamp * 0.003;
+      resize();
+
+      const w = canvas.width;
+      const h = canvas.height;
+      const baseScale = Math.min(w, h) * 0.4;
+
+      ctx.clearRect(0, 0, w, h);
+
+      if (showAxesCheck.checked) {
+        drawAxes(w, h);
+      }
+
+      // Parameters
+      const tx = parseFloat(txSlider.value);
+      const ty = parseFloat(tySlider.value);
+      const deg = parseFloat(rotSlider.value);
+      const rad = (deg * Math.PI) / 180;
+      let sx = parseFloat(sxSlider.value);
+      let sy = parseFloat(sySlider.value);
+
+      if (pulseCheck.checked) {
+        const pulse = 1.0 + 0.08 * Math.sin(pulseTime * 2);
+        sx *= pulse;
+        sy *= pulse;
+      }
+
+      // Update text
+      txVal.textContent = tx.toFixed(2);
+      tyVal.textContent = ty.toFixed(2);
+      rotVal.textContent = `${deg}°`;
+      sxVal.textContent = sx.toFixed(2);
+      syVal.textContent = sy.toFixed(2);
+
+      // Matrix computation: M = T * R * S
+      const cos = Math.cos(rad);
+      const sin = Math.sin(rad);
+      const m00 = sx * cos;
+      const m01 = -sy * sin;
+      const m02 = tx;
+      const m10 = sx * sin;
+      const m11 = sy * cos;
+      const m12 = ty;
+      updateMatrixText(m00, m01, m02, m10, m11, m12);
+
+      // Get points
+      let basePts = [];
+      if (currentShape === 'HEART') basePts = getHeartPoints();
+      else if (currentShape === 'BUTTERFLY') basePts = getButterflyPoints();
+      else basePts = getStarPoints();
+
+      if (gridModeCheck.checked) {
+        // Render 3x3 Animated Grid (Lab 15/22 Ottobre)
+        const rows = 3;
+        const cols = 3;
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const gridTx = ((c - 1) * 0.6) + tx * 0.3;
+            const gridTy = ((r - 1) * 0.6) + ty * 0.3;
+            const phase = (r * cols + c) * 0.8;
+            const itemScale = 0.28 * (pulseCheck.checked ? (1 + 0.1 * Math.sin(pulseTime + phase)) : 1);
+
+            ctx.save();
+            ctx.translate(w / 2 + gridTx * (w / 2), h / 2 - gridTy * (h / 2));
+            ctx.rotate(rad + (pulseCheck.checked ? Math.sin(pulseTime + phase) * 0.3 : 0));
+            ctx.scale(itemScale * baseScale, -itemScale * baseScale);
+
+            const hue = (r * 60 + c * 40 + pulseTime * 20) % 360;
+            drawShape(basePts, `hsla(${hue}, 85%, 60%, 0.8)`);
+            ctx.restore();
+          }
+        }
+      } else {
+        // Single transformed shape
+        ctx.save();
+        ctx.translate(w / 2 + tx * (w / 2), h / 2 - ty * (h / 2));
+        ctx.rotate(-rad);
+        ctx.scale(sx * baseScale, -sy * baseScale);
+
+        const gradient = ctx.createLinearGradient(-1, -1, 1, 1);
+        gradient.addColorStop(0, '#f43f5e');
+        gradient.addColorStop(0.5, '#a855f7');
+        gradient.addColorStop(1, '#38bdf8');
+
+        drawShape(basePts, gradient);
+        ctx.restore();
+      }
+
+      requestAnimationFrame(renderLoop);
+    }
+
+    // Buttons
+    document.getElementById('shapeHeart').addEventListener('click', function() {
+      currentShape = 'HEART';
+      setShapeBtn(this);
+    });
+    document.getElementById('shapeButterfly').addEventListener('click', function() {
+      currentShape = 'BUTTERFLY';
+      setShapeBtn(this);
+    });
+    document.getElementById('shapeStar').addEventListener('click', function() {
+      currentShape = 'STAR';
+      setShapeBtn(this);
+    });
+
+    function setShapeBtn(btn) {
+      document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    resetBtn.addEventListener('click', () => {
+      txSlider.value = 0;
+      tySlider.value = 0;
+      rotSlider.value = 0;
+      sxSlider.value = 1.0;
+      sySlider.value = 1.0;
+      gridModeCheck.checked = false;
+      showAxesCheck.checked = true;
+    });
+
+    // Start
+    resize();
+    requestAnimationFrame(renderLoop);
+  </script>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playground Grafico Didattico | Computer Graphics Hub</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .playground-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .experiment-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .experiment-header {
+      padding: 18px 24px;
+      background: var(--bg-sidebar);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .experiment-canvas-box {
+      height: 320px;
+      background: #060911;
+      position: relative;
+    }
+    .experiment-canvas-box canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .experiment-body {
+      padding: 20px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    @media (max-width: 1024px) {
+      .playground-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div style="background: var(--bg-sidebar); border-bottom: 1px solid var(--border-color); padding: 14px 28px; display: flex; align-items: center; justify-content: space-between;">
+    <div style="display:flex; align-items:center; gap:16px;">
+      <a href="../index.html#playground" class="action-btn download" style="padding: 6px 12px;">
+        ← Torna all'Hub
+      </a>
+      <div>
+        <h2 style="font-size: 1.1rem; font-weight:700;">Playground Grafico — Esperimenti Interattivi</h2>
+        <span style="font-size: 0.75rem; color: var(--text-muted);">Laboratorio visivo per concetti matematici e grafici chiave</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding: 32px; max-width: 1400px; margin: 0 auto;">
+    <div class="page-header">
+      <h2>Laboratorio Interattivo di Computer Graphics</h2>
+      <p>Esplora in tempo reale i principi matematici fondamentali: curve di Bézier con l'algoritmo ricorsivo di de Casteljau, e la non-commutatività delle trasformazioni geometriche affini (T·R vs R·T).</p>
+    </div>
+
+    <div class="playground-grid">
+      <!-- Experiment 1: Bézier & de Casteljau -->
+      <div class="experiment-card">
+        <div class="experiment-header">
+          <div>
+            <span style="font-size:0.72rem; font-weight:700; color:var(--accent-purple); text-transform:uppercase;">Modellazione Geometrica</span>
+            <h3 style="font-size:1.1rem; font-weight:700;">Curve di Bézier & Algoritmo di de Casteljau</h3>
+          </div>
+          <button id="resetBezierBtn" class="topbar-btn" style="padding:4px 10px; font-size:0.75rem;">Reset</button>
+        </div>
+        <div class="experiment-canvas-box">
+          <canvas id="bezierCanvas"></canvas>
+          <div style="position:absolute; bottom:12px; left:16px; font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono); pointer-events:none;">
+            Trascina P0, P1, P2, P3 con il mouse per modificare il poligono
+          </div>
+        </div>
+        <div class="experiment-body">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.84rem; color:var(--text-secondary);">Parametro t [0.0, 1.0]:</span>
+            <input type="range" id="bezierTSlider" min="0" max="1" step="0.01" value="0.5" style="width:200px;">
+            <span id="bezierTVal" style="font-family:var(--font-mono); font-size:0.8rem; width:35px;">0.50</span>
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-secondary); line-height:1.5;">
+            L'algoritmo di <strong>de Casteljau</strong> valuta la curva di Bézier tramite interpolazioni lineari successive tra segmenti adiacenti del poligono di controllo: <code>b_i^r(t) = (1-t) b_i^{r-1}(t) + t b_{i+1}^{r-1}(t)</code>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Experiment 2: Non-commutativity T*R vs R*T -->
+      <div class="experiment-card">
+        <div class="experiment-header">
+          <div>
+            <span style="font-size:0.72rem; font-weight:700; color:var(--accent-cyan); text-transform:uppercase;">Algebra Lineare Affine</span>
+            <h3 style="font-size:1.1rem; font-weight:700;">Non-Commutatività: T · R ≠ R · T</h3>
+          </div>
+          <button id="resetOrderBtn" class="topbar-btn" style="padding:4px 10px; font-size:0.75rem;">Reset</button>
+        </div>
+        <div class="experiment-canvas-box">
+          <canvas id="orderCanvas"></canvas>
+        </div>
+        <div class="experiment-body">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.84rem; color:var(--text-secondary);">Rotazione (θ):</span>
+            <input type="range" id="orderRotSlider" min="0" max="360" step="1" value="45" style="width:200px;">
+            <span id="orderRotVal" style="font-family:var(--font-mono); font-size:0.8rem; width:40px;">45°</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.84rem; color:var(--text-secondary);">Traslazione (Tx):</span>
+            <input type="range" id="orderTxSlider" min="0" max="150" step="2" value="90" style="width:200px;">
+            <span id="orderTxVal" style="font-family:var(--font-mono); font-size:0.8rem; width:40px;">90px</span>
+          </div>
+          <div style="display:flex; gap:16px; font-size:0.78rem; font-family:var(--font-mono); margin-top:4px;">
+            <span style="color:#38bdf8">■ Blu: Trasla poi Ruota (R · T)</span>
+            <span style="color:#f43f5e">■ Rosso: Ruota poi Trasla (T · R)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --------------------------------------------------------------------------
+    // EXPERIMENT 1: Bézier & de Casteljau
+    // --------------------------------------------------------------------------
+    const bCanvas = document.getElementById('bezierCanvas');
+    const bCtx = bCanvas.getContext('2d');
+    const bezierTSlider = document.getElementById('bezierTSlider');
+    const bezierTVal = document.getElementById('bezierTVal');
+    const resetBezierBtn = document.getElementById('resetBezierBtn');
+
+    let pts = [
+      { x: 50, y: 260 },
+      { x: 120, y: 60 },
+      { x: 380, y: 60 },
+      { x: 480, y: 260 }
+    ];
+    let draggedPt = null;
+
+    function resizeBezier() {
+      const rect = bCanvas.parentElement.getBoundingClientRect();
+      bCanvas.width = rect.width * window.devicePixelRatio;
+      bCanvas.height = rect.height * window.devicePixelRatio;
+    }
+
+    function lerp(a, b, t) {
+      return { x: (1 - t) * a.x + t * b.x, y: (1 - t) * a.y + t * b.y };
+    }
+
+    function drawBezier() {
+      resizeBezier();
+      const w = bCanvas.width;
+      const h = bCanvas.height;
+      bCtx.clearRect(0, 0, w, h);
+
+      const t = parseFloat(bezierTSlider.value);
+      bezierTVal.textContent = t.toFixed(2);
+
+      // Draw Control Polygon
+      bCtx.strokeStyle = '#334155';
+      bCtx.lineWidth = 1.5;
+      bCtx.setLineDash([4, 4]);
+      bCtx.beginPath();
+      bCtx.moveTo(pts[0].x, pts[0].y);
+      for (let i = 1; i < 4; i++) bCtx.lineTo(pts[i].x, pts[i].y);
+      bCtx.stroke();
+      bCtx.setLineDash([]);
+
+      // Draw Bézier Curve
+      bCtx.strokeStyle = '#a855f7';
+      bCtx.lineWidth = 3;
+      bCtx.beginPath();
+      for (let i = 0; i <= 100; i++) {
+        const u = i / 100;
+        const p01 = lerp(pts[0], pts[1], u);
+        const p12 = lerp(pts[1], pts[2], u);
+        const p23 = lerp(pts[2], pts[3], u);
+        const p012 = lerp(p01, p12, u);
+        const p123 = lerp(p12, p23, u);
+        const p = lerp(p012, p123, u);
+        if (i === 0) bCtx.moveTo(p.x, p.y);
+        else bCtx.lineTo(p.x, p.y);
+      }
+      bCtx.stroke();
+
+      // de Casteljau Construction Lines at current t
+      const q0 = lerp(pts[0], pts[1], t);
+      const q1 = lerp(pts[1], pts[2], t);
+      const q2 = lerp(pts[2], pts[3], t);
+
+      bCtx.strokeStyle = '#38bdf8';
+      bCtx.lineWidth = 1.5;
+      bCtx.beginPath();
+      bCtx.moveTo(q0.x, q0.y);
+      bCtx.lineTo(q1.x, q1.y);
+      bCtx.lineTo(q2.x, q2.y);
+      bCtx.stroke();
+
+      const r0 = lerp(q0, q1, t);
+      const r1 = lerp(q1, q2, t);
+
+      bCtx.strokeStyle = '#10b981';
+      bCtx.lineWidth = 1.5;
+      bCtx.beginPath();
+      bCtx.moveTo(r0.x, r0.y);
+      bCtx.lineTo(r1.x, r1.y);
+      bCtx.stroke();
+
+      const ptOnCurve = lerp(r0, r1, t);
+
+      // Final Point on Curve
+      bCtx.fillStyle = '#f59e0b';
+      bCtx.beginPath();
+      bCtx.arc(ptOnCurve.x, ptOnCurve.y, 6, 0, Math.PI * 2);
+      bCtx.fill();
+
+      // Control Points Nodes
+      pts.forEach((p, idx) => {
+        bCtx.fillStyle = '#ffffff';
+        bCtx.beginPath();
+        bCtx.arc(p.x, p.y, 7, 0, Math.PI * 2);
+        bCtx.fill();
+        bCtx.fillStyle = '#64748b';
+        bCtx.font = 'bold 11px var(--font-mono)';
+        bCtx.fillText(`P${idx}`, p.x - 16, p.y - 10);
+      });
+    }
+
+    bCanvas.addEventListener('mousedown', (e) => {
+      const rect = bCanvas.getBoundingClientRect();
+      const mx = (e.clientX - rect.left) * window.devicePixelRatio;
+      const my = (e.clientY - rect.top) * window.devicePixelRatio;
+
+      pts.forEach(p => {
+        if (Math.hypot(p.x - mx, p.y - my) < 25) draggedPt = p;
+      });
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!draggedPt) return;
+      const rect = bCanvas.getBoundingClientRect();
+      draggedPt.x = (e.clientX - rect.left) * window.devicePixelRatio;
+      draggedPt.y = (e.clientY - rect.top) * window.devicePixelRatio;
+      drawBezier();
+    });
+
+    window.addEventListener('mouseup', () => { draggedPt = null; });
+    bezierTSlider.addEventListener('input', drawBezier);
+
+    resetBezierBtn.addEventListener('click', () => {
+      pts = [
+        { x: 50, y: 260 },
+        { x: 120, y: 60 },
+        { x: 380, y: 60 },
+        { x: 480, y: 260 }
+      ];
+      bezierTSlider.value = 0.5;
+      drawBezier();
+    });
+
+    // --------------------------------------------------------------------------
+    // EXPERIMENT 2: T*R vs R*T
+    // --------------------------------------------------------------------------
+    const oCanvas = document.getElementById('orderCanvas');
+    const oCtx = oCanvas.getContext('2d');
+    const orderRotSlider = document.getElementById('orderRotSlider');
+    const orderTxSlider = document.getElementById('orderTxSlider');
+    const orderRotVal = document.getElementById('orderRotVal');
+    const orderTxVal = document.getElementById('orderTxVal');
+    const resetOrderBtn = document.getElementById('resetOrderBtn');
+
+    function resizeOrder() {
+      const rect = oCanvas.parentElement.getBoundingClientRect();
+      oCanvas.width = rect.width * window.devicePixelRatio;
+      oCanvas.height = rect.height * window.devicePixelRatio;
+    }
+
+    function drawBox() {
+      oCtx.fillRect(-20, -20, 40, 40);
+      oCtx.strokeStyle = '#ffffff';
+      oCtx.lineWidth = 1.5;
+      oCtx.strokeRect(-20, -20, 40, 40);
+      // Small pointer to show orientation
+      oCtx.fillStyle = '#ffffff';
+      oCtx.fillRect(10, -3, 8, 6);
+    }
+
+    function drawOrder() {
+      resizeOrder();
+      const w = oCanvas.width;
+      const h = oCanvas.height;
+      oCtx.clearRect(0, 0, w, h);
+
+      const deg = parseFloat(orderRotSlider.value);
+      const rad = (deg * Math.PI) / 180;
+      const tx = parseFloat(orderTxSlider.value);
+
+      orderRotVal.textContent = `${deg}°`;
+      orderTxVal.textContent = `${tx}px`;
+
+      const cx = w / 2;
+      const cy = h / 2;
+
+      // Draw Center Axes
+      oCtx.strokeStyle = '#1e293b';
+      oCtx.lineWidth = 1;
+      oCtx.beginPath();
+      oCtx.moveTo(0, cy); oCtx.lineTo(w, cy);
+      oCtx.moveTo(cx, 0); oCtx.lineTo(cx, h);
+      oCtx.stroke();
+
+      // Case A: Translate THEN Rotate (R * T) -> Blue
+      oCtx.save();
+      oCtx.translate(cx, cy);
+      oCtx.rotate(rad);
+      oCtx.translate(tx, 0);
+      oCtx.fillStyle = 'rgba(56, 189, 248, 0.7)';
+      drawBox();
+      oCtx.restore();
+
+      // Case B: Rotate THEN Translate (T * R) -> Red
+      oCtx.save();
+      oCtx.translate(cx, cy);
+      oCtx.translate(tx, 0);
+      oCtx.rotate(rad);
+      oCtx.fillStyle = 'rgba(244, 63, 94, 0.7)';
+      drawBox();
+      oCtx.restore();
+    }
+
+    orderRotSlider.addEventListener('input', drawOrder);
+    orderTxSlider.addEventListener('input', drawOrder);
+
+    resetOrderBtn.addEventListener('click', () => {
+      orderRotSlider.value = 45;
+      orderTxSlider.value = 90;
+      drawOrder();
+    });
+
+    // Initialize both
+    drawBezier();
+    drawOrder();
+    window.addEventListener('resize', () => {
+      drawBezier();
+      drawOrder();
+    });
+  </script>
+</body>
+</html>

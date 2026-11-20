@@ -1,0 +1,102 @@
+[
+  {
+    "id": "cg-hub",
+    "name": "Computer Graphics Hub",
+    "category": "Web Platform & Hub",
+    "description": "Portale web universitario completo per il corso di Computer Graphics: visualizzatore PDF per lezioni e slide, archivio dei laboratori desktop originali in C++/OpenGL, versioni web interattive con WebGL e playground didattico.",
+    "githubUrl": "https://github.com/palmucciarianna/computergraphics",
+    "demoUrl": "https://palmucciarianna.github.io/computergraphics/",
+    "status": "Attivo",
+    "statusBadge": "active",
+    "academicYear": "2026/2027",
+    "tech": ["HTML5/CSS3", "WebGL", "Vanilla JS", "Three.js", "GitHub Pages"],
+    "highlights": [
+      "80+ documenti didattici e PDF integrati",
+      "8 laboratori originali C++ ed istruzioni per Mac",
+      "Versioni web interattive eseguibili nel browser",
+      "Playground per matrici, trasformazioni e illuminazione"
+    ]
+  },
+  {
+    "id": "metodi-num-algo",
+    "name": "Metodi Numerici e Algoritmi",
+    "category": "Scientific Computing",
+    "description": "Repository dedicato ai laboratori e progetti di Metodi Numerici e Algoritmi: risoluzione di sistemi lineari, interpolazione polinomiale, minimi quadrati e algoritmi numerici avanzati.",
+    "githubUrl": "https://github.com/palmucciarianna/metodi-num-algo",
+    "demoUrl": null,
+    "status": "Archivio Collegato",
+    "statusBadge": "completed",
+    "academicYear": "A.A. Precedente",
+    "tech": ["Python", "NumPy", "SciPy", "Matplotlib", "C++"],
+    "highlights": [
+      "Metodi diretti e iterativi per sistemi lineari",
+      "Approssimazione e interpolazione di dati",
+      "Calcolo scientifico e convergenza"
+    ]
+  },
+  {
+    "id": "cg-project-1",
+    "name": "Progetto I — Scena Interattiva CG",
+    "category": "Progetto d'Esame",
+    "description": "Primo elaborato ufficiale di Computer Graphics: implementazione di una scena grafica complessa con gestione gerarchica delle matrici, shader GLSL personalizzati, animazioni e collisioni.",
+    "githubUrl": "https://github.com/palmucciarianna/computergraphics",
+    "demoUrl": null,
+    "status": "In Sviluppo",
+    "statusBadge": "in-progress",
+    "academicYear": "2026/2027",
+    "tech": ["C++", "OpenGL 3.3+", "GLSL", "GLM", "Dear ImGui"],
+    "highlights": [
+      "Specifiche in progetti/SpecifichePrimoProgettoComputer_Graphics.pdf",
+      "Consegna in progetti/Consegna_Primo_Progetto_CG_2026_2027.pdf",
+      "Gestione input dinamico e animazione fluida"
+    ]
+  },
+  {
+    "id": "cg-project-2",
+    "name": "Progetto II — Pipeline Grafica & Mesh",
+    "category": "Progetto d'Esame",
+    "description": "Secondo elaborato pratico: studio avanzato della pipeline, curve e superfici di suddivisione, modelli di illuminazione Phong/Blinn e shading.",
+    "githubUrl": "https://github.com/palmucciarianna/computergraphics",
+    "demoUrl": null,
+    "status": "Pianificato",
+    "statusBadge": "planned",
+    "academicYear": "2026/2027",
+    "tech": ["C++", "OpenGL", "Shading Models", "Mesh 3D"],
+    "highlights": [
+      "Studio sottosistema geometrico e raster",
+      "Illuminazione globale (Ray Tracing / Radiosity intro)"
+    ]
+  },
+  {
+    "id": "cg-project-blender",
+    "name": "Progetto III — Modellazione & Animazione Blender",
+    "category": "Modellazione 3D",
+    "description": "Esercitazioni e progetto 3D realizzati con la suite open source Blender: modellazione poligonale, materiali PBR, illuminazione scenica e animazione dei frame.",
+    "githubUrl": "https://github.com/palmucciarianna/computergraphics",
+    "demoUrl": null,
+    "status": "Pianificato",
+    "statusBadge": "planned",
+    "academicYear": "2026/2027",
+    "tech": ["Blender 4.x", "Cycles", "Eevee", "Python Scripting"],
+    "highlights": [
+      "Tutorial e materiale in computer graphics 25:26/Blender",
+      "Specifiche Progetto III"
+    ]
+  },
+  {
+    "id": "cv-digest",
+    "name": "Image Processing & Computer Vision Notes",
+    "category": "Appunti & Ricerca",
+    "description": "Raccolta esaustiva di appunti didattici, mock exam e quaderni Jupyter di elaborazione delle immagini e Computer Vision: convoluzioni, feature detector SIFT/Harris, calibrazione lenti e reti neurali convoluzionali.",
+    "githubUrl": "https://github.com/palmucciarianna/computergraphics",
+    "demoUrl": null,
+    "status": "Archivio",
+    "statusBadge": "archive",
+    "academicYear": "A.A. 2023",
+    "tech": ["Markdown", "Jupyter Notebook", "OpenCV", "PyTorch"],
+    "highlights": [
+      "File in old-github/image-processing-and-computer-vision-main",
+      "Mock Questions per la preparazione degli esami"
+    ]
+  }
+]

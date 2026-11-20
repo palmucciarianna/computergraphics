@@ -1,0 +1,1215 @@
+[
+  {
+    "id": "modellazione_geometrica_ADD_slide36_Curve_Interpolanti_Hermite_pdf",
+    "title": "ADD slide36 Curve Interpolanti Hermite",
+    "filename": "ADD_slide36_Curve_Interpolanti_Hermite.pdf",
+    "relPath": "modellazione geometrica/ADD_slide36_Curve_Interpolanti_Hermite.pdf",
+    "category": "Modellazione Geometrica",
+    "tags": [
+      "Spline",
+      "Hermite",
+      "Bézier",
+      "Curve Parametriche"
+    ],
+    "size": "462 KB",
+    "description": "Slide dettagliate sulle curve interpolanti cubiche di Hermite, basi polinomiali e tangenti.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "modellazione_geometrica_CurveBezier_pdf",
+    "title": "CurveBezier",
+    "filename": "CurveBezier.pdf",
+    "relPath": "modellazione geometrica/CurveBezier.pdf",
+    "category": "Modellazione Geometrica",
+    "tags": [
+      "Spline",
+      "Hermite",
+      "Bézier",
+      "Curve Parametriche"
+    ],
+    "size": "741 KB",
+    "description": "Studio delle curve di Bézier, poligono di controllo, algoritmo di de Casteljau e proprietà affini.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "modellazione_geometrica_CurveInterpolanti_Hermite_pdf",
+    "title": "CurveInterpolanti Hermite",
+    "filename": "CurveInterpolanti_Hermite.pdf",
+    "relPath": "modellazione geometrica/CurveInterpolanti_Hermite.pdf",
+    "category": "Modellazione Geometrica",
+    "tags": [
+      "Spline",
+      "Hermite",
+      "Bézier",
+      "Curve Parametriche"
+    ],
+    "size": "6.9 MB",
+    "description": "Slide dettagliate sulle curve interpolanti cubiche di Hermite, basi polinomiali e tangenti.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "computer_graphics_25:26_modellazione_geometrica_Curve_di_Bezier_pdf",
+    "title": "Curve di Bezier",
+    "filename": "Curve di Bezier.pdf",
+    "relPath": "computer graphics 25:26/modellazione geometrica/Curve di Bezier.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "1.0 MB",
+    "description": "Studio delle curve di Bézier, poligono di controllo, algoritmo di de Casteljau e proprietà affini.",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_modellazione_geometrica_CurveRazionali_pdf",
+    "title": "CurveRazionali",
+    "filename": "CurveRazionali.pdf",
+    "relPath": "computer graphics 25:26/modellazione geometrica/CurveRazionali.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "761 KB",
+    "description": "Documento didattico: CurveRazionali",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_modellazione_geometrica_CurveSpline_pdf",
+    "title": "CurveSpline",
+    "filename": "CurveSpline.pdf",
+    "relPath": "computer graphics 25:26/modellazione geometrica/CurveSpline.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "1.3 MB",
+    "description": "Documento didattico: CurveSpline",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_modellazione_geometrica_LezioneMesh_pdf",
+    "title": "LezioneMesh",
+    "filename": "LezioneMesh.pdf",
+    "relPath": "computer graphics 25:26/modellazione geometrica/LezioneMesh.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "2.4 MB",
+    "description": "Documento didattico: LezioneMesh",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_modellazione_geometrica_Curve_Parametriche_-_Curve_Interpolanti_di_Hermite_Curve__interpolanti_Hermite_pdf",
+    "title": "Curve  interpolanti Hermite",
+    "filename": "Curve  interpolanti Hermite.pdf",
+    "relPath": "computer graphics 25:26/modellazione geometrica/Curve Parametriche - Curve Interpolanti di Hermite/Curve  interpolanti Hermite.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "600 KB",
+    "description": "Slide dettagliate sulle curve interpolanti cubiche di Hermite, basi polinomiali e tangenti.",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_modellazione_geometrica_Curve_Parametriche_-_Curve_Interpolanti_di_Hermite_Curve_Parametriche_pdf",
+    "title": "Curve Parametriche",
+    "filename": "Curve_Parametriche.pdf",
+    "relPath": "computer graphics 25:26/modellazione geometrica/Curve Parametriche - Curve Interpolanti di Hermite/Curve_Parametriche.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "685 KB",
+    "description": "Documento didattico: Curve Parametriche",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_modellazione_geometrica_Curve_Parametriche_-_Curve_Interpolanti_di_Hermite_Riparametrizzazione_pdf",
+    "title": "Riparametrizzazione",
+    "filename": "Riparametrizzazione.pdf",
+    "relPath": "computer graphics 25:26/modellazione geometrica/Curve Parametriche - Curve Interpolanti di Hermite/Riparametrizzazione.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "175 KB",
+    "description": "Documento didattico: Riparametrizzazione",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_pipeline_del_rendering_grafico_Eliminazione_superfici_nascoste_pdf",
+    "title": "Eliminazione superfici nascoste",
+    "filename": "Eliminazione superfici nascoste.pdf",
+    "relPath": "computer graphics 25:26/pipeline del rendering grafico/Eliminazione superfici nascoste.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "1.1 MB",
+    "description": "Documento didattico: Eliminazione superfici nascoste",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_pipeline_del_rendering_grafico_IlluminazioneGlobale_Radiosity_pdf",
+    "title": "IlluminazioneGlobale Radiosity",
+    "filename": "IlluminazioneGlobale_Radiosity.pdf",
+    "relPath": "computer graphics 25:26/pipeline del rendering grafico/IlluminazioneGlobale_Radiosity.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "409 KB",
+    "description": "Documento didattico: IlluminazioneGlobale Radiosity",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_pipeline_del_rendering_grafico_IlluminazioneGlobale_RayTracing_pdf",
+    "title": "IlluminazioneGlobale RayTracing",
+    "filename": "IlluminazioneGlobale_RayTracing.pdf",
+    "relPath": "computer graphics 25:26/pipeline del rendering grafico/IlluminazioneGlobale_RayTracing.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "1.5 MB",
+    "description": "Documento didattico: IlluminazioneGlobale RayTracing",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_pipeline_del_rendering_grafico_ModelliIlluminazioneShading_pdf",
+    "title": "ModelliIlluminazioneShading",
+    "filename": "ModelliIlluminazioneShading.pdf",
+    "relPath": "computer graphics 25:26/pipeline del rendering grafico/ModelliIlluminazioneShading.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "1.3 MB",
+    "description": "Documento didattico: ModelliIlluminazioneShading",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_pipeline_del_rendering_grafico_Pipeline_Rendering_SottosistemaGeometrico_pdf",
+    "title": "Pipeline Rendering SottosistemaGeometrico",
+    "filename": "Pipeline_Rendering_SottosistemaGeometrico.pdf",
+    "relPath": "computer graphics 25:26/pipeline del rendering grafico/Pipeline_Rendering_SottosistemaGeometrico.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "2.5 MB",
+    "description": "Architettura del sistema grafico, pipeline programmabile, memorie GPU e interazione con la CPU.",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_pipeline_del_rendering_grafico_Pipeline_rendering_SottosistemaRaster_pdf",
+    "title": "Pipeline rendering SottosistemaRaster",
+    "filename": "Pipeline_rendering_SottosistemaRaster.pdf",
+    "relPath": "computer graphics 25:26/pipeline del rendering grafico/Pipeline_rendering_SottosistemaRaster.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "1.6 MB",
+    "description": "Fase di rasterizzazione: conversione di scan, interpolazione di attributi, test di profondità e frame buffer.",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_progetti_Specifiche_Progetto_III_-_Blender_pdf",
+    "title": "Specifiche Progetto III - Blender",
+    "filename": "Specifiche Progetto III - Blender.pdf",
+    "relPath": "computer graphics 25:26/progetti/Specifiche Progetto III - Blender.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "166 KB",
+    "description": "Requisiti, specifiche tecniche, scadenze e criteri di valutazione per il progetto di esame.",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_progetti_Specifiche_del_Progetto_I_di_Computer_Graphics_pdf",
+    "title": "Specifiche del Progetto I di Computer Graphics",
+    "filename": "Specifiche del Progetto I di Computer Graphics.pdf",
+    "relPath": "computer graphics 25:26/progetti/Specifiche del Progetto I di Computer Graphics.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "79 KB",
+    "description": "Requisiti, specifiche tecniche, scadenze e criteri di valutazione per il progetto di esame.",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_progetti_Specifiche_ElaboratoII_Computer_Graphics_pdf",
+    "title": "Specifiche ElaboratoII Computer Graphics",
+    "filename": "Specifiche_ElaboratoII_Computer_Graphics.pdf",
+    "relPath": "computer graphics 25:26/progetti/Specifiche_ElaboratoII_Computer_Graphics.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "140 KB",
+    "description": "Requisiti, specifiche tecniche, scadenze e criteri di valutazione per il progetto di esame.",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_progetti_parziale_Domande_di_Computer_Graphics_per_prepararsi_al_primo_esame_Parziale_pdf",
+    "title": "Domande di Computer Graphics per prepararsi al primo esame Parziale",
+    "filename": "Domande di Computer Graphics per prepararsi al primo esame Parziale.pdf",
+    "relPath": "computer graphics 25:26/progetti/parziale/Domande di Computer Graphics per prepararsi al primo esame Parziale.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "125 KB",
+    "description": "Raccolta di domande teoriche e pratiche per la preparazione della prima prova parziale del corso.",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_progetti_parziale_Domande_per_prepararsi_al_II_esame_Parziale_di_Computer_Graphics_pdf",
+    "title": "Domande per prepararsi al II esame Parziale di Computer Graphics",
+    "filename": "Domande per prepararsi al II esame Parziale di Computer Graphics.pdf",
+    "relPath": "computer graphics 25:26/progetti/parziale/Domande per prepararsi al II esame Parziale di Computer Graphics.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "101 KB",
+    "description": "Raccolta di domande teoriche e pratiche per la preparazione della prima prova parziale del corso.",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_introduzione_Introduzione_pdf",
+    "title": "Introduzione",
+    "filename": "Introduzione.pdf",
+    "relPath": "computer graphics 25:26/introduzione/Introduzione.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "4.3 MB",
+    "description": "Documento didattico: Introduzione",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_introduzione_Sistema_Grafico_pdf",
+    "title": "Sistema Grafico",
+    "filename": "Sistema Grafico.pdf",
+    "relPath": "computer graphics 25:26/introduzione/Sistema Grafico.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "2.7 MB",
+    "description": "Architettura del sistema grafico, pipeline programmabile, memorie GPU e interazione con la CPU.",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_introduzione_Geometria_per_Computer_Graphics_Geometria_per_CG_Parte_I_pdf",
+    "title": "Geometria per CG Parte I",
+    "filename": "Geometria_per_CG_Parte_I.pdf",
+    "relPath": "computer graphics 25:26/introduzione/Geometria per Computer Graphics/Geometria_per_CG_Parte_I.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "1.2 MB",
+    "description": "Fondamenti matematici per la Computer Graphics: spazi vettoriali, trasformazioni affini e coordinate omogenee.",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_introduzione_Geometria_per_Computer_Graphics_Geometria_per_CG_Parte_II_pdf",
+    "title": "Geometria per CG Parte II",
+    "filename": "Geometria_per_CG_Parte_II.pdf",
+    "relPath": "computer graphics 25:26/introduzione/Geometria per Computer Graphics/Geometria_per_CG_Parte_II.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "1.5 MB",
+    "description": "Fondamenti matematici per la Computer Graphics: spazi vettoriali, trasformazioni affini e coordinate omogenee.",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_introduzione_Geometria_per_Computer_Graphics_Integrazioni_Lezione_Geometria_CG_pdf",
+    "title": "Integrazioni Lezione Geometria CG",
+    "filename": "Integrazioni_Lezione_Geometria_CG.pdf",
+    "relPath": "computer graphics 25:26/introduzione/Geometria per Computer Graphics/Integrazioni_Lezione_Geometria_CG.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "290 KB",
+    "description": "Fondamenti matematici per la Computer Graphics: spazi vettoriali, trasformazioni affini e coordinate omogenee.",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_OpenGL+GLSL_GLM_pdf",
+    "title": "GLM",
+    "filename": "GLM.pdf",
+    "relPath": "computer graphics 25:26/OpenGL+GLSL/GLM.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "503 KB",
+    "description": "Guida all'uso della libreria matematica OpenGL Mathematics (GLM) per vettori e matrici 4x4.",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_OpenGL+GLSL_GLSL_pdf",
+    "title": "GLSL",
+    "filename": "GLSL.pdf",
+    "relPath": "computer graphics 25:26/OpenGL+GLSL/GLSL.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "919 KB",
+    "description": "Introduzione all'OpenGL Shading Language: tipi di dato, qualificatori uniform, in, out e funzioni native.",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_OpenGL+GLSL_OpenGL_1_pdf",
+    "title": "OpenGL 1",
+    "filename": "OpenGL_1.pdf",
+    "relPath": "computer graphics 25:26/OpenGL+GLSL/OpenGL_1.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "4.1 MB",
+    "description": "Documento didattico: OpenGL 1",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "computer_graphics_25:26_OpenGL+GLSL_OpenGL_2_pdf",
+    "title": "OpenGL 2",
+    "filename": "OpenGL_2.pdf",
+    "relPath": "computer graphics 25:26/OpenGL+GLSL/OpenGL_2.pdf",
+    "category": "Archivio Storico (A.A. 2025/2026)",
+    "tags": [
+      "Archivio",
+      "Slide Precedenti",
+      "Materiale di Studio"
+    ],
+    "size": "644 KB",
+    "description": "Documento didattico: OpenGL 2",
+    "academicYear": "2025/2026"
+  },
+  {
+    "id": "intro_Computer_Graphics_Introduzione_2026-2027_pdf",
+    "title": "Computer Graphics Introduzione 2026-2027",
+    "filename": "Computer_Graphics_Introduzione_2026-2027.pdf",
+    "relPath": "intro/Computer_Graphics_Introduzione_2026-2027.pdf",
+    "category": "Introduzione & Sistemi Grafici",
+    "tags": [
+      "Hardware Grafico",
+      "Architettura GPU",
+      "Basi CG"
+    ],
+    "size": "2.8 MB",
+    "description": "Documento didattico: Computer Graphics Introduzione 2026-2027",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "intro_Sistema_Grafico_pdf",
+    "title": "Sistema Grafico",
+    "filename": "Sistema_Grafico.pdf",
+    "relPath": "intro/Sistema_Grafico.pdf",
+    "category": "Introduzione & Sistemi Grafici",
+    "tags": [
+      "Hardware Grafico",
+      "Architettura GPU",
+      "Basi CG"
+    ],
+    "size": "7.8 MB",
+    "description": "Architettura del sistema grafico, pipeline programmabile, memorie GPU e interazione con la CPU.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "intro_geometria_per_CG_Approfondimento_pdf",
+    "title": "Approfondimento",
+    "filename": "Approfondimento.pdf",
+    "relPath": "intro/geometria per CG/Approfondimento.pdf",
+    "category": "Geometria per Computer Graphics",
+    "tags": [
+      "Vettori",
+      "Matrici",
+      "Spazi Affini",
+      "Coordinate Omogenee"
+    ],
+    "size": "755 KB",
+    "description": "Documento didattico: Approfondimento",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "intro_geometria_per_CG_Geometria_per_CG_1_pdf",
+    "title": "Geometria per CG 1",
+    "filename": "Geometria_per_CG_1.pdf",
+    "relPath": "intro/geometria per CG/Geometria_per_CG_1.pdf",
+    "category": "Geometria per Computer Graphics",
+    "tags": [
+      "Vettori",
+      "Matrici",
+      "Spazi Affini",
+      "Coordinate Omogenee"
+    ],
+    "size": "6.7 MB",
+    "description": "Fondamenti matematici per la Computer Graphics: spazi vettoriali, trasformazioni affini e coordinate omogenee.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "intro_geometria_per_CG_Geometria_per_CG_2_pdf",
+    "title": "Geometria per CG 2",
+    "filename": "Geometria_per_CG_2.pdf",
+    "relPath": "intro/geometria per CG/Geometria_per_CG_2.pdf",
+    "category": "Geometria per Computer Graphics",
+    "tags": [
+      "Vettori",
+      "Matrici",
+      "Spazi Affini",
+      "Coordinate Omogenee"
+    ],
+    "size": "5.6 MB",
+    "description": "Fondamenti matematici per la Computer Graphics: spazi vettoriali, trasformazioni affini e coordinate omogenee.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "progetti_Consegna_Primo_Progetto_CG_2026_2027_pdf",
+    "title": "Consegna Primo Progetto CG 2026 2027",
+    "filename": "Consegna_Primo_Progetto_CG_2026_2027.pdf",
+    "relPath": "progetti/Consegna_Primo_Progetto_CG_2026_2027.pdf",
+    "category": "Progetti & Prove d'Esame",
+    "tags": [
+      "Specifiche",
+      "Consegna",
+      "Parziale I",
+      "Domande & Soluzioni"
+    ],
+    "size": "152 KB",
+    "description": "Requisiti, specifiche tecniche, scadenze e criteri di valutazione per il progetto di esame.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "progetti_Domande_Computer_Graphics_Parziale_I_2026_2027_pdf",
+    "title": "Domande Computer Graphics Parziale I 2026 2027",
+    "filename": "Domande_Computer_Graphics_Parziale_I_2026_2027.pdf",
+    "relPath": "progetti/Domande_Computer_Graphics_Parziale_I_2026_2027.pdf",
+    "category": "Progetti & Prove d'Esame",
+    "tags": [
+      "Specifiche",
+      "Consegna",
+      "Parziale I",
+      "Domande & Soluzioni"
+    ],
+    "size": "195 KB",
+    "description": "Raccolta di domande teoriche e pratiche per la preparazione della prima prova parziale del corso.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "progetti_Modalita_Esame_Computer_Graphics_2026_2027_pdf",
+    "title": "Modalita Esame Computer Graphics 2026 2027",
+    "filename": "Modalita_Esame_Computer_Graphics_2026_2027.pdf",
+    "relPath": "progetti/Modalita_Esame_Computer_Graphics_2026_2027.pdf",
+    "category": "Progetti & Prove d'Esame",
+    "tags": [
+      "Specifiche",
+      "Consegna",
+      "Parziale I",
+      "Domande & Soluzioni"
+    ],
+    "size": "111 KB",
+    "description": "Regolamento ufficiale d'esame, suddivisione dei voti tra prove parziali ed elaborato pratico.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "progetti_SOL_Domande_Parziale_I_pdf",
+    "title": "SOL Domande Parziale I",
+    "filename": "SOL_Domande_Parziale_I.pdf",
+    "relPath": "progetti/SOL_Domande_Parziale_I.pdf",
+    "category": "Progetti & Prove d'Esame",
+    "tags": [
+      "Specifiche",
+      "Consegna",
+      "Parziale I",
+      "Domande & Soluzioni"
+    ],
+    "size": "268 KB",
+    "description": "Raccolta di domande teoriche e pratiche per la preparazione della prima prova parziale del corso.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "progetti_SpecifichePrimoProgettoComputer_Graphics_pdf",
+    "title": "SpecifichePrimoProgettoComputer Graphics",
+    "filename": "SpecifichePrimoProgettoComputer_Graphics.pdf",
+    "relPath": "progetti/SpecifichePrimoProgettoComputer_Graphics.pdf",
+    "category": "Progetti & Prove d'Esame",
+    "tags": [
+      "Specifiche",
+      "Consegna",
+      "Parziale I",
+      "Domande & Soluzioni"
+    ],
+    "size": "194 KB",
+    "description": "Requisiti, specifiche tecniche, scadenze e criteri di valutazione per il progetto di esame.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_3D_lab20nov26_Laboratorio_20_Novembre_2026-20261120_Esercitazione_20_11_2026_pdf",
+    "title": "Esercitazione 20 11 2026",
+    "filename": "Esercitazione_20_11_2026.pdf",
+    "relPath": "OpenGL+GLSL/lab/3D/lab20nov26/Laboratorio 20 Novembre 2026-20261120/Esercitazione_20_11_2026.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "233 KB",
+    "description": "Documento didattico: Esercitazione 20 11 2026",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_3D_lab20nov26_Laboratorio_20_Novembre_2026-20261120_Scena3D_GUI_Interattiva_pdf",
+    "title": "Scena3D GUI Interattiva",
+    "filename": "Scena3D_GUI_Interattiva.pdf",
+    "relPath": "OpenGL+GLSL/lab/3D/lab20nov26/Laboratorio 20 Novembre 2026-20261120/Scena3D_GUI_Interattiva.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "634 KB",
+    "description": "Introduzione allo spazio 3D, matrici View e Projection e modellazione di volumi.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_3D_lab12nov26_Laboratorio_12_Novembre_2026-20261112_Esercitazione_CG_3D_pdf",
+    "title": "Esercitazione CG 3D",
+    "filename": "Esercitazione_CG_3D.pdf",
+    "relPath": "OpenGL+GLSL/lab/3D/lab12nov26/Laboratorio 12 Novembre 2026-20261112/Esercitazione_CG_3D.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "208 KB",
+    "description": "Introduzione allo spazio 3D, matrici View e Projection e modellazione di volumi.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_3D_lab12nov26_Laboratorio_12_Novembre_2026-20261112_Opengl_3D_pdf",
+    "title": "Opengl 3D",
+    "filename": "Opengl_3D.pdf",
+    "relPath": "OpenGL+GLSL/lab/3D/lab12nov26/Laboratorio 12 Novembre 2026-20261112/Opengl_3D.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "556 KB",
+    "description": "Introduzione allo spazio 3D, matrici View e Projection e modellazione di volumi.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab22ott26_Laboratorio_22_Ottobre_2026-20261023_Esercitazione_CG_22Ottobre_2026_pdf",
+    "title": "Esercitazione CG 22Ottobre 2026",
+    "filename": "Esercitazione_CG_22Ottobre_2026.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab22ott26/Laboratorio 22 Ottobre 2026-20261023/Esercitazione_CG_22Ottobre_2026.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "315 KB",
+    "description": "Documento didattico: Esercitazione CG 22Ottobre 2026",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab22ott26_Laboratorio_22_Ottobre_2026-20261023_Geometrie_ed_Istanze_pdf",
+    "title": "Geometrie ed Istanze",
+    "filename": "Geometrie_ed_Istanze.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab22ott26/Laboratorio 22 Ottobre 2026-20261023/Geometrie_ed_Istanze.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "322 KB",
+    "description": "Documento didattico: Geometrie ed Istanze",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab22ott26_ale-made_Computer_Graphics_pdf",
+    "title": "Computer Graphics",
+    "filename": "Computer Graphics.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab22ott26/ale-made/Computer Graphics.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "207 KB",
+    "description": "Documento didattico: Computer Graphics",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab15ott26_Laboratorio_15_Ottobre_2026-20261023_Coordinate_World_NDC_Schermo_pdf",
+    "title": "Coordinate World NDC Schermo",
+    "filename": "Coordinate_World_NDC_Schermo.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab15ott26/Laboratorio 15 Ottobre 2026-20261023/Coordinate_World_NDC_Schermo.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "683 KB",
+    "description": "Documento didattico: Coordinate World NDC Schermo",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab15ott26_Laboratorio_15_Ottobre_2026-20261023_Esercitazione_Griglia_Animata_OpenGL_pdf",
+    "title": "Esercitazione Griglia Animata OpenGL",
+    "filename": "Esercitazione_Griglia_Animata_OpenGL.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab15ott26/Laboratorio 15 Ottobre 2026-20261023/Esercitazione_Griglia_Animata_OpenGL.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "338 KB",
+    "description": "Documento didattico: Esercitazione Griglia Animata OpenGL",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab15ott26_Laboratorio_15_Ottobre_2026-20261023_GLM_Matrici_Model_View_pdf",
+    "title": "GLM Matrici Model View",
+    "filename": "GLM_Matrici_Model_View.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab15ott26/Laboratorio 15 Ottobre 2026-20261023/GLM_Matrici_Model_View.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "312 KB",
+    "description": "Guida all'uso della libreria matematica OpenGL Mathematics (GLM) per vettori e matrici 4x4.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab15ott26_Laboratorio_15_Ottobre_2026-20261023_GLSL_Introduzione_Tipi_Uniform_pdf",
+    "title": "GLSL Introduzione Tipi Uniform",
+    "filename": "GLSL_Introduzione_Tipi_Uniform.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab15ott26/Laboratorio 15 Ottobre 2026-20261023/GLSL_Introduzione_Tipi_Uniform.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "309 KB",
+    "description": "Introduzione all'OpenGL Shading Language: tipi di dato, qualificatori uniform, in, out e funzioni native.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab15ott26_Laboratorio_15_Ottobre_2026-20261023_OpenGL_Model_View_Projection_pptx_pdf",
+    "title": "OpenGL Model View Projection.pptx",
+    "filename": "OpenGL_Model_View_Projection.pptx.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab15ott26/Laboratorio 15 Ottobre 2026-20261023/OpenGL_Model_View_Projection.pptx.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "319 KB",
+    "description": "Documento didattico: OpenGL Model View Projection.pptx",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab5nov26_Laboratorio_5_Novembre_2026_+_CODICE_COMPLETO_SHAPE_HERMITE+_CODICE_COMPLETO_CORRETTO_PARTE_II__(LEG_Guida_Utilizzo_Modellatore_Hermite_2D_pdf",
+    "title": "Guida Utilizzo Modellatore Hermite 2D",
+    "filename": "Guida_Utilizzo_Modellatore_Hermite_2D.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab5nov26/Laboratorio 5 Novembre 2026 + CODICE_COMPLETO_SHAPE_HERMITE+ CODICE_COMPLETO_CORRETTO_PARTE_II  (LEG/Guida_Utilizzo_Modellatore_Hermite_2D.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "165 KB",
+    "description": "Slide dettagliate sulle curve interpolanti cubiche di Hermite, basi polinomiali e tangenti.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab5nov26_Laboratorio_5_Novembre_2026_+_CODICE_COMPLETO_SHAPE_HERMITE+_CODICE_COMPLETO_CORRETTO_PARTE_II__(LEG_Player_Geometrie_Importate_pdf",
+    "title": "Player Geometrie Importate",
+    "filename": "Player_Geometrie_Importate.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab5nov26/Laboratorio 5 Novembre 2026 + CODICE_COMPLETO_SHAPE_HERMITE+ CODICE_COMPLETO_CORRETTO_PARTE_II  (LEG/Player_Geometrie_Importate.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "339 KB",
+    "description": "Documento didattico: Player Geometrie Importate",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab29ott26_Lab_29ott_+_codice_montagna_01_Fisica_Teoria_pdf",
+    "title": "01 Fisica Teoria",
+    "filename": "01_Fisica_Teoria.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Lab 29ott + codice montagna/01_Fisica_Teoria.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "314 KB",
+    "description": "Documento didattico: 01 Fisica Teoria",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab29ott26_Lab_29ott_+_codice_montagna_02_Game_Input_Salto_Implementazione_pdf",
+    "title": "02 Game Input Salto Implementazione",
+    "filename": "02_Game_Input_Salto_Implementazione.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Lab 29ott + codice montagna/02_Game_Input_Salto_Implementazione.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "523 KB",
+    "description": "Documento didattico: 02 Game Input Salto Implementazione",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab29ott26_Lab_29ott_+_codice_montagna_03_Mountain_Quest_Collisioni_AABB_pdf",
+    "title": "03 Mountain Quest Collisioni AABB",
+    "filename": "03_Mountain_Quest_Collisioni_AABB.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Lab 29ott + codice montagna/03_Mountain_Quest_Collisioni_AABB.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "555 KB",
+    "description": "Documentazione e specifiche tecniche del mini-gioco 2D Mountain Quest con fisica e collisioni.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab29ott26_Lab_29ott_+_codice_montagna_04_Shader_Program_pdf",
+    "title": "04 Shader Program",
+    "filename": "04_Shader_Program.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Lab 29ott + codice montagna/04_Shader_Program.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "468 KB",
+    "description": "Documento didattico: 04 Shader Program",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab29ott26_Lab_29ott_+_codice_montagna_0_Mountain_Quest_Geometria_Scena_pdf",
+    "title": "0 Mountain Quest Geometria Scena",
+    "filename": "0_Mountain_Quest_Geometria_Scena.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Lab 29ott + codice montagna/0_Mountain_Quest_Geometria_Scena.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "402 KB",
+    "description": "Fondamenti matematici per la Computer Graphics: spazi vettoriali, trasformazioni affini e coordinate omogenee.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab29ott26_Lab_29ott_+_codice_montagna_Esercitazione_Mountain_Quest_pdf",
+    "title": "Esercitazione Mountain Quest",
+    "filename": "Esercitazione_Mountain_Quest.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Lab 29ott + codice montagna/Esercitazione_Mountain_Quest.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "209 KB",
+    "description": "Documentazione e specifiche tecniche del mini-gioco 2D Mountain Quest con fisica e collisioni.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab29ott26_Lab_29ott_+_codice_montagna_Introduzione_Mountain_Quest_pdf",
+    "title": "Introduzione Mountain Quest",
+    "filename": "Introduzione_Mountain_Quest.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Lab 29ott + codice montagna/Introduzione_Mountain_Quest.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "261 KB",
+    "description": "Documentazione e specifiche tecniche del mini-gioco 2D Mountain Quest con fisica e collisioni.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab29ott26_Laboratorio_29_Ottobre_2026-20261104_01_Fisica_Teoria_pdf",
+    "title": "01 Fisica Teoria",
+    "filename": "01_Fisica_Teoria.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Laboratorio 29 Ottobre 2026-20261104/01_Fisica_Teoria.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "314 KB",
+    "description": "Documento didattico: 01 Fisica Teoria",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab29ott26_Laboratorio_29_Ottobre_2026-20261104_02_Game_Input_Salto_Implementazione_pdf",
+    "title": "02 Game Input Salto Implementazione",
+    "filename": "02_Game_Input_Salto_Implementazione.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Laboratorio 29 Ottobre 2026-20261104/02_Game_Input_Salto_Implementazione.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "523 KB",
+    "description": "Documento didattico: 02 Game Input Salto Implementazione",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab29ott26_Laboratorio_29_Ottobre_2026-20261104_03_Mountain_Quest_Collisioni_AABB_pdf",
+    "title": "03 Mountain Quest Collisioni AABB",
+    "filename": "03_Mountain_Quest_Collisioni_AABB.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Laboratorio 29 Ottobre 2026-20261104/03_Mountain_Quest_Collisioni_AABB.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "555 KB",
+    "description": "Documentazione e specifiche tecniche del mini-gioco 2D Mountain Quest con fisica e collisioni.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab29ott26_Laboratorio_29_Ottobre_2026-20261104_04_Shader_Program_pdf",
+    "title": "04 Shader Program",
+    "filename": "04_Shader_Program.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Laboratorio 29 Ottobre 2026-20261104/04_Shader_Program.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "468 KB",
+    "description": "Documento didattico: 04 Shader Program",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab29ott26_Laboratorio_29_Ottobre_2026-20261104_0_Mountain_Quest_Geometria_Scena_pdf",
+    "title": "0 Mountain Quest Geometria Scena",
+    "filename": "0_Mountain_Quest_Geometria_Scena.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Laboratorio 29 Ottobre 2026-20261104/0_Mountain_Quest_Geometria_Scena.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "402 KB",
+    "description": "Fondamenti matematici per la Computer Graphics: spazi vettoriali, trasformazioni affini e coordinate omogenee.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab29ott26_Laboratorio_29_Ottobre_2026-20261104_Esercitazione_Mountain_Quest_pdf",
+    "title": "Esercitazione Mountain Quest",
+    "filename": "Esercitazione_Mountain_Quest.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Laboratorio 29 Ottobre 2026-20261104/Esercitazione_Mountain_Quest.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "209 KB",
+    "description": "Documentazione e specifiche tecniche del mini-gioco 2D Mountain Quest con fisica e collisioni.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab29ott26_Laboratorio_29_Ottobre_2026-20261104_Introduzione_Mountain_Quest_pdf",
+    "title": "Introduzione Mountain Quest",
+    "filename": "Introduzione_Mountain_Quest.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab29ott26/Laboratorio 29 Ottobre 2026-20261104/Introduzione_Mountain_Quest.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "261 KB",
+    "description": "Documentazione e specifiche tecniche del mini-gioco 2D Mountain Quest con fisica e collisioni.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab8ott26_Esercitazione_8Ottobre2026_pdf",
+    "title": "Esercitazione 8Ottobre2026",
+    "filename": "Esercitazione_8Ottobre2026.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab8ott26/Esercitazione_8Ottobre2026.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "605 KB",
+    "description": "Documento didattico: Esercitazione 8Ottobre2026",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab8ott26_Lezione_Opengl_Classi_pdf",
+    "title": "Lezione Opengl Classi",
+    "filename": "Lezione_Opengl_Classi.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab8ott26/Lezione_Opengl_Classi.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "542 KB",
+    "description": "Documento didattico: Lezione Opengl Classi",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_lab_2D_lab8ott26_OpenGL_part2__pdf",
+    "title": "OpenGL part2",
+    "filename": "OpenGL_part2_.pdf",
+    "relPath": "OpenGL+GLSL/lab/2D/lab8ott26/OpenGL_part2_.pdf",
+    "category": "Esercitazioni di Laboratorio",
+    "tags": [
+      "Codice Studenti",
+      "Shader GLSL",
+      "Esercizi Pratici"
+    ],
+    "size": "783 KB",
+    "description": "Documento didattico: OpenGL part2",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_OpenGL_-_Parte_I_OpenGL_parteI_pdf",
+    "title": "OpenGL parteI",
+    "filename": "OpenGL_parteI.pdf",
+    "relPath": "OpenGL+GLSL/OpenGL - Parte I/OpenGL_parteI.pdf",
+    "category": "OpenGL Base & Setup",
+    "tags": [
+      "GLFW",
+      "GLAD",
+      "Setup Mac/Win",
+      "ShaderMaker"
+    ],
+    "size": "7.9 MB",
+    "description": "Documento didattico: OpenGL parteI",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "OpenGL+GLSL_OpenGL_-_Parte_I_OpenGL_template_-_triangolo_Installazione_Template_OpenGL_Visual_Studio_pdf",
+    "title": "Installazione Template OpenGL Visual Studio",
+    "filename": "Installazione_Template_OpenGL_Visual_Studio.pdf",
+    "relPath": "OpenGL+GLSL/OpenGL - Parte I/OpenGL template - triangolo/Installazione_Template_OpenGL_Visual_Studio.pdf",
+    "category": "OpenGL Base & Setup",
+    "tags": [
+      "GLFW",
+      "GLAD",
+      "Setup Mac/Win",
+      "ShaderMaker"
+    ],
+    "size": "4 KB",
+    "description": "Documento didattico: Installazione Template OpenGL Visual Studio",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "old-github_image-processing-and-computer-vision-main_Exams_mock_pdf",
+    "title": "mock",
+    "filename": "mock.pdf",
+    "relPath": "old-github/image-processing-and-computer-vision-main/Exams/mock.pdf",
+    "category": "Appunti & Risorse Esterne",
+    "tags": [
+      "Computer Vision",
+      "Image Processing",
+      "Mock Exams"
+    ],
+    "size": "20 KB",
+    "description": "Documento didattico: mock",
+    "academicYear": "Archivio Extra"
+  },
+  {
+    "id": "pipeline_rendering_grafico_AliasingAntialiasing_pdf",
+    "title": "AliasingAntialiasing",
+    "filename": "AliasingAntialiasing.pdf",
+    "relPath": "pipeline rendering grafico/AliasingAntialiasing.pdf",
+    "category": "Pipeline di Rendering",
+    "tags": [
+      "Aliasing",
+      "Antialiasing",
+      "Color Blending"
+    ],
+    "size": "764 KB",
+    "description": "Fenomeno di aliasing spaziale e temporale, filtraggio e tecniche di antialiasing (SSAA, MSAA, post-processing).",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "pipeline_rendering_grafico_OLD_AliasingAntialiasing_pdf",
+    "title": "OLD AliasingAntialiasing",
+    "filename": "OLD_AliasingAntialiasing.pdf",
+    "relPath": "pipeline rendering grafico/OLD_AliasingAntialiasing.pdf",
+    "category": "Pipeline di Rendering",
+    "tags": [
+      "Aliasing",
+      "Antialiasing",
+      "Color Blending"
+    ],
+    "size": "327 KB",
+    "description": "Fenomeno di aliasing spaziale e temporale, filtraggio e tecniche di antialiasing (SSAA, MSAA, post-processing).",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "pipeline_rendering_grafico_sottosistema_raster_Pipeline_Rasterization_pdf",
+    "title": "Pipeline Rasterization",
+    "filename": "Pipeline_Rasterization.pdf",
+    "relPath": "pipeline rendering grafico/sottosistema raster/Pipeline_Rasterization.pdf",
+    "category": "Pipeline - Sottosistema Raster",
+    "tags": [
+      "Rasterizzazione",
+      "Z-Buffer",
+      "Antialiasing"
+    ],
+    "size": "2.6 MB",
+    "description": "Fase di rasterizzazione: conversione di scan, interpolazione di attributi, test di profondità e frame buffer.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "pipeline_rendering_grafico_sottosistema_raster_Rendering_Pipeline_Rasterization_pdf",
+    "title": "Rendering Pipeline Rasterization",
+    "filename": "Rendering_Pipeline_Rasterization.pdf",
+    "relPath": "pipeline rendering grafico/sottosistema raster/Rendering_Pipeline_Rasterization.pdf",
+    "category": "Pipeline - Sottosistema Raster",
+    "tags": [
+      "Rasterizzazione",
+      "Z-Buffer",
+      "Antialiasing"
+    ],
+    "size": "1.8 MB",
+    "description": "Fase di rasterizzazione: conversione di scan, interpolazione di attributi, test di profondità e frame buffer.",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "pipeline_rendering_grafico_sottosistema_geometrico_Geometry_stage_Clipping_pdf",
+    "title": "Geometry stage Clipping",
+    "filename": "Geometry_stage_Clipping.pdf",
+    "relPath": "pipeline rendering grafico/sottosistema geometrico/Geometry_stage_Clipping.pdf",
+    "category": "Pipeline - Sottosistema Geometrico",
+    "tags": [
+      "Clipping",
+      "Viewing",
+      "Trasformazioni"
+    ],
+    "size": "665 KB",
+    "description": "Algoritmi di clipping 2D e 3D nel sottosistema geometrico della pipeline grafica (Cohen-Sutherland, Liang-Barsky).",
+    "academicYear": "2026/2027"
+  },
+  {
+    "id": "pipeline_rendering_grafico_sottosistema_geometrico_Rendering_Pipeline_Sottosistema_Geometrico_pdf",
+    "title": "Rendering Pipeline Sottosistema Geometrico",
+    "filename": "Rendering_Pipeline_Sottosistema_Geometrico.pdf",
+    "relPath": "pipeline rendering grafico/sottosistema geometrico/Rendering_Pipeline_Sottosistema_Geometrico.pdf",
+    "category": "Pipeline - Sottosistema Geometrico",
+    "tags": [
+      "Clipping",
+      "Viewing",
+      "Trasformazioni"
+    ],
+    "size": "5.7 MB",
+    "description": "Architettura del sistema grafico, pipeline programmabile, memorie GPU e interazione con la CPU.",
+    "academicYear": "2026/2027"
+  }
+]

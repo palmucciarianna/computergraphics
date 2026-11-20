@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Lab 05 — Modellatore di Curve di Hermite | Computer Graphics Hub</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <style>
+    .lab-container {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 20px;
+      min-height: calc(100vh - 120px);
+    }
+    .canvas-panel {
+      background: #060911;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: crosshair;
+    }
+    .control-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .panel-section-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+    }
+    .control-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .control-label {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+    }
+    .control-val {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-primary);
+    }
+    .basis-chart {
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      height: 140px;
+      position: relative;
+    }
+    .code-export-box {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      background: var(--bg-input);
+      color: #38bdf8;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 10px;
+      height: 110px;
+      overflow-y: auto;
+      white-space: pre;
+    }
+    @media (max-width: 900px) {
+      .lab-container {
+        grid-template-columns: 1fr;
+      }
+      .canvas-panel {
+        height: 420px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div style="background: var(--bg-sidebar); border-bottom: 1px solid var(--border-color); padding: 14px 28px; display: flex; align-items: center; justify-content: space-between;">
+    <div style="display:flex; align-items:center; gap:16px;">
+      <a href="../../index.html#web-labs" class="action-btn download" style="padding: 6px 12px;">
+        ← Torna all'Hub
+      </a>
+      <div>
+        <h2 style="font-size: 1.1rem; font-weight:700;">Web Lab 05 — Modellatore di Curve di Hermite 2D</h2>
+        <span style="font-size: 0.75rem; color: var(--text-muted);">Corrispondente a: Laboratorio 5 Novembre 2026 (Spline Cubiche & Poligoni)</span>
+      </div>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <button id="resetBtn" class="topbar-btn">Ripristina Punti</button>
+      <button id="copyCodeBtn" class="topbar-btn primary">Copia C++ Array</button>
+    </div>
+  </div>
+
+  <div style="padding: 24px; max-width: 1500px; margin: 0 auto;">
+    <div class="lab-container">
+      <!-- Interactive Modeler Canvas -->
+      <div class="canvas-panel">
+        <canvas id="curveCanvas"></canvas>
+        <div style="position:absolute; bottom:16px; left:16px; background:rgba(10,13,20,0.8); padding:8px 14px; border-radius:var(--radius-sm); font-size:0.75rem; font-family:var(--font-mono); color:var(--text-muted); border:1px solid var(--border-subtle); pointer-events:none;">
+          Trascina P0, P1 (punti) o le frecce R0, R1 (vettori tangenti) con il mouse
+        </div>
+      </div>
+
+      <!-- Controls Panel -->
+      <div class="control-panel">
+        <div>
+          <div class="panel-section-title">Parametri di Campionamento</div>
+          <div class="control-row">
+            <span class="control-label">Risoluzione (Campioni N):</span>
+            <input type="range" id="samplesSlider" min="10" max="150" step="5" value="60">
+            <span class="control-val" id="samplesVal">60</span>
+          </div>
+          <div class="control-row">
+            <span class="control-label">Mostra Vettori Tangenti:</span>
+            <input type="checkbox" id="showTangentsCheck" checked>
+          </div>
+          <div class="control-row">
+            <span class="control-label">Animazione Parametro t [0, 1]:</span>
+            <input type="checkbox" id="animateTCheck" checked>
+          </div>
+        </div>
+
+        <div>
+          <div class="panel-section-title">Funzioni di Base Cubiche (H0, H1, H2, H3)</div>
+          <canvas id="basisCanvas" class="basis-chart"></canvas>
+          <div style="display:flex; justify-content:space-between; font-size:0.7rem; font-family:var(--font-mono); margin-top:6px;">
+            <span style="color:#f43f5e">H0: 2t³ - 3t² + 1</span>
+            <span style="color:#10b981">H1: -2t³ + 3t²</span>
+            <span style="color:#38bdf8">H2: t³ - 2t² + t</span>
+            <span style="color:#f59e0b">H3: t³ - t²</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="panel-section-title">Matrice Caratteristica M_H</div>
+          <div style="background:var(--bg-input); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:10px; font-family:var(--font-mono); font-size:0.8rem; text-align:center; color:var(--accent-cyan); line-height:1.4;">
+            [  2  -2   1   1 ]<br>
+            [ -3   3  -2  -1 ]<br>
+            [  0   0   1   0 ]<br>
+            [  1   0   0   0 ]
+          </div>
+        </div>
+
+        <div>
+          <div class="panel-section-title">Codice C++ Generato (VAO/VBO)</div>
+          <div class="code-export-box" id="cppExportCode">// C++ Array coordinate generato per OpenGL...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('curveCanvas');
+    const ctx = canvas.getContext('2d');
+    const basisCanvas = document.getElementById('basisCanvas');
+    const bCtx = basisCanvas.getContext('2d');
+
+    const samplesSlider = document.getElementById('samplesSlider');
+    const samplesVal = document.getElementById('samplesVal');
+    const showTangentsCheck = document.getElementById('showTangentsCheck');
+    const animateTCheck = document.getElementById('animateTCheck');
+    const cppExportCode = document.getElementById('cppExportCode');
+    const copyCodeBtn = document.getElementById('copyCodeBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    // Control Points and Tangents in NDC scale (-1 to +1)
+    let P0 = { x: -0.6, y: -0.4 };
+    let P1 = { x: 0.6, y: 0.4 };
+    let R0 = { x: 0.8, y: 1.2 };   // Tangente in P0
+    let R1 = { x: 1.0, y: -1.0 };  // Tangente in P1
+
+    let activeHandle = null;
+    let animT = 0;
+
+    function resize() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+
+      const bRect = basisCanvas.getBoundingClientRect();
+      basisCanvas.width = bRect.width * window.devicePixelRatio;
+      basisCanvas.height = bRect.height * window.devicePixelRatio;
+    }
+    window.addEventListener('resize', resize);
+
+    function toScreen(pt) {
+      const w = canvas.width;
+      const h = canvas.height;
+      return {
+        x: (pt.x + 1) * 0.5 * w,
+        y: (1 - pt.y) * 0.5 * h
+      };
+    }
+
+    function toNDC(screenPt) {
+      const w = canvas.width;
+      const h = canvas.height;
+      return {
+        x: (screenPt.x / w) * 2 - 1,
+        y: 1 - (screenPt.y / h) * 2
+      };
+    }
+
+    // Hermite Basis Functions
+    function H0(t) { return 2*t*t*t - 3*t*t + 1; }
+    function H1(t) { return -2*t*t*t + 3*t*t; }
+    function H2(t) { return t*t*t - 2*t*t + t; }
+    function H3(t) { return t*t*t - t*t; }
+
+    // First derivatives for tangent calculation
+    function dH0(t) { return 6*t*t - 6*t; }
+    function dH1(t) { return -6*t*t + 6*t; }
+    function dH2(t) { return 3*t*t - 4*t + 1; }
+    function dH3(t) { return 3*t*t - 2*t; }
+
+    function evalHermite(t) {
+      const h0 = H0(t);
+      const h1 = H1(t);
+      const h2 = H2(t);
+      const h3 = H3(t);
+      return {
+        x: h0 * P0.x + h1 * P1.x + h2 * R0.x + h3 * R1.x,
+        y: h0 * P0.y + h1 * P1.y + h2 * R0.y + h3 * R1.y
+      };
+    }
+
+    function evalTangent(t) {
+      return {
+        x: dH0(t) * P0.x + dH1(t) * P1.x + dH2(t) * R0.x + dH3(t) * R1.x,
+        y: dH0(t) * P0.y + dH1(t) * P1.y + dH2(t) * R0.y + dH3(t) * R1.y
+      };
+    }
+
+    // Draw Basis Chart
+    function drawBasisFunctions() {
+      const w = basisCanvas.width;
+      const h = basisCanvas.height;
+      bCtx.clearRect(0, 0, w, h);
+
+      // Grid line at y = 0
+      bCtx.strokeStyle = '#232d45';
+      bCtx.lineWidth = 1;
+      bCtx.beginPath();
+      bCtx.moveTo(0, h * 0.75);
+      bCtx.lineTo(w, h * 0.75);
+      bCtx.stroke();
+
+      const funcs = [
+        { fn: H0, col: '#f43f5e' },
+        { fn: H1, col: '#10b981' },
+        { fn: H2, col: '#38bdf8' },
+        { fn: H3, col: '#f59e0b' }
+      ];
+
+      funcs.forEach(f => {
+        bCtx.strokeStyle = f.col;
+        bCtx.lineWidth = 2;
+        bCtx.beginPath();
+        for (let i = 0; i <= 60; i++) {
+          const t = i / 60;
+          const val = f.fn(t);
+          const px = t * w;
+          const py = h * 0.75 - val * (h * 0.55);
+          if (i === 0) bCtx.moveTo(px, py);
+          else bCtx.lineTo(px, py);
+        }
+        bCtx.stroke();
+      });
+    }
+
+    function updateExportCode(samples) {
+      const codeLines = [
+        '// Coordinate generate dal Modellatore di Hermite 2D',
+        `const int numPoints = ${samples + 1};`,
+        'float hermiteVertices[] = {'
+      ];
+      for (let i = 0; i <= samples; i++) {
+        const pt = evalHermite(i / samples);
+        codeLines.push(`    ${pt.x.toFixed(4)}f, ${pt.y.toFixed(4)}f, 0.0f,  // Pt ${i}`);
+      }
+      codeLines.push('};');
+      cppExportCode.textContent = codeLines.join('\n');
+    }
+
+    function render(timestamp) {
+      resize();
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      drawBasisFunctions();
+
+      // Screen positions
+      const sP0 = toScreen(P0);
+      const sP1 = toScreen(P1);
+      const sR0_end = toScreen({ x: P0.x + R0.x * 0.35, y: P0.y + R0.y * 0.35 });
+      const sR1_end = toScreen({ x: P1.x + R1.x * 0.35, y: P1.y + R1.y * 0.35 });
+
+      // Draw Tangent Vectors
+      if (showTangentsCheck.checked) {
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([4, 4]);
+
+        ctx.beginPath();
+        ctx.moveTo(sP0.x, sP0.y);
+        ctx.lineTo(sR0_end.x, sR0_end.y);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(sP1.x, sP1.y);
+        ctx.lineTo(sR1_end.x, sR1_end.y);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Tangent arrows handles
+        ctx.fillStyle = '#38bdf8';
+        ctx.beginPath();
+        ctx.arc(sR0_end.x, sR0_end.y, 7, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(sR1_end.x, sR1_end.y, 7, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '12px var(--font-mono)';
+        ctx.fillText('R0', sR0_end.x + 10, sR0_end.y + 4);
+        ctx.fillText('R1', sR1_end.x + 10, sR1_end.y + 4);
+      }
+
+      // Sample and draw Hermite curve
+      const samples = parseInt(samplesSlider.value);
+      samplesVal.textContent = samples;
+
+      ctx.beginPath();
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 3;
+
+      for (let i = 0; i <= samples; i++) {
+        const pt = toScreen(evalHermite(i / samples));
+        if (i === 0) ctx.moveTo(pt.x, pt.y);
+        else ctx.lineTo(pt.x, pt.y);
+      }
+      ctx.stroke();
+
+      // Sample points dots
+      ctx.fillStyle = '#a855f7';
+      for (let i = 0; i <= samples; i++) {
+        const pt = toScreen(evalHermite(i / samples));
+        ctx.beginPath();
+        ctx.arc(pt.x, pt.y, 3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Draw P0 and P1 Nodes
+      ctx.fillStyle = '#f43f5e';
+      ctx.beginPath();
+      ctx.arc(sP0.x, sP0.y, 9, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 12px var(--font-sans)';
+      ctx.fillText('P0', sP0.x - 24, sP0.y - 12);
+
+      ctx.fillStyle = '#10b981';
+      ctx.beginPath();
+      ctx.arc(sP1.x, sP1.y, 9, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText('P1', sP1.x + 12, sP1.y - 12);
+
+      // Animate t runner
+      if (animateTCheck.checked) {
+        animT = (timestamp * 0.0004) % 1.0;
+        const curPt = toScreen(evalHermite(animT));
+        const curTan = evalTangent(animT);
+        const tanLen = Math.hypot(curTan.x, curTan.y) || 1;
+        const nx = curTan.x / tanLen;
+        const ny = curTan.y / tanLen;
+
+        ctx.fillStyle = '#f59e0b';
+        ctx.beginPath();
+        ctx.arc(curPt.x, curPt.y, 7, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Instantaneous tangent line
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(curPt.x - nx * 30, curPt.y + ny * 30);
+        ctx.lineTo(curPt.x + nx * 30, curPt.y - ny * 30);
+        ctx.stroke();
+      }
+
+      requestAnimationFrame(render);
+    }
+
+    // Mouse Interaction
+    function getMousePos(e) {
+      const rect = canvas.getBoundingClientRect();
+      return {
+        x: (e.clientX - rect.left) * window.devicePixelRatio,
+        y: (e.clientY - rect.top) * window.devicePixelRatio
+      };
+    }
+
+    canvas.addEventListener('mousedown', (e) => {
+      const m = getMousePos(e);
+      const sP0 = toScreen(P0);
+      const sP1 = toScreen(P1);
+      const sR0 = toScreen({ x: P0.x + R0.x * 0.35, y: P0.y + R0.y * 0.35 });
+      const sR1 = toScreen({ x: P1.x + R1.x * 0.35, y: P1.y + R1.y * 0.35 });
+
+      if (Math.hypot(m.x - sP0.x, m.y - sP0.y) < 20) activeHandle = 'P0';
+      else if (Math.hypot(m.x - sP1.x, m.y - sP1.y) < 20) activeHandle = 'P1';
+      else if (Math.hypot(m.x - sR0.x, m.y - sR0.y) < 20) activeHandle = 'R0';
+      else if (Math.hypot(m.x - sR1.x, m.y - sR1.y) < 20) activeHandle = 'R1';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!activeHandle) return;
+      const m = getMousePos(e);
+      const ndc = toNDC(m);
+
+      if (activeHandle === 'P0') {
+        P0 = ndc;
+      } else if (activeHandle === 'P1') {
+        P1 = ndc;
+      } else if (activeHandle === 'R0') {
+        R0 = { x: (ndc.x - P0.x) / 0.35, y: (ndc.y - P0.y) / 0.35 };
+      } else if (activeHandle === 'R1') {
+        R1 = { x: (ndc.x - P1.x) / 0.35, y: (ndc.y - P1.y) / 0.35 };
+      }
+      updateExportCode(parseInt(samplesSlider.value));
+    });
+
+    window.addEventListener('mouseup', () => { activeHandle = null; });
+
+    copyCodeBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(cppExportCode.textContent);
+      copyCodeBtn.textContent = '✓ Copiato!';
+      setTimeout(() => { copyCodeBtn.textContent = 'Copia C++ Array'; }, 2000);
+    });
+
+    resetBtn.addEventListener('click', () => {
+      P0 = { x: -0.6, y: -0.4 };
+      P1 = { x: 0.6, y: 0.4 };
+      R0 = { x: 0.8, y: 1.2 };
+      R1 = { x: 1.0, y: -1.0 };
+      samplesSlider.value = 60;
+      updateExportCode(60);
+    });
+
+    // Start
+    resize();
+    updateExportCode(60);
+    requestAnimationFrame(render);
+  </script>
+</body>
+</html>

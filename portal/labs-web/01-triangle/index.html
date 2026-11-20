@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Lab 01 — Hello Triangle & GLSL Shader Editor | Computer Graphics Hub</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <style>
+    .lab-container {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 20px;
+      min-height: calc(100vh - 120px);
+    }
+    .canvas-panel {
+      background: #000000;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+    .canvas-wrapper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .control-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .panel-section-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .control-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .control-label {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+    }
+    .editor-box {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      background: var(--bg-input);
+      color: #38bdf8;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 10px;
+      width: 100%;
+      height: 110px;
+      resize: vertical;
+      line-height: 1.4;
+    }
+    .canvas-overlay-stats {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(10, 13, 20, 0.75);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+    @media (max-width: 900px) {
+      .lab-container {
+        grid-template-columns: 1fr;
+      }
+      .canvas-panel {
+        height: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div style="background: var(--bg-sidebar); border-bottom: 1px solid var(--border-color); padding: 14px 28px; display: flex; align-items: center; justify-content: space-between;">
+    <div style="display:flex; align-items:center; gap:16px;">
+      <a href="../../index.html#web-labs" class="action-btn download" style="padding: 6px 12px;">
+        ← Torna all'Hub
+      </a>
+      <div>
+        <h2 style="font-size: 1.1rem; font-weight:700;">Web Lab 01 — Hello Triangle & GLSL</h2>
+        <span style="font-size: 0.75rem; color: var(--text-muted);">Corrispondente a: Laboratorio 8 Ottobre 2026 (VAO, VBO, ShaderMaker)</span>
+      </div>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <button id="resetBtn" class="topbar-btn">Ripristina</button>
+      <button id="compileBtn" class="topbar-btn primary">Compila Shader</button>
+    </div>
+  </div>
+
+  <div style="padding: 24px; max-width: 1500px; margin: 0 auto;">
+    <div class="lab-container">
+      <!-- Canvas Panel -->
+      <div class="canvas-panel">
+        <div class="canvas-wrapper">
+          <canvas id="glCanvas"></canvas>
+          <div class="canvas-overlay-stats" id="statsOverlay">
+            WebGL 2.0 • 60 FPS • 3 Vertici
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls Panel -->
+      <div class="control-panel">
+        <div>
+          <div class="panel-section-title">Modalità di Rendering</div>
+          <div style="display:flex; gap:8px;">
+            <button class="filter-pill active" id="modeFill">Riempimento</button>
+            <button class="filter-pill" id="modeWire">Wireframe</button>
+            <button class="filter-pill" id="modePoints">Punti</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="panel-section-title">Animazione & Parametri</div>
+          <div class="control-row">
+            <span class="control-label">Rotazione Automatica:</span>
+            <input type="checkbox" id="autoRotateCheck" checked>
+          </div>
+          <div class="control-row">
+            <span class="control-label">Velocità di Rotazione:</span>
+            <input type="range" id="rotSpeedSlider" min="0" max="5" step="0.1" value="1.5">
+          </div>
+          <div class="control-row">
+            <span class="control-label">Dimensione Scala:</span>
+            <input type="range" id="scaleSlider" min="0.2" max="1.5" step="0.05" value="0.8">
+          </div>
+        </div>
+
+        <div>
+          <div class="panel-section-title">Vertex Shader (GLSL)</div>
+          <textarea id="vsSource" class="editor-box">#version 300 es
+in vec2 a_position;
+in vec3 a_color;
+uniform float u_angle;
+uniform float u_scale;
+out vec3 v_color;
+
+void main() {
+    float c = cos(u_angle);
+    float s = sin(u_angle);
+    mat2 rot = mat2(c, -s, s, c);
+    vec2 pos = rot * (a_position * u_scale);
+    gl_Position = vec4(pos, 0.0, 1.0);
+    gl_PointSize = 12.0;
+    v_color = a_color;
+}</textarea>
+        </div>
+
+        <div>
+          <div class="panel-section-title">Fragment Shader (GLSL)</div>
+          <textarea id="fsSource" class="editor-box">#version 300 es
+precision highp float;
+in vec3 v_color;
+uniform float u_time;
+out vec4 fragColor;
+
+void main() {
+    // Interpolazione colore con modulazione dinamica
+    float wave = 0.5 + 0.5 * sin(u_time * 2.0);
+    fragColor = vec4(v_color * (0.8 + 0.2 * wave), 1.0);
+}</textarea>
+        </div>
+
+        <div id="statusMessage" style="font-size:0.75rem; font-family:var(--font-mono); color:var(--accent-emerald);">
+          ✓ Shader compilati con successo.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('glCanvas');
+    const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+    const vsEditor = document.getElementById('vsSource');
+    const fsEditor = document.getElementById('fsSource');
+    const compileBtn = document.getElementById('compileBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const statusMsg = document.getElementById('statusMessage');
+    const autoRotateCheck = document.getElementById('autoRotateCheck');
+    const rotSpeedSlider = document.getElementById('rotSpeedSlider');
+    const scaleSlider = document.getElementById('scaleSlider');
+
+    let renderMode = 'FILL';
+    let program = null;
+    let vao = null;
+    let angle = 0;
+    let lastTime = 0;
+
+    const defaultVS = vsEditor.value;
+    const defaultFS = fsEditor.value;
+
+    function resizeCanvas() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+    window.addEventListener('resize', resizeCanvas);
+
+    function createShader(gl, type, source) {
+      const shader = gl.createShader(type);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        const info = gl.getShaderInfoLog(shader);
+        gl.deleteShader(shader);
+        throw new Error(info);
+      }
+      return shader;
+    }
+
+    function initShaders() {
+      try {
+        const vs = createShader(gl, gl.VERTEX_SHADER, vsEditor.value);
+        const fs = createShader(gl, gl.FRAGMENT_SHADER, fsEditor.value);
+        const newProg = gl.createProgram();
+        gl.attachShader(newProg, vs);
+        gl.attachShader(newProg, fs);
+        gl.linkProgram(newProg);
+
+        if (!gl.getProgramParameter(newProg, gl.LINK_STATUS)) {
+          throw new Error(gl.getProgramInfoLog(newProg));
+        }
+
+        program = newProg;
+        statusMsg.style.color = 'var(--accent-emerald)';
+        statusMsg.textContent = '✓ Shader compilati e linkati con successo.';
+      } catch (err) {
+        statusMsg.style.color = 'var(--accent-rose)';
+        statusMsg.textContent = '✗ ' + err.message;
+      }
+    }
+
+    function initGeometry() {
+      // Triangle with 2D positions + RGB colors: [x, y, r, g, b]
+      const vertices = new Float32Array([
+         0.0,  0.8,   1.0, 0.2, 0.3, // Top (Rosso)
+        -0.8, -0.6,   0.2, 1.0, 0.4, // Bottom Left (Verde)
+         0.8, -0.6,   0.2, 0.5, 1.0  // Bottom Right (Blu)
+      ]);
+
+      const buffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+      gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+      // Attribute layout (Stride: 5 * 4 bytes = 20)
+      const stride = 5 * Float32Array.BYTES_PER_ELEMENT;
+      const posLoc = gl.getAttribLocation(program, 'a_position');
+      const colLoc = gl.getAttribLocation(program, 'a_color');
+
+      gl.enableVertexAttribArray(posLoc);
+      gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, stride, 0);
+
+      gl.enableVertexAttribArray(colLoc);
+      gl.vertexAttribPointer(colLoc, 3, gl.FLOAT, false, stride, 2 * Float32Array.BYTES_PER_ELEMENT);
+    }
+
+    function render(time) {
+      time *= 0.001;
+      const dt = time - lastTime;
+      lastTime = time;
+
+      if (autoRotateCheck.checked) {
+        angle += dt * parseFloat(rotSpeedSlider.value);
+      }
+
+      resizeCanvas();
+      gl.clearColor(0.04, 0.05, 0.08, 1.0);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+
+      if (program) {
+        gl.useProgram(program);
+
+        const uAngle = gl.getUniformLocation(program, 'u_angle');
+        const uScale = gl.getUniformLocation(program, 'u_scale');
+        const uTime = gl.getUniformLocation(program, 'u_time');
+
+        if (uAngle) gl.uniform1f(uAngle, angle);
+        if (uScale) gl.uniform1f(uScale, parseFloat(scaleSlider.value));
+        if (uTime) gl.uniform1f(uTime, time);
+
+        let mode = gl.TRIANGLES;
+        if (renderMode === 'WIRE') mode = gl.LINE_LOOP;
+        if (renderMode === 'POINTS') mode = gl.POINTS;
+
+        gl.drawArrays(mode, 0, 3);
+      }
+
+      requestAnimationFrame(render);
+    }
+
+    // UI Buttons
+    document.getElementById('modeFill').addEventListener('click', function() {
+      renderMode = 'FILL';
+      setActiveBtn(this);
+    });
+    document.getElementById('modeWire').addEventListener('click', function() {
+      renderMode = 'WIRE';
+      setActiveBtn(this);
+    });
+    document.getElementById('modePoints').addEventListener('click', function() {
+      renderMode = 'POINTS';
+      setActiveBtn(this);
+    });
+
+    function setActiveBtn(btn) {
+      document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    compileBtn.addEventListener('click', () => {
+      initShaders();
+      initGeometry();
+    });
+
+    resetBtn.addEventListener('click', () => {
+      vsEditor.value = defaultVS;
+      fsEditor.value = defaultFS;
+      scaleSlider.value = 0.8;
+      rotSpeedSlider.value = 1.5;
+      autoRotateCheck.checked = true;
+      initShaders();
+      initGeometry();
+    });
+
+    // Start
+    resizeCanvas();
+    initShaders();
+    initGeometry();
+    requestAnimationFrame(render);
+  </script>
+</body>
+</html>

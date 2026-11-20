@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computer Graphics Hub — Portale Universitario</title>
+  <meta name="description" content="Portale accademico per la materia Computer Graphics: lezioni, slide, laboratori C++/OpenGL, versioni web interattive e progetti.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2338bdf8'/><polygon points='50,15 85,80 15,80' fill='%230a0d14'/></svg>">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <div class="brand-icon">CG</div>
+        <div class="brand-text">
+          <h1>Computer Graphics</h1>
+          <p>University Hub • 26/27</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Navigazione</div>
+        <a href="#overview" class="nav-item active" data-tab="overview">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span>Panoramica</span>
+        </a>
+
+        <a href="#materials" class="nav-item" data-tab="materials">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span>Materiali & Slide</span>
+          <span class="nav-badge" id="sidebarMaterialsBadge">80</span>
+        </a>
+
+        <a href="#desktop-labs" class="nav-item" data-tab="desktop-labs">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          <span>Laboratori Desktop</span>
+          <span class="nav-badge" id="sidebarLabsBadge">8</span>
+        </a>
+
+        <a href="#web-labs" class="nav-item" data-tab="web-labs">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <span>Web Labs (Online)</span>
+          <span class="nav-badge" style="color:var(--accent-emerald);">Interattivi</span>
+        </a>
+
+        <div class="nav-section-label">Strumenti & Progetti</div>
+        <a href="#playground" class="nav-item" data-tab="playground">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10 2v7.31L4.69 16.4A2 2 0 0 0 6.23 19.5h11.54a2 2 0 0 0 1.54-3.1L14 9.31V2"></path></svg>
+          <span>Playground Grafico</span>
+        </a>
+
+        <a href="#projects" class="nav-item" data-tab="projects">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          <span>Progetti Personali</span>
+          <span class="nav-badge">6</span>
+        </a>
+
+        <a href="#about" class="nav-item" data-tab="about">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <span>Esame & Guida</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <div class="user-avatar">AP</div>
+          <div class="user-info">
+            <div class="user-name">Arianna Palmucci</div>
+            <div class="user-sub">palmucciarianna</div>
+          </div>
+        </div>
+        <button id="themeToggleBtn" class="theme-toggle-btn" title="Cambia Tema">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <!-- Sticky Topbar -->
+      <header class="app-topbar">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+
+        <div class="search-container">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="globalSearchInput" class="search-input" placeholder="Cerca slide, formule, laboratori, shader (premi /)..." autocomplete="off">
+          <button id="searchClearBtn" class="search-clear-btn">✕</button>
+        </div>
+
+        <div class="topbar-actions">
+          <a href="https://github.com/palmucciarianna/computergraphics" target="_blank" rel="noopener" class="topbar-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            GitHub
+          </a>
+        </div>
+      </header>
+
+      <!-- Viewport Content -->
+      <div class="app-content">
+        <!-- 1. OVERVIEW TAB -->
+        <section id="tab-overview" class="tab-pane active">
+          <div class="hero-banner">
+            <span class="hero-tag">Università • Anno Accademico 2026/2027</span>
+            <h2 class="hero-title">Computer Graphics Hub</h2>
+            <p class="hero-desc">
+              Piattaforma universitaria integrata per la consultazione delle slide del corso, l'esplorazione dei laboratori C++/OpenGL originali, l'esecuzione di esperimenti interattivi WebGL e il monitoraggio dei progetti d'esame.
+            </p>
+            <div class="hero-actions">
+              <button class="topbar-btn primary" onclick="window.CGHub.switchTab('materials')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                Consulta Slide & Documenti
+              </button>
+              <button class="topbar-btn" onclick="window.CGHub.switchTab('web-labs')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                Prova i Web Labs
+              </button>
+              <button class="topbar-btn" onclick="window.CGHub.switchTab('desktop-labs')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                Laboratori C++ Desktop
+              </button>
+            </div>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="stats-grid">
+            <div class="stat-card" onclick="window.CGHub.switchTab('materials')" style="cursor:pointer;">
+              <div class="stat-icon cyan">📚</div>
+              <div class="stat-content">
+                <div class="stat-value" id="statPdfCount">80</div>
+                <div class="stat-label">Materiali & PDF Integrati</div>
+              </div>
+            </div>
+
+            <div class="stat-card" onclick="window.CGHub.switchTab('desktop-labs')" style="cursor:pointer;">
+              <div class="stat-icon purple">💻</div>
+              <div class="stat-content">
+                <div class="stat-value" id="statLabCount">8</div>
+                <div class="stat-label">Laboratori C++/OpenGL</div>
+              </div>
+            </div>
+
+            <div class="stat-card" onclick="window.CGHub.switchTab('web-labs')" style="cursor:pointer;">
+              <div class="stat-icon emerald">🚀</div>
+              <div class="stat-content">
+                <div class="stat-value" id="statWebCount">6 Pronti</div>
+                <div class="stat-label">Versioni Web Interattive</div>
+              </div>
+            </div>
+
+            <div class="stat-card" onclick="window.CGHub.switchTab('projects')" style="cursor:pointer;">
+              <div class="stat-icon amber">📂</div>
+              <div class="stat-content">
+                <div class="stat-value" id="statProjectCount">6</div>
+                <div class="stat-label">Progetti & Repository</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Course Structure & Info -->
+          <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px;">
+            <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:24px;">
+              <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:14px; color:var(--text-primary);">Programma Didattico del Corso</h3>
+              <div style="display:flex; flex-direction:column; gap:12px;">
+                <div style="display:flex; gap:12px; align-items:flex-start;">
+                  <span style="background:rgba(56,189,248,0.15); color:var(--accent-cyan); padding:4px 8px; border-radius:var(--radius-sm); font-size:0.75rem; font-weight:700;">PARTE I</span>
+                  <div>
+                    <h4 style="font-size:0.92rem; font-weight:600;">Sistemi Grafici & Geometria per CG</h4>
+                    <p style="font-size:0.82rem; color:var(--text-secondary);">Architettura hardware delle GPU, frame buffer, pipeline programmabile, spazi affini, vettori, coordinate omogenee e trasformazioni 2D/3D.</p>
+                  </div>
+                </div>
+
+                <div style="display:flex; gap:12px; align-items:flex-start;">
+                  <span style="background:rgba(168,85,247,0.15); color:var(--accent-purple); padding:4px 8px; border-radius:var(--radius-sm); font-size:0.75rem; font-weight:700;">PARTE II</span>
+                  <div>
+                    <h4 style="font-size:0.92rem; font-weight:600;">Modellazione Geometrica & Curve Spline</h4>
+                    <p style="font-size:0.82rem; color:var(--text-secondary);">Curve parametriche, curve interpolanti di Hermite, curve di Bézier, algoritmo di de Casteljau, B-spline e superfici di suddivisione.</p>
+                  </div>
+                </div>
+
+                <div style="display:flex; gap:12px; align-items:flex-start;">
+                  <span style="background:rgba(16,185,129,0.15); color:var(--accent-emerald); padding:4px 8px; border-radius:var(--radius-sm); font-size:0.75rem; font-weight:700;">PARTE III</span>
+                  <div>
+                    <h4 style="font-size:0.92rem; font-weight:600;">Pipeline di Rendering: Sottosistema Geometrico & Raster</h4>
+                    <p style="font-size:0.82rem; color:var(--text-secondary);">Viewing 3D, clipping, rasterizzazione, interpolazione su poligoni, Z-buffer e rimozione superfici nascoste, antialiasing.</p>
+                  </div>
+                </div>
+
+                <div style="display:flex; gap:12px; align-items:flex-start;">
+                  <span style="background:rgba(245,158,11,0.15); color:var(--accent-amber); padding:4px 8px; border-radius:var(--radius-sm); font-size:0.75rem; font-weight:700;">PARTE IV</span>
+                  <div>
+                    <h4 style="font-size:0.92rem; font-weight:600;">Illuminazione, Shading & Laboratori Pratici</h4>
+                    <p style="font-size:0.82rem; color:var(--text-secondary);">Modelli di riflessione di Lambert e Phong, Blinn-Phong, flat vs Gouraud vs Phong shading, shader GLSL, Dear ImGui e Blender.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:24px; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:14px; color:var(--text-primary);">Verifiche & Scadenze</h3>
+                <div style="display:flex; flex-direction:column; gap:12px;">
+                  <div style="background:var(--bg-card-subtle); padding:12px; border-radius:var(--radius-md); border-left:3px solid var(--accent-rose);">
+                    <div style="font-size:0.78rem; font-weight:700; color:var(--accent-rose); text-transform:uppercase;">Prova Parziale I</div>
+                    <div style="font-size:0.85rem; font-weight:600; color:var(--text-primary);">Domande di Teoria & Esercizi</div>
+                    <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">Include soluzioni ufficiali disponibili nella sezione Materiali.</div>
+                  </div>
+
+                  <div style="background:var(--bg-card-subtle); padding:12px; border-radius:var(--radius-md); border-left:3px solid var(--accent-cyan);">
+                    <div style="font-size:0.78rem; font-weight:700; color:var(--accent-cyan); text-transform:uppercase;">Progetto I — Scena Interattiva</div>
+                    <div style="font-size:0.85rem; font-weight:600; color:var(--text-primary);">Sviluppo OpenGL/GLSL</div>
+                    <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">Specifiche e regole di consegna consultabili nel portale.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top:16px;">
+                <button class="topbar-btn" style="width:100%; justify-content:center;" onclick="window.CGHub.openPdfViewer('Modalità Esame Computer Graphics', '../progetti/Modalita_Esame_Computer_Graphics_2026_2027.pdf')">
+                  Visualizza Regolamento Esame
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. MATERIALS TAB -->
+        <section id="tab-materials" class="tab-pane">
+          <div class="page-header">
+            <h2>Materiali Didattici & Dispense</h2>
+            <p>Tutti i documenti originali in PDF forniti durante il corso, classificati per argomento. Puoi aprirli direttamente nel lettore integrato o scaricarli sul tuo dispositivo.</p>
+          </div>
+
+          <div class="filter-toolbar">
+            <div class="filter-pills" id="filterPills">
+              <!-- Dynamically populated -->
+            </div>
+            <div class="filter-meta" id="materialsCount">Caricamento materiali...</div>
+          </div>
+
+          <div class="materials-grid" id="materialsGrid">
+            <!-- Dynamically populated -->
+          </div>
+        </section>
+
+        <!-- 3. DESKTOP LABS TAB -->
+        <section id="tab-desktop-labs" class="tab-pane">
+          <div class="page-header">
+            <h2>Laboratori di Programmazione — Versione Desktop</h2>
+            <p>I codici sorgenti C++, i file CMake e le dispense dei laboratori svolti su Mac con GLFW, GLAD, GLM e ImGui. Tutti i file originali sono conservati intatti nel repository.</p>
+          </div>
+
+          <div class="labs-grid" id="desktopLabsGrid">
+            <!-- Dynamically populated -->
+          </div>
+        </section>
+
+        <!-- 4. WEB LABS TAB -->
+        <section id="tab-web-labs" class="tab-pane">
+          <div class="page-header">
+            <h2>Web Labs — Versioni Interattive nel Browser</h2>
+            <p>Porting e implementazioni interattive dei laboratori del corso eseguibili direttamente online tramite WebGL, Canvas HTML5 e shader GLSL senza bisogno di compilare in locale.</p>
+          </div>
+
+          <div class="labs-grid" id="webLabsGrid">
+            <!-- Dynamically populated -->
+          </div>
+        </section>
+
+        <!-- 5. PLAYGROUND TAB -->
+        <section id="tab-playground" class="tab-pane">
+          <div class="page-header">
+            <h2>Playground Grafico Didattico</h2>
+            <p>Laboratorio visivo per sperimentare con le formule matematiche fondamentali della Computer Graphics.</p>
+          </div>
+
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:32px; text-align:center;">
+            <div style="width:64px; height:64px; border-radius:50%; background:rgba(56,189,248,0.15); color:var(--accent-cyan); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:1.8rem;">
+              🧪
+            </div>
+            <h3 style="font-size:1.4rem; font-weight:700; margin-bottom:8px;">Esperimenti Interattivi Pronti</h3>
+            <p style="color:var(--text-secondary); max-width:600px; margin:0 auto 24px; font-size:0.92rem;">
+              Curve di Bézier con l'algoritmo ricorsivo di de Casteljau, composizione delle matrici e dimostrazione della non-commutatività delle trasformazioni geometriche (T·R vs R·T).
+            </p>
+            <a href="playground/index.html" class="topbar-btn primary" style="display:inline-flex; padding:12px 28px; font-size:0.95rem;">
+              Apri il Playground a Schermo Intero →
+            </a>
+          </div>
+        </section>
+
+        <!-- 6. PROJECTS TAB -->
+        <section id="tab-projects" class="tab-pane">
+          <div class="page-header">
+            <h2>Progetti & Repository Correlati</h2>
+            <p>Elaborati del corso di Computer Graphics e progetti collegati, configurabili tramite catalogo centralizzato JSON.</p>
+          </div>
+
+          <div class="projects-grid" id="projectsGrid">
+            <!-- Dynamically populated -->
+          </div>
+        </section>
+
+        <!-- 7. ABOUT & GUIDE TAB -->
+        <section id="tab-about" class="tab-pane">
+          <div class="page-header">
+            <h2>Informazioni sul Progetto & Guida di Manutenzione</h2>
+            <p>Dettagli architetturali del portale e istruzioni per estendere i contenuti mantenendo intatta la struttura dei file.</p>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;">
+            <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:24px;">
+              <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:12px; color:var(--text-primary);">Architettura Tecnica</h3>
+              <ul style="list-style:none; display:flex; flex-direction:column; gap:8px; font-size:0.86rem; color:var(--text-secondary);">
+                <li>▸ <strong>Zero Build Step</strong>: Puro HTML5, CSS3 moderno e Vanilla JavaScript ES6+.</li>
+                <li>▸ <strong>Isolamento Totale</strong>: Tutto il portale risiede esclusivamente nella cartella <code>portal/</code>.</li>
+                <li>▸ <strong>Conservazione Materiali</strong>: I file originali (C++, CMake, PDF) non vengono mai toccati né duplicati.</li>
+                <li>▸ <strong>GitHub Pages Ready</strong>: Supporta sia l'hosting statico che il deploy automatico con GitHub Actions.</li>
+              </ul>
+            </div>
+
+            <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:24px;">
+              <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:12px; color:var(--text-primary);">Come Aggiungere Nuovi Materiali</h3>
+              <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5; margin-bottom:12px;">
+                Per registrare una nuova slide o un laboratorio:
+              </p>
+              <div style="background:var(--bg-input); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:12px; font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-cyan); line-height:1.4;">
+                1. Posiziona il PDF nella cartella desiderata (es. intro/)<br>
+                2. Aggiungi la voce in portal/data/materials.json<br>
+                3. Per un nuovo laboratorio, aggiorna portal/data/labs.json<br>
+                4. Salva e fai commit: il sito si aggiornerà istantaneamente!
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- In-Browser PDF Modal Viewer -->
+  <div id="pdfModal" class="modal-backdrop">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span style="font-size:1.2rem;">📄</span>
+          <span class="modal-title" id="modalTitle">Titolo Documento</span>
+        </div>
+        <div class="modal-header-actions">
+          <a id="modalExternalBtn" href="#" target="_blank" rel="noopener" class="topbar-btn" style="padding:6px 12px; font-size:0.78rem;">
+            Apri in Nuova Scheda ↗
+          </a>
+          <a id="modalDownloadBtn" href="#" download class="topbar-btn primary" style="padding:6px 12px; font-size:0.78rem;">
+            Scarica PDF ↓
+          </a>
+          <button id="modalCloseBtn" class="modal-close-btn" title="Chiudi (ESC)">✕</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <iframe id="modalIframe" class="pdf-iframe" src="about:blank" title="Visualizzatore PDF"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Lab 00 — OpenGL Setup & Finestra GLFW | Computer Graphics Hub</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <style>
+    .lab-container {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 20px;
+      min-height: calc(100vh - 120px);
+    }
+    .canvas-panel {
+      background: #060911;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .glfw-window-frame {
+      width: 100%;
+      max-width: 600px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-lg);
+      background: #0f1422;
+    }
+    .glfw-titlebar {
+      background: #182137;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .win-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .win-dot.red { background: #ef4444; }
+    .win-dot.yellow { background: #f59e0b; }
+    .win-dot.green { background: #10b981; }
+    .win-title {
+      margin-left: 8px;
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+    }
+    .glfw-viewport {
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.1s ease;
+      position: relative;
+    }
+    .control-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .panel-section-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+    }
+    .control-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .control-label {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+    }
+    .control-val {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-primary);
+    }
+    @media (max-width: 900px) {
+      .lab-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div style="background: var(--bg-sidebar); border-bottom: 1px solid var(--border-color); padding: 14px 28px; display: flex; align-items: center; justify-content: space-between;">
+    <div style="display:flex; align-items:center; gap:16px;">
+      <a href="../../index.html#web-labs" class="action-btn download" style="padding: 6px 12px;">
+        ← Torna all'Hub
+      </a>
+      <div>
+        <h2 style="font-size: 1.1rem; font-weight:700;">Web Lab 00 — Setup & GLFW Window Loop</h2>
+        <span style="font-size: 0.75rem; color: var(--text-muted);">Corrispondente a: OpenGL Parte I (Template Finestra, GLAD, GLFW)</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding: 24px; max-width: 1500px; margin: 0 auto;">
+    <div class="lab-container">
+      <!-- Simulated Window Panel -->
+      <div class="canvas-panel">
+        <div class="glfw-window-frame">
+          <div class="glfw-titlebar">
+            <span class="win-dot red"></span>
+            <span class="win-dot yellow"></span>
+            <span class="win-dot green"></span>
+            <span class="win-title" id="winTitleText">OpenGL Window — Core Profile 3.3 [GLFW 3.4 + GLAD]</span>
+          </div>
+          <div class="glfw-viewport" id="viewportArea">
+            <div style="text-align:center; color:#ffffff; text-shadow:0 1px 3px rgba(0,0,0,0.8);">
+              <div style="font-size:1.4rem; font-weight:bold; margin-bottom:4px;">glClearColor(r, g, b, 1.0f);</div>
+              <div style="font-size:0.9rem; opacity:0.85; font-family:var(--font-mono);" id="clearCodeText">glClear(GL_COLOR_BUFFER_BIT);</div>
+              <div style="margin-top:16px; font-size:0.75rem; background:rgba(0,0,0,0.5); padding:4px 10px; border-radius:12px; display:inline-block;" id="fpsCounter">
+                FPS: 60.0 • Frame Time: 16.6ms
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls Panel -->
+      <div class="control-panel">
+        <div>
+          <div class="panel-section-title">Colore di Background (Clear Color)</div>
+          <div class="control-row">
+            <span class="control-label">Rosso (R):</span>
+            <input type="range" id="rSlider" min="0" max="1" step="0.01" value="0.1">
+            <span class="control-val" id="rVal">0.10</span>
+          </div>
+          <div class="control-row">
+            <span class="control-label">Verde (G):</span>
+            <input type="range" id="gSlider" min="0" max="1" step="0.01" value="0.15">
+            <span class="control-val" id="gVal">0.15</span>
+          </div>
+          <div class="control-row">
+            <span class="control-label">Blu (B):</span>
+            <input type="range" id="bSlider" min="0" max="1" step="0.01" value="0.25">
+            <span class="control-val" id="bVal">0.25</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="panel-section-title">Ciclo di Rendering GLFW (Game Loop)</div>
+          <div style="background:var(--bg-input); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:12px; font-family:var(--font-mono); font-size:0.75rem; color:var(--text-secondary); line-height:1.5;">
+            while (!glfwWindowShouldClose(window)) {<br>
+            &nbsp;&nbsp;// 1. Input<br>
+            &nbsp;&nbsp;processInput(window);<br><br>
+            &nbsp;&nbsp;// 2. Render<br>
+            &nbsp;&nbsp;glClearColor(r, g, b, 1.0f);<br>
+            &nbsp;&nbsp;glClear(GL_COLOR_BUFFER_BIT);<br><br>
+            &nbsp;&nbsp;// 3. Swap Buffers & Poll Events<br>
+            &nbsp;&nbsp;glfwSwapBuffers(window);<br>
+            &nbsp;&nbsp;glfwPollEvents();<br>
+            }
+          </div>
+        </div>
+
+        <div>
+          <div class="panel-section-title">Istruzioni Compilazione macOS (Clang)</div>
+          <div style="background:var(--bg-input); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:12px; font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-cyan); line-height:1.5;">
+            brew install glfw cmake<br>
+            mkdir build && cd build<br>
+            cmake ..<br>
+            make<br>
+            ./OpenGLCorso
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const viewport = document.getElementById('viewportArea');
+    const rSlider = document.getElementById('rSlider');
+    const gSlider = document.getElementById('gSlider');
+    const bSlider = document.getElementById('bSlider');
+    const rVal = document.getElementById('rVal');
+    const gVal = document.getElementById('gVal');
+    const bVal = document.getElementById('bVal');
+    const clearCodeText = document.getElementById('clearCodeText');
+
+    function updateColor() {
+      const r = parseFloat(rSlider.value);
+      const g = parseFloat(gSlider.value);
+      const b = parseFloat(bSlider.value);
+
+      rVal.textContent = r.toFixed(2);
+      gVal.textContent = g.toFixed(2);
+      bVal.textContent = b.toFixed(2);
+
+      viewport.style.backgroundColor = `rgb(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(b * 255)})`;
+      clearCodeText.textContent = `glClearColor(${r.toFixed(2)}f, ${g.toFixed(2)}f, ${b.toFixed(2)}f, 1.0f);`;
+    }
+
+    rSlider.addEventListener('input', updateColor);
+    gSlider.addEventListener('input', updateColor);
+    bSlider.addEventListener('input', updateColor);
+
+    updateColor();
+  </script>
+</body>
+</html>
