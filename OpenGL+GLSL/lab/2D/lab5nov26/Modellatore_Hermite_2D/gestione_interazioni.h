@@ -18,3 +18,8 @@ void GestisciTrascinamentoCurve(GLFWwindow* window);
 
 // Rimuove il punto selezionato con un clic nella modalita Elimina.
 void GestisciEliminazioneCurve(GLFWwindow* window);
+
+// Ruota la forma attorno al baricentro trascinando con il mouse
+void GestisciRotazioneForma(GLFWwindow* window);
+
+extern float angoloRotazione;

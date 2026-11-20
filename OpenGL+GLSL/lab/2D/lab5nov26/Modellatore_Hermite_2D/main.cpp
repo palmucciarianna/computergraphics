@@ -112,6 +112,7 @@ int main(void)
         GestisciInserimentoCurve(window);
         GestisciTrascinamentoCurve(window);
         GestisciEliminazioneCurve(window);
+        GestisciRotazioneForma(window);
     }
     /* Pulizia finale */
 
