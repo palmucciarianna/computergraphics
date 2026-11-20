@@ -95,6 +95,72 @@ void RegistraAreaPannello(float x, float y, float larghezza, float altezza, int 
     areePannelli[indice] = {x, y, larghezza, altezza};
 }
 
+static vec2 ConvertiCoordinateMouse(GLFWwindow* window, double mx, double my) {
+    int w = 0, h = 0;
+    glfwGetWindowSize(window, &w, &h);
+    if (w <= 0 || h <= 0) return vec2(0.0f);
+    vec2 pos(2.0f * static_cast<float>(mx) / w - 1.0f,
+             1.0f - 2.0f * static_cast<float>(my) / h);
+
+    if (std::abs(angoloRotazione) > 1e-4f) {
+        vec2 centroTotale(0.0f);
+        int nPuntiTotali = 0;
+        for (const auto& elem : curve) {
+            if (!elem) continue;
+            for (const auto& cp : elem->CP) {
+                centroTotale.x += cp.x;
+                centroTotale.y += cp.y;
+                nPuntiTotali++;
+            }
+        }
+        if (nPuntiTotali > 0) centroTotale /= float(nPuntiTotali);
+
+        mat4 modelRot = mat4(1.0f);
+        modelRot = translate(modelRot, vec3(centroTotale.x, centroTotale.y, 0.0f));
+        modelRot = rotate(modelRot, radians(angoloRotazione), vec3(0.0f, 0.0f, 1.0f));
+        modelRot = translate(modelRot, vec3(-centroTotale.x, -centroTotale.y, 0.0f));
+
+        vec4 local = glm::inverse(modelRot) * vec4(pos.x, pos.y, 0.0f, 1.0f);
+        return vec2(local.x, local.y);
+    }
+    return pos;
+}
+
+void GestisciRotazioneForma(GLFWwindow* window) {
+    static bool premutoPrima = false;
+    static double lastX = 0.0, lastY = 0.0;
+    const bool premutoLeft = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
+    const bool premutoRight = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS;
+
+    const bool attiva = (Mod == 3 && premutoLeft) || premutoRight;
+
+    if (!attiva) {
+        premutoPrima = false;
+        return;
+    }
+
+    double mx, my;
+    glfwGetCursorPos(window, &mx, &my);
+
+    if (!premutoPrima) {
+        if (MouseSuPannello(mx, my)) return;
+        premutoPrima = true;
+        lastX = mx;
+        lastY = my;
+        return;
+    }
+
+    double deltaX = mx - lastX;
+    lastX = mx;
+    lastY = my;
+
+    // Ogni pixel di trascinamento orizzontale corrisponde a 0.5 gradi di rotazione
+    angoloRotazione += static_cast<float>(deltaX) * 0.5f;
+
+    while (angoloRotazione > 180.0f) angoloRotazione -= 360.0f;
+    while (angoloRotazione < -180.0f) angoloRotazione += 360.0f;
+}
+
 // Inserimento gestito per polling: indipendente dalla catena delle callback GLFW/ImGui.
 void GestisciInserimentoCurve(GLFWwindow* window) {
     static bool precedentePremuto = false;
@@ -102,22 +168,17 @@ void GestisciInserimentoCurve(GLFWwindow* window) {
     const bool nuovoClick = premuto && !precedentePremuto;
     precedentePremuto = premuto;
     if (!nuovoClick) return;
-    if (Mod != 0) { std::cout << "[Multicurva] Click ignorato: modalita " << Mod << " (richiesta 0)\n"; return; }
+    if (Mod != 0) return;
     double xpos, ypos;
     glfwGetCursorPos(window, &xpos, &ypos);
     if (MouseSuPannello(xpos, ypos)) {
-        std::cout << "[Multicurva] Click su pannello ImGui, ignorato\n";
         return;
     }
     if (curvaAttivaIndice < 0 || curvaAttivaIndice >= static_cast<int>(curve.size())) return;
     curva = curve[curvaAttivaIndice].get();
-    if (!curva || curva->chiusaC1) { std::cout << "[Multicurva] Curva assente o gia chiusa\n"; return; }
-    int w = 0, h = 0;
-    glfwGetWindowSize(window, &w, &h);
-    if (w <= 0 || h <= 0) return;
-    const float x = 2.0f * static_cast<float>(xpos) / w - 1.0f;
-    const float y = 1.0f - 2.0f * static_cast<float>(ypos) / h;
-    curva->CP.push_back(vec3(x, y, 0.0f));
+    if (!curva || curva->chiusaC1) return;
+    const vec2 p = ConvertiCoordinateMouse(window, xpos, ypos);
+    curva->CP.push_back(vec3(p.x, p.y, 0.0f));
     curva->colCP.push_back(vec4(0.0f, 1.0f, 1.0f, 1.0f));
     curva->Tens.push_back(0.0f);
     curva->Bias.push_back(0.0f);
@@ -125,8 +186,6 @@ void GestisciInserimentoCurve(GLFWwindow* window) {
     curva->Derivata.push_back(vec3(0.0f));
     curva->ncp = static_cast<int>(curva->CP.size());
     UPDATE_VAO_DYNAMIC(curva, true);
-    std::cout << "[Multicurva] Punto inserito nella curva " << curvaAttivaIndice + 1
-              << ", totale punti: " << curva->CP.size() << std::endl;
 }
 
 // Eliminazione: il clic viene gestito sulla curva attiva, senza trascinamento.
@@ -157,8 +216,7 @@ void GestisciEliminazioneCurve(GLFWwindow* window) {
     int w = 0, h = 0;
     glfwGetWindowSize(window, &w, &h);
     if (w <= 0 || h <= 0) return;
-    const vec2 pos(2.0f * static_cast<float>(mx) / w - 1.0f,
-                   1.0f - 2.0f * static_cast<float>(my) / h);
+    const vec2 pos = ConvertiCoordinateMouse(window, mx, my);
 
     // Soglia in pixel, costante anche se la finestra cambia dimensione.
     constexpr float raggioSelezionePixel = 16.0f;
@@ -230,8 +288,7 @@ void GestisciTrascinamentoCurve(GLFWwindow* window) {
     int w, h;
     glfwGetWindowSize(window, &w, &h);
     if (w <= 0 || h <= 0) { premutoPrima = premuto; return; }
-    const vec2 pos(2.0f * static_cast<float>(mx) / w - 1.0f,
-                   1.0f - 2.0f * static_cast<float>(my) / h);
+    const vec2 pos = ConvertiCoordinateMouse(window, mx, my);
     if (!premutoPrima) {
         trascina = false;
         punto = -1;

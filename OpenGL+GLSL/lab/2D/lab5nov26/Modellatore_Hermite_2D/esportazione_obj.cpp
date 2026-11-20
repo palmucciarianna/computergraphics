@@ -41,8 +41,9 @@ static bool CampionaPerOBJ(Curva& c, std::vector<glm::vec3>& out) {
             const float b = u3 - 2*u2 + u;
             const float d = -2*u3 + 3*u2;
             const float e = u3 - u2;
-            out.emplace_back(a*c.CP[i].x + b*h*x0 + d*c.CP[i+1].x + e*h*x1,
-                             a*c.CP[i].y + b*h*y0 + d*c.CP[i+1].y + e*h*y1, 0.f);
+            glm::vec4 pt = c.Model * glm::vec4(a*c.CP[i].x + b*h*x0 + d*c.CP[i+1].x + e*h*x1,
+                                               a*c.CP[i].y + b*h*y0 + d*c.CP[i+1].y + e*h*y1, 0.f, 1.f);
+            out.emplace_back(pt.x, pt.y, 0.f);
         }
     }
     return out.size() >= 3;

@@ -152,8 +152,8 @@ CMakeFiles/imgui.dir/clean:
 # Target rules for target CMakeFiles/Modellatore_Hermite_2D.dir
 
 # All Build rule for target.
-CMakeFiles/Modellatore_Hermite_2D.dir/all: CMakeFiles/imgui.dir/all
 CMakeFiles/Modellatore_Hermite_2D.dir/all: CMakeFiles/glad.dir/all
+CMakeFiles/Modellatore_Hermite_2D.dir/all: CMakeFiles/imgui.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Modellatore_Hermite_2D.dir/build.make CMakeFiles/Modellatore_Hermite_2D.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Modellatore_Hermite_2D.dir/build.make CMakeFiles/Modellatore_Hermite_2D.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/ariannapalmucci/Desktop/AScelta/Computer Graphics/computergraphics/OpenGL+GLSL/lab/2D/lab5nov26/Modellatore_Hermite_2D/build/CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14 "Built target Modellatore_Hermite_2D"

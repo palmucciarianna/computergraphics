@@ -49,17 +49,31 @@ void my_interface()
     ImGui::SetNextWindowPos(ImVec2(20, 20), ImGuiCond_FirstUseEver);
     ImGui::SetNextWindowSize(ImVec2(400, 720), ImGuiCond_FirstUseEver);
 
-    ImGui::Begin("Pannello Modellatore Hermite 2D", NULL, ImGuiWindowFlags_NoCollapse);
+    ImGui::Begin("Pannello Modellatore Hermite 2D", NULL);
 
-    // 1. Gestione dei punti
-    ImGui::TextColored(ImVec4(1.0f, 0.8f, 0.3f, 1.0f), "--- GESTIONE PUNTI ---");
+    // 1. Gestione dei punti & Trasformazioni
+    ImGui::TextColored(ImVec4(1.0f, 0.8f, 0.3f, 1.0f), "--- GESTIONE PUNTI & TRASFORMAZIONI ---");
     ImGui::RadioButton("Inserimento", &Mod, 0); ImGui::SameLine();
     ImGui::RadioButton("Modifica", &Mod, 1); ImGui::SameLine();
     if (ImGui::RadioButton("Elimina", &Mod, 2)) {
         modTg = false;
         selected_point = -1;
     }
-    if (Mod == 0) selected_point = -1;
+    ImGui::SameLine();
+    if (ImGui::RadioButton("Ruota Forma", &Mod, 3)) {
+        modTg = false;
+        selected_point = -1;
+    }
+    if (Mod == 0 || Mod == 3) selected_point = -1;
+
+    ImGui::PushItemWidth(180);
+    ImGui::SliderFloat("Gira forma", &angoloRotazione, -180.0f, 180.0f, "%.1f°");
+    ImGui::PopItemWidth();
+    ImGui::SameLine();
+    if (ImGui::Button("Azzera 0°")) {
+        angoloRotazione = 0.0f;
+    }
+    ImGui::TextDisabled("(Ruota: trascina col sinistro in 'Ruota Forma' o tasto destro ovunque)");
 
     ImGui::Separator();
 
